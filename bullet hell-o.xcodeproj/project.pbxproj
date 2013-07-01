@@ -11,6 +11,8 @@
 		84C8E1401782083D00FD85D3 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C8E13F1782083D00FD85D3 /* Player.m */; };
 		84C8E1421782219400FD85D3 /* monster8.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C8E1411782219400FD85D3 /* monster8.png */; };
 		84C8E1441782234200FD85D3 /* download.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84C8E1431782234200FD85D3 /* download.jpeg */; };
+		84C8E1461782354300FD85D3 /* monster5.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C8E1451782354300FD85D3 /* monster5.png */; };
+		84C8E14917823F8C00FD85D3 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C8E14817823F8B00FD85D3 /* Bullet.m */; };
 		DC1BE6A014F417CC00F49D25 /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */; };
 		DC1BE6A114F417CC00F49D25 /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68D14F417CC00F49D25 /* Ubuntu-BI.ttf */; };
 		DC1BE6A214F417CC00F49D25 /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68E14F417CC00F49D25 /* Ubuntu-C.ttf */; };
@@ -80,6 +82,9 @@
 		84C8E13F1782083D00FD85D3 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		84C8E1411782219400FD85D3 /* monster8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monster8.png; path = "../../../../../Downloads/game-art/monsters/regular/monster8.png"; sourceTree = "<group>"; };
 		84C8E1431782234200FD85D3 /* download.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = download.jpeg; path = ../../../__Kobold2D__/templates/project/download.jpeg; sourceTree = "<group>"; };
+		84C8E1451782354300FD85D3 /* monster5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monster5.png; path = "../../../../../Downloads/game-art/monsters/regular/monster5.png"; sourceTree = "<group>"; };
+		84C8E14717823F8B00FD85D3 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
+		84C8E14817823F8B00FD85D3 /* Bullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bullet.m; sourceTree = "<group>"; };
 		DC1BE68614F417CC00F49D25 /* copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
 		DC1BE68914F417CC00F49D25 /* LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE.txt; sourceTree = "<group>"; };
 		DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
@@ -302,6 +307,8 @@
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
 				84C8E13E1782083D00FD85D3 /* Player.h */,
 				84C8E13F1782083D00FD85D3 /* Player.m */,
+				84C8E14717823F8B00FD85D3 /* Bullet.h */,
+				84C8E14817823F8B00FD85D3 /* Bullet.m */,
 				DCC1A39413A94F1A005BD75D /* Resources */,
 				DCC1A3CF13A94F2C005BD75D /* Supporting Files */,
 			);
@@ -311,6 +318,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84C8E1451782354300FD85D3 /* monster5.png */,
 				84C8E1431782234200FD85D3 /* download.jpeg */,
 				84C8E1411782219400FD85D3 /* monster8.png */,
 				84670953178207E9006621AB /* cloudmonster.png */,
@@ -446,6 +454,7 @@
 				84670954178207E9006621AB /* cloudmonster.png in Resources */,
 				84C8E1421782219400FD85D3 /* monster8.png in Resources */,
 				84C8E1441782234200FD85D3 /* download.jpeg in Resources */,
+				84C8E1461782354300FD85D3 /* monster5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +485,7 @@
 				DCC1A3AB13A94F1A005BD75D /* HelloWorldLayer.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
 				84C8E1401782083D00FD85D3 /* Player.m in Sources */,
+				84C8E14917823F8C00FD85D3 /* Bullet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

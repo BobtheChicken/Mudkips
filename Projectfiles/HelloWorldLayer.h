@@ -16,6 +16,13 @@
     CGPoint posTouchScreen;
     id movePlayer;
     CCSprite* boss;
+    CGPoint playerpos;
+    float touchangle;
+    CCSprite* bullet;
+    NSMutableArray *bullets;
+    NSMutableArray *bulletDirection;
+    CCSprite* projectile;
+    int framespast;
     
 }
 
