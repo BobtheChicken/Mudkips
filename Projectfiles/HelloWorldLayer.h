@@ -6,7 +6,8 @@
  */
 
 #import "cocos2d.h"
-#import "Player.h";
+#import "Player.h"
+#import "Pausue.h"
 
 @interface HelloWorldLayer : CCLayer
 {
@@ -18,11 +19,18 @@
     CCSprite* boss;
     CGPoint playerpos;
     float touchangle;
+    float fakebulletangle;
     CCSprite* bullet;
+    CCSprite* fakebullet;
     NSMutableArray *bullets;
     NSMutableArray *bulletDirection;
+    NSMutableArray *bulletSpeed;
+    NSMutableArray *fakebullets;
     CCSprite* projectile;
+    CCSprite* projectile2;
     int framespast;
+    CGSize screenSize;
+    CCSprite* pausebutton;
     
 }
 
