@@ -85,6 +85,9 @@ int secondspast;
     [self addChild:boss z:0];
     
     [self shootBullet];
+    int tempInt = (arc4random() % 90)+245;
+    NSNumber *temp = [NSNumber numberWithInt:tempInt];
+    [bulletDirection addObject:temp];
 }
 
 
@@ -180,11 +183,11 @@ int secondspast;
     {
         NSInteger j = i;
         CCSprite* tempSprite = [bullets objectAtIndex:j];
-        if ([self isCollidingSphere:tempSprite WithSphere:player] == true) {
-             NSLog(@"Collision detected!");
+        //if ([self isCollidingSphere:tempSprite WithSphere:player] == true) {
+            // NSLog(@"Collision detected!");
             
-            [self removeChild:[bullets objectAtIndex:j] cleanup:YES];
-        }
+            //[self removeChild:[bullets objectAtIndex:j] cleanup:YES];
+        //}
     }
 }
 
@@ -201,7 +204,7 @@ int secondspast;
         }
     }
     
-    /*if(gameSegment ==1)
+    if(gameSegment ==1)
     {
         [self shootBullet];
         int tempInt = 270;
@@ -218,11 +221,11 @@ int secondspast;
         temp = [NSNumber numberWithInt:tempInt];
         [bulletDirection addObject:temp];
 
-    }*/
+    }
     
     
     
-    
+    //move the bullets
     for(int i = 0; i < [bullets count]; i++)
     {
         NSInteger j = i;
