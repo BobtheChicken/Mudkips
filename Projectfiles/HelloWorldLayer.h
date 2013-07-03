@@ -32,6 +32,11 @@
     int framespast;
     CGSize screenSize;
     CCSprite* pausebutton;
+    CCLabelTTF* label;
+    NSString* score;
+    int intScore;
+    
+    int level;
     
 }
 

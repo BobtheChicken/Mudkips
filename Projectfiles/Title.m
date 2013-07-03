@@ -8,6 +8,8 @@
 
 #import "Title.h"
 #import "HelloWorldLayer.h"
+#import "LevelSelect.h"
+#import "SimpleAudioEngine.h"
 
 @implementation Title
 
@@ -25,7 +27,7 @@
             [node pauseSchedulerAndActions];
         }
         
-        
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"zoom.mp3"];
         // add the labels shown during game over
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
@@ -61,11 +63,11 @@
         
         CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Start" target:self selector:@selector(unPause)];
         CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"High Squirrel" target:self selector:@selector(restartGame)];
-        //CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Quit" target:self selector:@selector(quitGame)];
+        CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Moar Gaemrms" target:self selector:@selector(quitGame)];
         [playAgain setFontName:@"Arial"];
         [restart setFontName:@"Arial"];
         //[quit setFontName:@"Arial"];
-        CCMenu *gameOverMenu = [CCMenu menuWithItems:playAgain, restart, nil];
+        CCMenu *gameOverMenu = [CCMenu menuWithItems:playAgain, restart, quit, nil];
         [gameOverMenu alignItemsVertically];
         gameOverMenu.position = ccp(screenSize.width/2, screenSize.height/2 - 80);
         gameOverMenu.color = ccc3(0, 0, 0);
@@ -76,13 +78,14 @@
 
 -(void) quitGame
 {
-    [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+    [MGWU displayCrossPromo];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
 }
 
 -(void) restartGame
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelSelect node]]];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
 }
 
 -(void) unPause
@@ -90,7 +93,8 @@
     //    [[CCDirector sharedDirector] popSceneWithTransition:
     //       [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
     [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelSelect node]]];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
 }
 
 

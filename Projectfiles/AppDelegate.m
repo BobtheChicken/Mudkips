@@ -16,6 +16,9 @@
 #else
 	CCLOG(@"ARC is either not available or not enabled");
 #endif
+    
+    [MGWU loadMGWU:@"iliketoeatpieandbananasandlotsandlotsofcake"];
+    [MGWU preFacebook]; //Temporarily disables Facebook until you integrate it later
 }
 
 -(id) alternateView

@@ -7,6 +7,7 @@
 //
 
 #import "Pausue.h"
+#import "Title.h"
 
 @implementation Pausue
 
@@ -76,7 +77,7 @@
 -(void) quitGame
 {
     [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[Title node]]];
 }
 
 -(void) restartGame
@@ -86,8 +87,8 @@
 
 -(void) unPause
 {
-    //    [[CCDirector sharedDirector] popSceneWithTransition:
-    //       [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+     //   [[CCDirector sharedDirector] popSceneWithTransition:
+       //    [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
     [[CCDirector sharedDirector] popScene];
 }
 

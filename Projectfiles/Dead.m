@@ -9,6 +9,7 @@
 #import "Dead.h"
 #import "HelloWorldLayer.h"
 #import "Title.h"
+#import "LevelSelect.h"
 
 @implementation Dead
 
@@ -60,8 +61,8 @@
         CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
         [gameOver runAction:repeatJump];
         
-        CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Retry" target:self selector:@selector(unPause)];
-        CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Level Select" target:self selector:@selector(restartGame)];
+        CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Retry" target:self selector:@selector(retry)];
+        CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Level Select" target:self selector:@selector(sel)];
         CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Quit" target:self selector:@selector(quitGame)];
         [playAgain setFontName:@"Arial"];
         [restart setFontName:@"Arial"];
@@ -81,12 +82,12 @@
      [CCTransitionCrossFade transitionWithDuration:0.5f scene:[Title node]]];
 }
 
--(void) restartGame
+-(void) sel
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelSelect node]]];
 }
 
--(void) unPause
+-(void) retry
 {
     //    [[CCDirector sharedDirector] popSceneWithTransition:
     //       [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];

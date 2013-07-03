@@ -9,6 +9,7 @@
 #import "SimpleAudioEngine.h"
 #import "Player.h"
 #import "Dead.h"
+#import "LevelSelect.h"
 
 @interface HelloWorldLayer (PrivateMethods)
 @end
@@ -39,6 +40,16 @@ int secondspast;
 {
     if ((self = [super init]))
     {
+        
+        NSNumber *leveldata = [[NSUserDefaults standardUserDefaults] objectForKey:@"leveldata"];
+        level = [leveldata intValue];
+        NSLog([NSString stringWithFormat:@"%i", level]);
+        
+        framespast = 0;
+        secondspast = 0;
+        gameSegment = 0;
+        
+        intScore = 0;
         screenSize = [director winSize];
         bullets = [[NSMutableArray alloc] init];
         bulletSpeed = [[NSMutableArray alloc] init];
@@ -66,7 +77,11 @@ int secondspast;
         pausebutton.scale = 0.5;
         [self addChild:pausebutton];
         
+        [self initScore];
         
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"blip.mp3"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"zoom.mp3"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"swip.mp3"];
         
     }
     return self;
@@ -91,6 +106,9 @@ int secondspast;
     [self gameSeg];
     [self detectCollisions];
     
+
+    
+    
     KKInput* input = [KKInput sharedInput];
     
     if ([input isAnyTouchOnNode:pausebutton touchPhase:KKTouchPhaseAny]) {
@@ -105,11 +123,24 @@ int secondspast;
 
 
 
+-(void) initScore
+{
+    
+    label = [CCLabelTTF labelWithString:@"00000000" fontName:@"Times New Roman" fontSize:24];
+    
+    label.position = ccp(50,465);
+    
+    label.color = ccc3(0, 0, 0);
+    
+    [self addChild: label];
+}
 
 
 
 -(void) bossAttack
 {
+    if(level == 1)
+    {
     if(gameSegment ==0)
     {
         if((framespast % 25) == 0)
@@ -242,7 +273,118 @@ int secondspast;
         }
     }
     
+    }
     
+    if(level == 2)
+    {
+        if(gameSegment ==0)
+        {
+            if((framespast % 100) == 0)
+            {
+                int tempInt = (arc4random() % 300) -245;
+                
+                [self makeDownvote:tempInt];
+                
+
+            
+            }
+        }
+        if(gameSegment ==1)
+        {
+            if((framespast % 25) == 0)
+            {
+                [self shootBulletwithPos:3 angle:270 xpos:0 ypos:0];
+                
+                [self shootBulletwithPos:3 angle:240 xpos:-50 ypos:0];
+                
+                [self shootBulletwithPos:3 angle:300 xpos:50 ypos:0];
+                
+                
+                
+            }
+        }
+        if(gameSegment ==2)
+        {
+            if((framespast % 25) == 0)
+            {
+                [self shootBulletwithPos:3 angle:270 xpos:0 ypos:0];
+                
+                [self shootBulletwithPos:3 angle:240 xpos:100 ypos:0];
+                
+                [self shootBulletwithPos:3 angle:300 xpos:-100 ypos:0];
+                
+                
+                
+            }
+        }
+        if(gameSegment ==3)
+        {
+            if((framespast % 250) == 0)
+            {
+                [self makeDownvote:-200];
+                
+                [self makeDownvote:-100];
+                
+                [self makeDownvote:0];
+                
+                [self makeDownvote:100];
+                
+                [self makeDownvote:200];
+                
+                
+                
+            }
+        }
+        if(gameSegment ==4)
+        {
+            if((framespast % 25) == 0)
+            {
+                [self shootBulletwithPos:3 angle:270 xpos:100 ypos:0];
+                [self shootBulletwithPos:3 angle:271 xpos:-100 ypos:0];
+                
+                for(int i = 0; i < [bullets count];i++)
+                {
+                    if([[bullets objectAtIndex:i] getAngle] > 270)
+                    {
+                    [[bullets objectAtIndex:i] changeAngle:[[bullets objectAtIndex:i] getAngle] + 15];
+                    }
+                    else{
+                        [[bullets objectAtIndex:i] changeAngle:[[bullets objectAtIndex:i] getAngle] - 15];
+                    }
+                }
+                
+                
+                
+            }
+        }
+        if(gameSegment ==5)
+        {
+            if((framespast % 25) == 0)
+            {
+                [self shootBulletwithPos:3 angle:300 xpos:-100 ypos:0];
+                [self shootBulletwithPos:3 angle:240 xpos:100 ypos:0];
+                
+                for(int i = 0; i < [bullets count];i++)
+                {
+                    
+                        //[[bullets objectAtIndex:i] changeAngle:[[bullets objectAtIndex:i] getAngle] + 50];
+                    
+                }
+                
+                
+                
+            }
+            if((framespast % 100) == 0)
+            {
+                [self makeDownvote:-30];
+                
+                
+                
+                
+                
+            }
+        }
+    }
     
     
     [self moveBullet];
@@ -252,7 +394,167 @@ int secondspast;
 
 
 
-
+-(void) makeDownvote:(float) xOffset
+{
+    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:0];
+//    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:0];
+    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:0];
+//    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:0];
+    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:0];
+//    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:0];
+    
+    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:10];
+//    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:10];
+    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:10];
+//    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:10];
+    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:10];
+//    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:10];
+    
+    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:20];
+//    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:20];
+    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:20];
+//    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:20];
+    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:20];
+//    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:20];
+    
+    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:30];
+//    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:30];
+    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:30];
+//    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:30];
+    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:30];
+//    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:30];
+    
+    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:40];
+//    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:40];
+    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:40];
+//    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:40];
+    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:40];
+//    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:40];
+    
+    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:50];
+//    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:50];
+    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:50];
+//    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:50];
+    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:50];
+//    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:50];
+    
+    [self shootBulletwithPos:1 angle:270 xpos:30+xOffset ypos:-10];
+//    [self shootBulletwithPos:1 angle:270 xpos:40 ypos:-10];
+    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:-10];
+//    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:-10];
+    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:-10];
+//    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:-10];
+    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:-10];
+//    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:-10];
+    [self shootBulletwithPos:1 angle:270 xpos:110+xOffset ypos:-10];
+//    [self shootBulletwithPos:1 angle:270 xpos:120 ypos:-10];
+    
+    [self shootBulletwithPos:1 angle:270 xpos:40+xOffset ypos:-20];
+//    [self shootBulletwithPos:1 angle:270 xpos:50 ypos:-20];
+    [self shootBulletwithPos:1 angle:270 xpos:60+xOffset ypos:-20];
+//    [self shootBulletwithPos:1 angle:270 xpos:70 ypos:-20];
+    [self shootBulletwithPos:1 angle:270 xpos:80+xOffset ypos:-20];
+//    [self shootBulletwithPos:1 angle:270 xpos:90 ypos:-20];
+    [self shootBulletwithPos:1 angle:270 xpos:100+xOffset ypos:-20];
+//    [self shootBulletwithPos:1 angle:270 xpos:110 ypos:-20];
+    
+    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:-30];
+//    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:-30];
+    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:-30];
+//    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:-30];
+    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:-30];
+//    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:-30];
+    
+    [self shootBulletwithPos:1 angle:270 xpos:60+xOffset ypos:-40];
+//    [self shootBulletwithPos:1 angle:270 xpos:70 ypos:-40];
+    [self shootBulletwithPos:1 angle:270 xpos:80+xOffset ypos:-40];
+//    [self shootBulletwithPos:1 angle:270 xpos:90 ypos:-40];
+    
+    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:-50];
+//    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:-50];
+    
+    
+    
+    
+    //                [self shootBulletwithPos:1 angle:270 xpos:50 ypos:0];
+    //                [self shootBulletwithPos:1 angle:270 xpos:60 ypos:0];
+    //                [self shootBulletwithPos:1 angle:270 xpos:70 ypos:0];
+    //                [self shootBulletwithPos:1 angle:270 xpos:80 ypos:0];
+    //                [self shootBulletwithPos:1 angle:270 xpos:90 ypos:0];
+    //                [self shootBulletwithPos:1 angle:270 xpos:100 ypos:0];
+    //
+    //                [self shootBulletwithPos:1 angle:270 xpos:50 ypos:10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:60 ypos:10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:70 ypos:10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:80 ypos:10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:90 ypos:10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:100 ypos:10];
+    //
+    //                [self shootBulletwithPos:1 angle:270 xpos:50 ypos:20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:60 ypos:20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:70 ypos:20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:80 ypos:20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:90 ypos:20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:100 ypos:20];
+    //
+    //                [self shootBulletwithPos:1 angle:270 xpos:50 ypos:30];
+    //                [self shootBulletwithPos:1 angle:270 xpos:60 ypos:30];
+    //                [self shootBulletwithPos:1 angle:270 xpos:70 ypos:30];
+    //                [self shootBulletwithPos:1 angle:270 xpos:80 ypos:30];
+    //                [self shootBulletwithPos:1 angle:270 xpos:90 ypos:30];
+    //                [self shootBulletwithPos:1 angle:270 xpos:100 ypos:30];
+    //
+    //                [self shootBulletwithPos:1 angle:270 xpos:50 ypos:40];
+    //                [self shootBulletwithPos:1 angle:270 xpos:60 ypos:40];
+    //                [self shootBulletwithPos:1 angle:270 xpos:70 ypos:40];
+    //                [self shootBulletwithPos:1 angle:270 xpos:80 ypos:40];
+    //                [self shootBulletwithPos:1 angle:270 xpos:90 ypos:40];
+    //                [self shootBulletwithPos:1 angle:270 xpos:100 ypos:40];
+    //
+    //                [self shootBulletwithPos:1 angle:270 xpos:50 ypos:50];
+    //                [self shootBulletwithPos:1 angle:270 xpos:60 ypos:50];
+    //                [self shootBulletwithPos:1 angle:270 xpos:70 ypos:50];
+    //                [self shootBulletwithPos:1 angle:270 xpos:80 ypos:50];
+    //                [self shootBulletwithPos:1 angle:270 xpos:90 ypos:50];
+    //                [self shootBulletwithPos:1 angle:270 xpos:100 ypos:50];
+    //
+    //                [self shootBulletwithPos:1 angle:270 xpos:30 ypos:-10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:40 ypos:-10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:50 ypos:-10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:60 ypos:-10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:70 ypos:-10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:80 ypos:-10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:90 ypos:-10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:100 ypos:-10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:110 ypos:-10];
+    //                [self shootBulletwithPos:1 angle:270 xpos:120 ypos:-10];
+    //
+    //                [self shootBulletwithPos:1 angle:270 xpos:40 ypos:-20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:50 ypos:-20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:60 ypos:-20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:70 ypos:-20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:80 ypos:-20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:90 ypos:-20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:100 ypos:-20];
+    //                [self shootBulletwithPos:1 angle:270 xpos:110 ypos:-20];
+    //
+    //                [self shootBulletwithPos:1 angle:270 xpos:50 ypos:-30];
+    //                [self shootBulletwithPos:1 angle:270 xpos:60 ypos:-30];
+    //                [self shootBulletwithPos:1 angle:270 xpos:70 ypos:-30];
+    //                [self shootBulletwithPos:1 angle:270 xpos:80 ypos:-30];
+    //                [self shootBulletwithPos:1 angle:270 xpos:90 ypos:-30];
+    //                [self shootBulletwithPos:1 angle:270 xpos:100 ypos:-30];
+    //
+    //                [self shootBulletwithPos:1 angle:270 xpos:60 ypos:-40];
+    //                [self shootBulletwithPos:1 angle:270 xpos:70 ypos:-40];
+    //                [self shootBulletwithPos:1 angle:270 xpos:80 ypos:-40];
+    //                [self shootBulletwithPos:1 angle:270 xpos:90 ypos:-40];
+    //                
+    //                [self shootBulletwithPos:1 angle:270 xpos:70 ypos:-50];
+    //                [self shootBulletwithPos:1 angle:270 xpos:80 ypos:-50];
+    
+    //[self shootBulletwithPos:1 angle:270 xpos:80 ypos:-60];
+}
 
 
 
@@ -273,9 +575,11 @@ int secondspast;
 
 -(void) initBoss
 {
+    if(level == 1)
+    {
     int x = 150;
     int y = 400;
-    boss = [CCSprite spriteWithFile:@"download.png"];
+    boss = [CCSprite spriteWithFile:@"Glowing_Blue_Orb.png"];
     boss.position = ccp(x,y);
     boss.scale = 0;
     [self addChild:boss z:0];
@@ -284,6 +588,21 @@ int secondspast;
     [boss runAction:bossscale];
     
    [self shootBullet:1 angle:270];
+    }
+    else if(level == 2)
+    {
+        int x = 150;
+        int y = 400;
+        boss = [CCSprite spriteWithFile:@"download.png"];
+        boss.position = ccp(x,y);
+        boss.scale = 0;
+        [self addChild:boss z:0];
+        
+        id bossscale = [CCScaleTo actionWithDuration:1.0f scale:0.5f];
+        [boss runAction:bossscale];
+        
+        [self shootBullet:1 angle:270];
+    }
 }
 
 
@@ -387,6 +706,8 @@ int secondspast;
             framespast = 0;
             secondspast = 0;
             
+            [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
+            
             [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[Dead node]]];
         }
         for(int i = 0; i < [fakebullets count]; i++)
@@ -402,6 +723,12 @@ int secondspast;
                     
                     [self removeChild:tempFakeSprite cleanup:YES];
                     [fakebullets removeObjectAtIndex:j];
+                    intScore = intScore + 100;
+                    NSLog([NSString stringWithFormat:@"%d", intScore]);
+                    NSString *str = [NSString stringWithFormat:@"%d",intScore];
+                    [label setString:str];
+                    [label draw];
+                  //  [[SimpleAudioEngine sharedEngine] playEffect:@"blip.mp3"];
                 }
             }
         }
@@ -445,6 +772,7 @@ int secondspast;
     Bullet *newB = [Bullet bullet:speed :angleInput];
 //    Bullet *b = [[Bullet alloc] initWithValues:speed :angleInput];
     newB.position = boss.position;
+  //  newB.position.x = newB.position.x + xInput;
 //    [b setPosition:player.position];
     
 //    b.position = ccp(30, 30);
@@ -453,7 +781,26 @@ int secondspast;
     newB.scale = 0;
     id scale = [CCScaleTo actionWithDuration:1.0f scale:0.1f];
     [newB runAction:scale];
+ //   [[SimpleAudioEngine sharedEngine] playEffect:@"swip.mp3"];
 }
+
+
+-(void) shootBulletwithPos: (float) speed angle:(float) angleInput xpos:(float) xInput ypos:(float) yInput
+{
+    Bullet *newB = [Bullet bullet:speed :angleInput];
+    //    Bullet *b = [[Bullet alloc] initWithValues:speed :angleInput];
+    newB.position = boss.position;
+    newB.position = ccp(newB.position.x + xInput, newB.position.y + yInput);
+    //    [b setPosition:player.position];
+    
+    //    b.position = ccp(30, 30);
+    [self addChild:newB z:9];
+    [bullets addObject:newB];
+    newB.scale = 0;
+    id scale = [CCScaleTo actionWithDuration:1.0f scale:0.1f];
+    [newB runAction:scale];
+}
+
 
 -(void) returnBullet
 {
@@ -474,6 +821,8 @@ int secondspast;
 
 -(void) gameSeg
 {
+    if(level == 1)
+    {
     if(framespast == 440)
     {
         gameSegment = 1;
@@ -598,7 +947,181 @@ int secondspast;
             
         }
         [bullets removeAllObjects];
+        
+        [self gameEnd];
     }
+    }
+    
+    if(level == 2)
+    {
+        if(framespast == 540)
+        {
+            gameSegment = 1;
+            [self returnBullet];
+            for(int i = 0; i < [bullets count]; i++)
+            {
+                Bullet *temp = [bullets objectAtIndex:i];
+                
+                [self removeChild:temp];
+                
+                
+                
+                
+                //  [bullets removeObjectAtIndex:j];
+                //[bulletDirection removeObjectAtIndex:j];
+                //[bulletSpeed removeObjectAtIndex:j];
+                
+                
+            }
+            
+            [bullets removeAllObjects];
+        }
+        if(framespast == 640)
+        {
+            gameSegment = 2;
+            [self returnBullet];
+            for(int i = 0; i < [bullets count]; i++)
+            {
+                Bullet *temp = [bullets objectAtIndex:i];
+                
+                [self removeChild:temp];
+                
+                
+                
+                
+                //  [bullets removeObjectAtIndex:j];
+                //[bulletDirection removeObjectAtIndex:j];
+                //[bulletSpeed removeObjectAtIndex:j];
+                
+                
+            }
+            
+            [bullets removeAllObjects];
+        }
+        if(framespast == 840)
+        {
+            gameSegment = 3;
+            [self returnBullet];
+            for(int i = 0; i < [bullets count]; i++)
+            {
+                Bullet *temp = [bullets objectAtIndex:i];
+                
+                [self removeChild:temp];
+                
+                
+                
+                
+                //  [bullets removeObjectAtIndex:j];
+                //[bulletDirection removeObjectAtIndex:j];
+                //[bulletSpeed removeObjectAtIndex:j];
+                
+                
+            }
+            
+            [bullets removeAllObjects];
+        }
+        if(framespast == 1260)
+        {
+            gameSegment = 4;
+            [self returnBullet];
+            for(int i = 0; i < [bullets count]; i++)
+            {
+                Bullet *temp = [bullets objectAtIndex:i];
+                
+                [self removeChild:temp];
+                
+                
+                
+                
+                //  [bullets removeObjectAtIndex:j];
+                //[bulletDirection removeObjectAtIndex:j];
+                //[bulletSpeed removeObjectAtIndex:j];
+                
+                
+            }
+            
+            [bullets removeAllObjects];
+        }
+        if(framespast == 1460)
+        {
+            gameSegment = 5;
+            [self returnBullet];
+            for(int i = 0; i < [bullets count]; i++)
+            {
+                Bullet *temp = [bullets objectAtIndex:i];
+                
+                [self removeChild:temp];
+                
+                
+                
+                
+                //  [bullets removeObjectAtIndex:j];
+                //[bulletDirection removeObjectAtIndex:j];
+                //[bulletSpeed removeObjectAtIndex:j];
+                
+                
+            }
+            
+            [bullets removeAllObjects];
+        }
+        if(framespast == 2000)
+        {
+            gameSegment = 6;
+            [self returnBullet];
+            for(int i = 0; i < [bullets count]; i++)
+            {
+                Bullet *temp = [bullets objectAtIndex:i];
+                
+                [self removeChild:temp];
+                
+                
+                
+                
+                //  [bullets removeObjectAtIndex:j];
+                //[bulletDirection removeObjectAtIndex:j];
+                //[bulletSpeed removeObjectAtIndex:j];
+                
+                
+            }
+            
+            [bullets removeAllObjects];
+            
+            [self gameEnd];
+        }
+
+
+    }
+}
+
+
+-(void) gameEnd
+{
+    id bossscale = [CCScaleTo actionWithDuration:1.0f scale:2.0f];
+    [boss runAction:bossscale];
+    
+    id bossturn = [CCRotateTo actionWithDuration:3.0 angle:200];
+    [boss runAction:bossturn];
+    
+    id bossscale2 = [CCScaleTo actionWithDuration:3.0f scale:0.0f];
+    [boss runAction:bossscale2];
+    
+    [self schedule:@selector(mySelector) interval:3.0];
+    
+    
+        
+        
+    
+    
+    
+
+}
+
+- (void)mySelector {
+    
+    [self unschedule:@selector(mySelector)];
+    
+    [[CCDirector sharedDirector] pushScene:
+     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelSelect node]]];
     
 }
 
