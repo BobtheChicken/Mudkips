@@ -64,10 +64,12 @@
         CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Title Screen" target:self selector:@selector(unPause)];
         CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Level 1" target:self selector:@selector(level1)];
         CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Level 2" target:self selector:@selector(level2)];
+         CCMenuItemFont *obama = [CCMenuItemFont itemFromString: @"Level 3" target:self selector:@selector(obama)];
         [playAgain setFontName:@"Arial"];
         [restart setFontName:@"Arial"];
         [quit setFontName:@"Arial"];
-        CCMenu *gameOverMenu = [CCMenu menuWithItems:playAgain, restart, quit, nil];
+        [obama setFontName:@"Arial"];
+        CCMenu *gameOverMenu = [CCMenu menuWithItems:playAgain, restart, quit, obama, nil];
         [gameOverMenu alignItemsVertically];
         gameOverMenu.position = ccp(screenSize.width/2, screenSize.height/2 - 80);
         gameOverMenu.color = ccc3(0, 0, 0);
@@ -98,6 +100,16 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
     
 
+}
+
+-(void) obama
+{
+    NSNumber *leveldata = [NSNumber numberWithInteger:3];
+    [[NSUserDefaults standardUserDefaults] setObject:leveldata forKey:@"leveldata"];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+    
+    
 }
 
 -(void) unPause

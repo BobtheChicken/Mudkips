@@ -29,6 +29,7 @@ int thetemporalint = 180;
 int fromNumber;
 int toNumber;
 id movePlayer;
+int omganothertemportalint;
 
 int gameSegment = 0;
 
@@ -49,9 +50,14 @@ int secondspast;
         secondspast = 0;
         gameSegment = 0;
         
+        thetemporalint = 180;
+        
+        omganothertemportalint = 180;
+        
         intScore = 0;
         screenSize = [director winSize];
         bullets = [[NSMutableArray alloc] init];
+        donkeys = [[NSMutableArray alloc] init];
         bulletSpeed = [[NSMutableArray alloc] init];
         fakebullets = [[NSMutableArray alloc] init];
         bulletDirection = [[NSMutableArray alloc] init];
@@ -386,6 +392,78 @@ int secondspast;
         }
     }
     
+    if(level == 3)
+    {
+        if(gameSegment ==0)
+        {
+            if(framespast == 160)
+            {
+                
+                
+                [self yeswecan];
+                
+                
+            }
+        }
+        if(gameSegment ==1)
+        {
+            if((framespast % 50) == 0)
+            {
+                
+                
+                [self shootBulletwithPosDonkey:3 angle:270 xpos:0 ypos:0];
+                
+                
+            }
+        }
+        if(gameSegment ==2)
+        {
+            if((framespast % 25) == 0)
+            {
+                
+                
+                [self shootBulletwithPos:3 angle:omganothertemportalint xpos:0 ypos:0];
+                
+                omganothertemportalint = omganothertemportalint + 15;
+                
+                [self shootBulletwithPos:3 angle:omganothertemportalint xpos:0 ypos:0];
+                
+                omganothertemportalint = omganothertemportalint + 15;
+            }
+        }
+        if(gameSegment ==3)
+        {
+            if((framespast % 10) == 0)
+            {
+                
+                
+                [self shootBulletwithPos:7 angle:270 xpos:0 ypos:0];
+                
+                [self shootBulletwithPos:7 angle:250 xpos:0 ypos:0];
+                
+                [self shootBulletwithPos:7 angle:290 xpos:0 ypos:0];
+
+            }
+        }
+        if(gameSegment ==4)
+        {
+            if(framespast == 1500)
+            {
+                [self yeswecan];
+            }
+            if((framespast % 50) == 0)
+            {
+                
+                
+                [self shootBulletwithPosDonkey:3 angle:270 xpos:100 ypos:0];
+                
+                [self shootBulletwithPosDonkey:3 angle:270 xpos:0 ypos:0];
+                
+                [self shootBulletwithPosDonkey:3 angle:270 xpos:-100 ypos:0];
+                
+            }
+        }
+    }
     
     [self moveBullet];
     [self moveFakeBullet];
@@ -393,7 +471,112 @@ int secondspast;
 }
 
 
-
+-(void) yeswecan
+{
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-140 ypos:0];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-60 ypos:0];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-20 ypos:0];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:0 ypos:0];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:20 ypos:0];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:60 ypos:0];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:80 ypos:0];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:100 ypos:0];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-120 ypos:-20];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-80 ypos:-20];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-20 ypos:-20];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:60 ypos:-20];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-100 ypos:-40];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-20 ypos:-40];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:0 ypos:-40];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:20 ypos:-40];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:60 ypos:-40];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:80 ypos:-40];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:100 ypos:-40];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-100 ypos:-60];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-20 ypos:-60];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:100 ypos:-60];
+    
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-100 ypos:-80];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-20 ypos:-80];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:0 ypos:-80];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:20 ypos:-80];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:60 ypos:-80];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:80 ypos:-80];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:100 ypos:-80];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:0 ypos:-120];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-120 ypos:-120];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:40 ypos:-120];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:60 ypos:-120];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:80 ypos:-120];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:0 ypos:-140];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-120 ypos:-140];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-60 ypos:-140];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:40 ypos:-140];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-120 ypos:-160];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-60 ypos:-160];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:0 ypos:-160];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:40 ypos:-160];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:60 ypos:-160];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:80 ypos:-160];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-100 ypos:-180];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-80 ypos:-180];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-40 ypos:-180];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-20 ypos:-180];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:40 ypos:-180];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:40 ypos:-200];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:60 ypos:-200];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:80 ypos:-200];
+    
+    //can
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-120 ypos:-240];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-100 ypos:-240];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-80 ypos:-240];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:0 ypos:-240];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:80 ypos:-240];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:160 ypos:-240];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-120 ypos:-260];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-20 ypos:-260];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:20 ypos:-260];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:80 ypos:-260];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:100 ypos:-260];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:160 ypos:-260];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-120 ypos:-280];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-40 ypos:-280];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:40 ypos:-280];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:80 ypos:-280];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:120 ypos:-280];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:160 ypos:-280];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-120 ypos:-300];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:140 ypos:-300];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:160 ypos:-300];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-40 ypos:-300];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-20 ypos:-300];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:0 ypos:-300];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:20 ypos:-300];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:40 ypos:-300];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:80 ypos:-300];
+    
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-120 ypos:-320];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-100 ypos:-320];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-80 ypos:-320];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:-40 ypos:-320];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:40 ypos:-320];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:80 ypos:-320];
+    [self shootBulletwithPosSmall:1 angle:270 xpos:160 ypos:-320];
+}
 -(void) makeDownvote:(float) xOffset
 {
     [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:0];
@@ -603,6 +786,20 @@ int secondspast;
         
         [self shootBullet:1 angle:270];
     }
+    else if(level == 3)
+    {
+        int x = 150;
+        int y = 400;
+        boss = [CCSprite spriteWithFile:@"w_obama.png"];
+        boss.position = ccp(x,y);
+        boss.scale = 0;
+        [self addChild:boss z:0];
+        
+        id bossscale = [CCScaleTo actionWithDuration:1.0f scale:0.5f];
+        [boss runAction:bossscale];
+        
+        [self shootBullet:1 angle:270];
+    }
 }
 
 
@@ -760,6 +957,21 @@ int secondspast;
         projectile.position = ccpAdd(projectile.position, direction);
         
     }
+    for(int i = 0; i < [donkeys count]; i++)
+    {
+        NSInteger j = i;
+        projectile = [donkeys objectAtIndex:j];
+        float angle = 270;
+        float speed = 3;
+        
+        float vx = cos(angle * M_PI / 180) * speed;
+        float vy = sin(angle * M_PI / 180) * speed;
+        
+        CGPoint direction = ccp(vx,vy);
+        
+        projectile.position = ccpAdd(projectile.position, direction);
+        
+    }
     //NSLog([NSString stringWithFormat:@"%d", [bullets count]]);
     //NSLog([NSString stringWithFormat:@"%d", [fakebullets count]]);
     
@@ -801,6 +1013,47 @@ int secondspast;
     [newB runAction:scale];
 }
 
+-(void) shootBulletwithPosDonkey: (float) speed angle:(float) angleInput xpos:(float) xInput ypos:(float) yInput
+{
+    Bullet *newB = [Bullet bullet:speed :angleInput];
+    //    Bullet *b = [[Bullet alloc] initWithValues:speed :angleInput];
+    newB.position = boss.position;
+    newB.position = ccp(newB.position.x + xInput, newB.position.y + yInput);
+    //    [b setPosition:player.position];
+    
+    //    b.position = ccp(30, 30);
+    [self addChild:newB z:9];
+    [bullets addObject:newB];
+    newB.scale = 0;
+    id scale = [CCScaleTo actionWithDuration:1.0f scale:0.1f];
+    [newB runAction:scale];
+    
+    donkey = [CCSprite spriteWithFile:@"Democrat_Donkey.png"];
+    donkey.position = newB.position;
+    donkey.scale = 0;
+    [self addChild:donkey z:0];
+    
+    id bossscale = [CCScaleTo actionWithDuration:1.0f scale:0.5f];
+    [donkey runAction:bossscale];
+    
+    [donkeys addObject:donkey];
+}
+
+-(void) shootBulletwithPosSmall: (float) speed angle:(float) angleInput xpos:(float) xInput ypos:(float) yInput
+{
+    Bullet *newB = [Bullet bullet:speed :angleInput];
+    //    Bullet *b = [[Bullet alloc] initWithValues:speed :angleInput];
+    newB.position = boss.position;
+    newB.position = ccp(newB.position.x + xInput, newB.position.y + yInput +200);
+    //    [b setPosition:player.position];
+    
+    //    b.position = ccp(30, 30);
+    [self addChild:newB z:9];
+    [bullets addObject:newB];
+    newB.scale = 0;
+    id scale = [CCScaleTo actionWithDuration:1.0f scale:0.05f];
+    [newB runAction:scale];
+}
 
 -(void) returnBullet
 {
@@ -1088,6 +1341,161 @@ int secondspast;
             
             [self gameEnd];
         }
+
+
+    }
+    
+    if(level == 3)
+    {   
+        if(framespast == 350)
+        {
+            gameSegment = 1;
+            [self returnBullet];
+            for(int i = 0; i < [bullets count]; i++)
+            {
+                Bullet *temp = [bullets objectAtIndex:i];
+                
+                [self removeChild:temp];
+                
+                
+                
+                
+                //  [bullets removeObjectAtIndex:j];
+                //[bulletDirection removeObjectAtIndex:j];
+                //[bulletSpeed removeObjectAtIndex:j];
+                
+                
+            }
+            [bullets removeAllObjects];
+           
+        }
+        if(framespast == 650)
+        {
+            gameSegment = 2;
+            [self returnBullet];
+            for(int i = 0; i < [bullets count]; i++)
+            {
+                Bullet *temp = [bullets objectAtIndex:i];
+                
+                [self removeChild:temp];
+                
+                
+                
+                
+                //  [bullets removeObjectAtIndex:j];
+                //[bulletDirection removeObjectAtIndex:j];
+                //[bulletSpeed removeObjectAtIndex:j];
+                
+                
+            }
+            for(int i = 0; i < [donkeys count]; i++)
+            {
+                CCSprite *temp = [donkeys objectAtIndex:i];
+                
+                [self removeChild:temp];
+                
+                
+                
+                
+                //  [bullets removeObjectAtIndex:j];
+                //[bulletDirection removeObjectAtIndex:j];
+                //[bulletSpeed removeObjectAtIndex:j];
+                
+                
+            }
+            
+            [donkeys removeAllObjects];
+            [bullets removeAllObjects];
+        }
+        if(framespast == 1050)
+        {
+            gameSegment = 3;
+            [self returnBullet];
+            for(int i = 0; i < [bullets count]; i++)
+            {
+                Bullet *temp = [bullets objectAtIndex:i];
+                
+                [self removeChild:temp];
+                
+                
+                
+                
+                //  [bullets removeObjectAtIndex:j];
+                //[bulletDirection removeObjectAtIndex:j];
+                //[bulletSpeed removeObjectAtIndex:j];
+                
+                
+            }
+            [bullets removeAllObjects];
+        }
+    if(framespast == 1450)
+    {
+        gameSegment = 4;
+        [self returnBullet];
+        for(int i = 0; i < [bullets count]; i++)
+        {
+            Bullet *temp = [bullets objectAtIndex:i];
+            
+            [self removeChild:temp];
+            
+            
+            
+            
+            //  [bullets removeObjectAtIndex:j];
+            //[bulletDirection removeObjectAtIndex:j];
+            //[bulletSpeed removeObjectAtIndex:j];
+            
+            
+        }
+        [bullets removeAllObjects];
+    }
+    if(framespast == 1750)
+    {
+        gameSegment = 5;
+        [self returnBullet];
+        for(int i = 0; i < [bullets count]; i++)
+        {
+            Bullet *temp = [bullets objectAtIndex:i];
+            
+            [self removeChild:temp];
+            
+            
+            
+            
+            //  [bullets removeObjectAtIndex:j];
+            //[bulletDirection removeObjectAtIndex:j];
+            //[bulletSpeed removeObjectAtIndex:j];
+            
+            
+        }
+        [bullets removeAllObjects];
+    }
+    if(framespast == 2000)
+    {
+        gameSegment = 6;
+        [self returnBullet];
+        for(int i = 0; i < [bullets count]; i++)
+        {
+            Bullet *temp = [bullets objectAtIndex:i];
+            
+            [self removeChild:temp];
+            
+            
+            
+            
+            //  [bullets removeObjectAtIndex:j];
+            //[bulletDirection removeObjectAtIndex:j];
+            //[bulletSpeed removeObjectAtIndex:j];
+            
+            
+        }
+        [bullets removeAllObjects];
+        
+        [self gameEnd];
+    }
+
+
+
 
 
     }

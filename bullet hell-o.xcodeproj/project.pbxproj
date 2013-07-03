@@ -19,6 +19,10 @@
 		84683DB0178368D6007030C3 /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 84683DAF178368D6007030C3 /* orange.png */; };
 		84A8F8931784CAA400878094 /* swip.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84A8F8921784CAA400878094 /* swip.mp3 */; };
 		84A8F8951784CAFD00878094 /* zoom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84A8F8941784CAFD00878094 /* zoom.mp3 */; };
+		84A8F8971784D70300878094 /* w_obama.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A8F8961784D70300878094 /* w_obama.png */; };
+		84A8F8991784E3C300878094 /* Democrat_Donkey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84A8F8981784E3C300878094 /* Democrat_Donkey.jpg */; };
+		84A8F89C1784E40200878094 /* Donkey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A8F89B1784E40200878094 /* Donkey.m */; };
+		84A8F89E1784E87000878094 /* Democrat_Donkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A8F89D1784E87000878094 /* Democrat_Donkey.png */; };
 		84C8E1401782083D00FD85D3 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C8E13F1782083D00FD85D3 /* Player.m */; };
 		84C8E1421782219400FD85D3 /* monster8.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C8E1411782219400FD85D3 /* monster8.png */; };
 		84C8E1441782234200FD85D3 /* download.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84C8E1431782234200FD85D3 /* download.jpeg */; };
@@ -170,6 +174,11 @@
 		84683DAF178368D6007030C3 /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
 		84A8F8921784CAA400878094 /* swip.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swip.mp3; sourceTree = "<group>"; };
 		84A8F8941784CAFD00878094 /* zoom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zoom.mp3; sourceTree = "<group>"; };
+		84A8F8961784D70300878094 /* w_obama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = w_obama.png; sourceTree = "<group>"; };
+		84A8F8981784E3C300878094 /* Democrat_Donkey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Democrat_Donkey.jpg; sourceTree = "<group>"; };
+		84A8F89A1784E40200878094 /* Donkey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Donkey.h; sourceTree = "<group>"; };
+		84A8F89B1784E40200878094 /* Donkey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Donkey.m; sourceTree = "<group>"; };
+		84A8F89D1784E87000878094 /* Democrat_Donkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Democrat_Donkey.png; sourceTree = "<group>"; };
 		84C8E13E1782083D00FD85D3 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		84C8E13F1782083D00FD85D3 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		84C8E1411782219400FD85D3 /* monster8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monster8.png; path = "../../../../../Downloads/game-art/monsters/regular/monster8.png"; sourceTree = "<group>"; };
@@ -570,6 +579,8 @@
 				84455DD81783820D002D130A /* Dead.m */,
 				84F92CC11784A12000500453 /* LevelSelect.h */,
 				84F92CC21784A12000500453 /* LevelSelect.m */,
+				84A8F89A1784E40200878094 /* Donkey.h */,
+				84A8F89B1784E40200878094 /* Donkey.m */,
 				DCC1A39413A94F1A005BD75D /* Resources */,
 				DCC1A3CF13A94F2C005BD75D /* Supporting Files */,
 			);
@@ -579,6 +590,9 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84A8F8981784E3C300878094 /* Democrat_Donkey.jpg */,
+				84A8F89D1784E87000878094 /* Democrat_Donkey.png */,
+				84A8F8961784D70300878094 /* w_obama.png */,
 				84A8F8941784CAFD00878094 /* zoom.mp3 */,
 				84A8F8921784CAA400878094 /* swip.mp3 */,
 				84F92CCD1784B5F400500453 /* blip.mp3 */,
@@ -784,6 +798,9 @@
 				84F92D501784C22400500453 /* send-field-landscape.png in Resources */,
 				84A8F8931784CAA400878094 /* swip.mp3 in Resources */,
 				84A8F8951784CAFD00878094 /* zoom.mp3 in Resources */,
+				84A8F8971784D70300878094 /* w_obama.png in Resources */,
+				84A8F8991784E3C300878094 /* Democrat_Donkey.jpg in Resources */,
+				84A8F89E1784E87000878094 /* Democrat_Donkey.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +837,7 @@
 				84455DD617838048002D130A /* Selector.m in Sources */,
 				84455DD91783820D002D130A /* Dead.m in Sources */,
 				84F92CC31784A12000500453 /* LevelSelect.m in Sources */,
+				84A8F89C1784E40200878094 /* Donkey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

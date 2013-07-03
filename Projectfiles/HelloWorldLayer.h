@@ -9,6 +9,7 @@
 #import "Player.h"
 #import "Pausue.h"
 #import "Bullet.h"
+#import "Donkey.h"
 
 @interface HelloWorldLayer : CCLayer
 {
@@ -27,6 +28,7 @@
     NSMutableArray *bulletDirection;
     NSMutableArray *bulletSpeed;
     NSMutableArray *fakebullets;
+    NSMutableArray *donkeys;
     CCSprite* projectile;
     CCSprite* projectile2;
     int framespast;
@@ -35,6 +37,7 @@
     CCLabelTTF* label;
     NSString* score;
     int intScore;
+    CCSprite* donkey;
     
     int level;
     
