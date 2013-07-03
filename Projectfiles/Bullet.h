@@ -10,8 +10,17 @@
 
 @interface Bullet : CCSprite
 {
-    int angle;
+    float angle;
+    float speed;
+
 }
+
+-(id) initWithValues: (float) speedIn: (float) angleIn;
+-(float) getAngle;
+-(float) getSpeed;
+-(void) changeAngle: (float) angleIn;
+-(void) changeSpeed: (float) speedIn;
++(id) bullet: (float) speedIn:(float) angleIn;
 
 
 

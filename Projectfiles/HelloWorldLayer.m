@@ -8,6 +8,7 @@
 #import "HelloWorldLayer.h"
 #import "SimpleAudioEngine.h"
 #import "Player.h"
+#import "Dead.h"
 
 @interface HelloWorldLayer (PrivateMethods)
 @end
@@ -113,13 +114,11 @@ int secondspast;
     {
         if((framespast % 25) == 0)
         {
-            [self shootBullet];
-            int tempInt = (arc4random() % 90)+245;
-            NSNumber *temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 1;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
+
+            int tempInt = (arc4random() % 90) + 240;
+                           
+                           
+            [self shootBullet:1 angle:tempInt];
         }
     }
     
@@ -128,29 +127,9 @@ int secondspast;
         if((framespast % 25) ==0)
         {
             
-            [self shootBullet];
-            int tempInt = 270;
-            NSNumber *temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
-            
-            [self shootBullet];
-            tempInt = 250;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
-            
-            [self shootBullet];
-            tempInt = 290;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
+            [self shootBullet:3 angle:240];
+            [self shootBullet:3 angle:270];
+            [self shootBullet:3 angle:300];
         }
         
     }
@@ -158,21 +137,9 @@ int secondspast;
     {
         if((framespast % 25) ==0)
         {
-            [self shootBullet];
-            int tempInt = 300;
-            NSNumber *temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 5;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
+            [self shootBullet:5 angle:300];
             
-            [self shootBullet];
-            tempInt = 240;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 5;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
+            [self shootBullet:5 angle:240];
         }
         
         for(int i = 0; i < [bullets count]; i++)
@@ -182,29 +149,22 @@ int secondspast;
             
             if(projectile.position.x > 300)
             {
-                int tempInt = 240;
-                NSNumber *temp = [NSNumber numberWithInt:tempInt];
-                [bulletDirection replaceObjectAtIndex:j withObject:temp];
+             
+                [[bullets objectAtIndex:j] changeAngle:240.0];
             }
             if(projectile.position.x < 10)
             {
-                int tempInt = 300;
-                NSNumber *temp = [NSNumber numberWithInt:tempInt];
-                [bulletDirection replaceObjectAtIndex:j withObject:temp];
+                [[bullets objectAtIndex:j] changeAngle:300.0];
             }
             if(projectile.position.y < 0)
             {
-                if([[bulletDirection objectAtIndex:j] integerValue] == 240)
+                if( [[bullets objectAtIndex:j] getAngle] == 240)
                 {
-                    int tempInt = 160;
-                    NSNumber *temp = [NSNumber numberWithInt:tempInt];
-                    [bulletDirection replaceObjectAtIndex:j withObject:temp];
+                    [[bullets objectAtIndex:j] changeAngle:160.0];
                 }
-                if([[bulletDirection objectAtIndex:j] integerValue] == 300)
+                if([[bullets objectAtIndex:j] getAngle] == 300)
                 {
-                    int tempInt = 390;
-                    NSNumber *temp = [NSNumber numberWithInt:tempInt];
-                    [bulletDirection replaceObjectAtIndex:j withObject:temp];
+                    [[bullets objectAtIndex:j] changeAngle:390.0];
                 }
             }
             
@@ -215,20 +175,14 @@ int secondspast;
     {
         if((framespast % 25) ==0)
         {
-            [self shootBullet];
-            int tempInt = 180;
-            NSNumber *temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
+            [self shootBullet:3 angle:180];
             
             for(int i = 0; i < [bullets count]; i++)
             {
                 NSInteger j = i;
-                int tempDir = [[bulletDirection objectAtIndex:j] integerValue] + 30;
-                NSNumber* tempDir2 = [NSNumber numberWithInt:tempDir];
-                [bulletDirection replaceObjectAtIndex:j withObject:tempDir2];
+                int tempDir = [[bullets objectAtIndex:j] getAngle] + 30;
+                
+                [[bullets objectAtIndex:j] changeAngle:tempDir];
             }
         }
     }
@@ -236,28 +190,15 @@ int secondspast;
     {
         if((framespast % 25) ==0)
         {
-            [self shootBullet];
-            int tempInt = 270;
-            NSNumber *temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
+            [self shootBullet:3 angle:270];
             
-            [self shootBullet];
-            tempInt = 270;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
+            [self shootBullet:3 angle:270];
             
             for(int i = 0; i < [bullets count]; i++)
             {
                 NSInteger j = i;
-                int tempDir = [[bulletDirection objectAtIndex:j] integerValue] + (arc4random() % 90)-45;
-                NSNumber* tempDir2 = [NSNumber numberWithInt:tempDir];
-                [bulletDirection replaceObjectAtIndex:j withObject:tempDir2];
+                int tempDir = [[bullets objectAtIndex:j] getAngle] + (arc4random() % 90)-45;
+                [[bullets objectAtIndex:j] changeAngle:tempDir];
             }
         }
     }
@@ -265,28 +206,17 @@ int secondspast;
     {
         if((framespast % 45) ==0)
         {
-            [self shootBullet];
-            thetemporalint = thetemporalint + 15;
-            NSNumber *temp = [NSNumber numberWithInt:thetemporalint];
-            [bulletDirection addObject:temp];
-            int tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
             
-            [self shootBullet];
+            [self shootBullet:3 angle:thetemporalint];
             thetemporalint = thetemporalint + 15;
-            temp = [NSNumber numberWithInt:thetemporalint];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
+           
+            
+             [self shootBullet:3 angle:thetemporalint];
             
             for(int i = 0; i < [bullets count]; i++)
             {
                 NSInteger j = i;
-                int tempDir = [[bulletDirection objectAtIndex:j] integerValue] + 5;
-                NSNumber* tempDir2 = [NSNumber numberWithInt:tempDir];
-                [bulletDirection replaceObjectAtIndex:j withObject:tempDir2];
+                [[bullets objectAtIndex:j] changeAngle:[[bullets objectAtIndex:j] getAngle] + 5];
             }
         }
     }
@@ -295,86 +225,18 @@ int secondspast;
     {
         if((framespast % 45) ==0)
         {
-            [self shootBullet];
-            int tempInt = 180;
-            NSNumber *temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
             
-            [self shootBullet];
-            tempInt = 200;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
-            
-            [self shootBullet];
-            tempInt = 220;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
-            
-            [self shootBullet];
-            tempInt = 240;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
-            
-            [self shootBullet];
-            tempInt = 260;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
-            
-            [self shootBullet];
-            tempInt = 280;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
-            
-            [self shootBullet];
-            tempInt = 300;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
-            
-            [self shootBullet];
-            tempInt = 320;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
-            
-            [self shootBullet];
-            tempInt = 340;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
-            
-            [self shootBullet];
-            tempInt = 360;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletDirection addObject:temp];
-            tempInt = 3;
-            temp = [NSNumber numberWithInt:tempInt];
-            [bulletSpeed addObject:temp];
 
+             [self shootBullet:3 angle:180];
+            [self shootBullet:3 angle:200];
+            [self shootBullet:3 angle:220];
+            [self shootBullet:3 angle:240];
+            [self shootBullet:3 angle:260];
+            [self shootBullet:3 angle:280];
+            [self shootBullet:3 angle:300];
+            [self shootBullet:3 angle:320];
+            [self shootBullet:3 angle:340];
+            [self shootBullet:3 angle:360];
             
             
         }
@@ -421,13 +283,7 @@ int secondspast;
     id bossscale = [CCScaleTo actionWithDuration:1.0f scale:0.5f];
     [boss runAction:bossscale];
     
-    [self shootBullet];
-    int tempInt = (arc4random() % 90)+245;
-    NSNumber *temp = [NSNumber numberWithInt:tempInt];
-    [bulletDirection addObject:temp];
-    tempInt = 1;
-    temp = [NSNumber numberWithInt:tempInt];
-    [bulletSpeed addObject:temp];
+   [self shootBullet:1 angle:270];
 }
 
 
@@ -525,9 +381,13 @@ int secondspast;
         NSInteger j = i;
         CCSprite* tempSprite = [bullets objectAtIndex:j];
         if ([self isCollidingSphere:tempSprite WithSphere:player] == true) {
-            NSLog(@"Collision detected!");
+            //NSLog(@"Collision detected!");
             
-            [self removeChild:[bullets objectAtIndex:j] cleanup:YES];
+            gameSegment = 0;
+            framespast = 0;
+            secondspast = 0;
+            
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[Dead node]]];
         }
         for(int i = 0; i < [fakebullets count]; i++)
         {
@@ -562,8 +422,8 @@ int secondspast;
     {
         NSInteger j = i;
         projectile = [bullets objectAtIndex:j];
-        float angle = [[bulletDirection objectAtIndex:j] floatValue];
-        float speed = [[bulletSpeed objectAtIndex:j] floatValue]; // Move 50 pixels in 60 frames (1 second)
+        float angle = [[bullets objectAtIndex:j] getAngle];
+        float speed = [[bullets objectAtIndex:j] getSpeed]; // Move 50 pixels in 60 frames (1 second)
         
         float vx = cos(angle * M_PI / 180) * speed;
         float vy = sin(angle * M_PI / 180) * speed;
@@ -580,15 +440,19 @@ int secondspast;
     
 }
 
--(void) shootBullet
+-(void) shootBullet: (float) speed angle:(float) angleInput
 {
-    bullet = [CCSprite spriteWithFile:@"Glowing_Blue_Orb.png"];
-    bullet.position = boss.position;
-    [self addChild:bullet z:9];
-    [bullets addObject:bullet];
-    bullet.scale = 0;
+    Bullet *newB = [Bullet bullet:speed :angleInput];
+//    Bullet *b = [[Bullet alloc] initWithValues:speed :angleInput];
+    newB.position = boss.position;
+//    [b setPosition:player.position];
+    
+//    b.position = ccp(30, 30);
+    [self addChild:newB z:9];
+    [bullets addObject:newB];
+    newB.scale = 0;
     id scale = [CCScaleTo actionWithDuration:1.0f scale:0.1f];
-    [bullet runAction:scale];
+    [newB runAction:scale];
 }
 
 -(void) returnBullet
@@ -603,39 +467,51 @@ int secondspast;
         [fakebullets addObject:fakebullet];
         fakebullet.scale = 0.1;
         
+    
     }
     
 }
 
 -(void) gameSeg
 {
-    if(framespast == 240)
+    if(framespast == 440)
     {
         gameSegment = 1;
         [self returnBullet];
         for(int i = 0; i < [bullets count]; i++)
         {
-            NSInteger j = i;
+            Bullet *temp = [bullets objectAtIndex:i];
             
-            [self removeChild:[bullets objectAtIndex:j]];
+            [self removeChild:temp];
+            
+   
+            
+            
+          //  [bullets removeObjectAtIndex:j];
+            //[bulletDirection removeObjectAtIndex:j];
+            //[bulletSpeed removeObjectAtIndex:j];
             
             
         }
+        
+        [bullets removeAllObjects];
     }
-    if(framespast == 540)
+    if(framespast == 740)
     {
         gameSegment = 2;
         [self returnBullet];
         for(int i = 0; i < [bullets count]; i++)
         {
-            NSInteger j = i;
+            Bullet *temp = [bullets objectAtIndex:i];
             
-            [self removeChild:[bullets objectAtIndex:j]];
+            [self removeChild:temp];
+            
             
             
         }
+        [bullets removeAllObjects];
     }
-    if(framespast == 740)
+    if(framespast == 940)
     {
         gameSegment = 3;
         [self returnBullet];
@@ -645,10 +521,14 @@ int secondspast;
             
             [self removeChild:[bullets objectAtIndex:j]];
             
+            //[bulletDirection removeObjectAtIndex:j];
+            //[bulletSpeed removeObjectAtIndex:j];
+            
             
         }
+        [bullets removeAllObjects];
     }
-    if(framespast == 940)
+    if(framespast == 1140)
     {
         gameSegment = 4;
         [self returnBullet];
@@ -658,23 +538,33 @@ int secondspast;
             
             [self removeChild:[bullets objectAtIndex:j]];
             
+           /// [bulletDirection removeObjectAtIndex:j];
+            //[bulletSpeed removeObjectAtIndex:j];
+            
             
         }
+        [bullets removeAllObjects];
     }
-    if(framespast == 1100)
+    if(framespast == 1300)
     {
         gameSegment = 5;
         [self returnBullet];
         for(int i = 0; i < [bullets count]; i++)
         {
-            NSInteger j = i;
+//            NSInteger j = i;
+            CCSprite *tempB = [bullets objectAtIndex:i];
             
-            [self removeChild:[bullets objectAtIndex:j]];
+            [self removeChild:tempB];
+            
+            //[bulletDirection removeObjectAtIndex:i];
+           // [bulletSpeed removeObjectAtIndex:i];
+            
             
             
         }
+        [bullets removeAllObjects];
     }
-    if(framespast == 1500)
+    if(framespast == 1700)
     {
         gameSegment = 6;
         [self returnBullet];
@@ -683,11 +573,16 @@ int secondspast;
             NSInteger j = i;
             
             [self removeChild:[bullets objectAtIndex:j]];
+            
+           // [bulletDirection removeObjectAtIndex:j];
+           // [bulletSpeed removeObjectAtIndex:j];
            
             
+            
         }
+        [bullets removeAllObjects];
     }
-    if(framespast == 1700)
+    if(framespast == 1900)
     {
         gameSegment = 7;
         [self returnBullet];
@@ -697,9 +592,14 @@ int secondspast;
             
             [self removeChild:[bullets objectAtIndex:j]];
             
+           // [bulletDirection removeObjectAtIndex:j];
+           // [bulletSpeed removeObjectAtIndex:j];
+            
             
         }
+        [bullets removeAllObjects];
     }
+    
 }
 
 

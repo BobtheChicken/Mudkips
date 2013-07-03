@@ -8,6 +8,7 @@
 #import "cocos2d.h"
 #import "Player.h"
 #import "Pausue.h"
+#import "Bullet.h"
 
 @interface HelloWorldLayer : CCLayer
 {

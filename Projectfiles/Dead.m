@@ -1,15 +1,16 @@
 //
-//  Title.m
+//  Dead.m
 //  bullet hell-o
 //
 //  Created by Kevin Frans on 7/2/13.
 //
 //
 
-#import "Title.h"
+#import "Dead.h"
 #import "HelloWorldLayer.h"
+#import "Title.h"
 
-@implementation Title
+@implementation Dead
 
 -(id) init
 {
@@ -29,7 +30,7 @@
         // add the labels shown during game over
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
-        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"A game about \n not touching \n the color blue" fontName:@"Arial" fontSize:40];
+        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Oh great, you died. \n Nice going." fontName:@"Arial" fontSize:40];
         gameOver.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
         [self addChild:gameOver z:100 tag:100];
         
@@ -59,13 +60,13 @@
         CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
         [gameOver runAction:repeatJump];
         
-        CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Start" target:self selector:@selector(unPause)];
-        CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"High Squirrel" target:self selector:@selector(restartGame)];
-        //CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Quit" target:self selector:@selector(quitGame)];
+        CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Retry" target:self selector:@selector(unPause)];
+        CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Level Select" target:self selector:@selector(restartGame)];
+        CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Quit" target:self selector:@selector(quitGame)];
         [playAgain setFontName:@"Arial"];
         [restart setFontName:@"Arial"];
-        //[quit setFontName:@"Arial"];
-        CCMenu *gameOverMenu = [CCMenu menuWithItems:playAgain, restart, nil];
+        [quit setFontName:@"Arial"];
+        CCMenu *gameOverMenu = [CCMenu menuWithItems:playAgain, restart, quit, nil];
         [gameOverMenu alignItemsVertically];
         gameOverMenu.position = ccp(screenSize.width/2, screenSize.height/2 - 80);
         gameOverMenu.color = ccc3(0, 0, 0);
@@ -77,7 +78,7 @@
 -(void) quitGame
 {
     [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[Title node]]];
 }
 
 -(void) restartGame
@@ -89,10 +90,9 @@
 {
     //    [[CCDirector sharedDirector] popSceneWithTransition:
     //       [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
-    [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
 }
 
 
-
 @end
+
