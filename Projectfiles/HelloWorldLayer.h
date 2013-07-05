@@ -40,6 +40,10 @@
     CCSprite* donkey;
     
     int level;
+    bool bosstime;
+    
+    int attacktype;
+    int tempattacktype;
     
 }
 

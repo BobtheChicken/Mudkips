@@ -35,31 +35,33 @@
         gameOver.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
         [self addChild:gameOver z:100 tag:100];
         
-        // game over label runs 3 different actions at the same time to create the combined effect
-        // 1) color tinting
-        CCTintTo* tint1 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:0];
-        CCTintTo* tint2 = [CCTintTo actionWithDuration:2 red:255 green:255 blue:0];
-        CCTintTo* tint3 = [CCTintTo actionWithDuration:2 red:0 green:255 blue:0];
-        CCTintTo* tint4 = [CCTintTo actionWithDuration:2 red:0 green:255 blue:255];
-        CCTintTo* tint5 = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
-        CCTintTo* tint6 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:255];
-        CCSequence* tintSequence = [CCSequence actions:tint1, tint2, tint3, tint4, tint5, tint6, nil];
-        CCRepeatForever* repeatTint = [CCRepeatForever actionWithAction:tintSequence];
-        [gameOver runAction:repeatTint];
-        
-        // 2) rotation with ease
-        CCRotateTo* rotate1 = [CCRotateTo actionWithDuration:2 angle:3];
-        CCEaseBounceInOut* bounce1 = [CCEaseBounceInOut actionWithAction:rotate1];
-        CCRotateTo* rotate2 = [CCRotateTo actionWithDuration:2 angle:-3];
-        CCEaseBounceInOut* bounce2 = [CCEaseBounceInOut actionWithAction:rotate2];
-        CCSequence* rotateSequence = [CCSequence actions:bounce1, bounce2, nil];
-        CCRepeatForever* repeatBounce = [CCRepeatForever actionWithAction:rotateSequence];
-        [gameOver runAction:repeatBounce];
-        
-        // 3) jumping
-        CCJumpBy* jump = [CCJumpBy actionWithDuration:3 position:CGPointZero height:screenSize.height / 3 jumps:1];
-        CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
-        [gameOver runAction:repeatJump];
+        CCTintTo* tint = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
+        [gameOver runAction:tint];
+        /*// game over label runs 3 different actions at the same time to create the combined effect
+         // 1) color tinting
+         CCTintTo* tint1 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:0];
+         CCTintTo* tint2 = [CCTintTo actionWithDuration:2 red:255 green:255 blue:0];
+         CCTintTo* tint3 = [CCTintTo actionWithDuration:2 red:0 green:255 blue:0];
+         CCTintTo* tint4 = [CCTintTo actionWithDuration:2 red:0 green:255 blue:255];
+         CCTintTo* tint5 = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
+         CCTintTo* tint6 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:255];
+         CCSequence* tintSequence = [CCSequence actions:tint1, tint2, tint3, tint4, tint5, tint6, nil];
+         CCRepeatForever* repeatTint = [CCRepeatForever actionWithAction:tintSequence];
+         [gameOver runAction:repeatTint];
+         
+         // 2) rotation with ease
+         CCRotateTo* rotate1 = [CCRotateTo actionWithDuration:2 angle:3];
+         CCEaseBounceInOut* bounce1 = [CCEaseBounceInOut actionWithAction:rotate1];
+         CCRotateTo* rotate2 = [CCRotateTo actionWithDuration:2 angle:-3];
+         CCEaseBounceInOut* bounce2 = [CCEaseBounceInOut actionWithAction:rotate2];
+         CCSequence* rotateSequence = [CCSequence actions:bounce1, bounce2, nil];
+         CCRepeatForever* repeatBounce = [CCRepeatForever actionWithAction:rotateSequence];
+         [gameOver runAction:repeatBounce];
+         
+         // 3) jumping
+         CCJumpBy* jump = [CCJumpBy actionWithDuration:3 position:CGPointZero height:screenSize.height / 3 jumps:1];
+         CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
+         [gameOver runAction:repeatJump];*/
         
         CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Retry" target:self selector:@selector(retry)];
         CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Level Select" target:self selector:@selector(sel)];

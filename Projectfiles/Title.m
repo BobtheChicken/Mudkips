@@ -27,64 +27,50 @@
             [node pauseSchedulerAndActions];
         }
         
+        
+        
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"zoom.mp3"];
         // add the labels shown during game over
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
-        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"A game about \n not touching \n the color blue" fontName:@"Arial" fontSize:40];
-        gameOver.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
-        [self addChild:gameOver z:100 tag:100];
+        CCLabelTTF* play = [CCMenuItemImage itemFromNormalImage:@"play.png" selectedImage:@"play.png" target:self selector:@selector(unPause)];
+        play.position = ccp(160, 200);
+        CCMenu *playmenu = [CCMenu menuWithItems:play, nil];
+        playmenu.position = CGPointZero;
+        [self addChild:playmenu];
         
-        // game over label runs 3 different actions at the same time to create the combined effect
-        // 1) color tinting
-        CCTintTo* tint1 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:0];
-        CCTintTo* tint2 = [CCTintTo actionWithDuration:2 red:255 green:255 blue:0];
-        CCTintTo* tint3 = [CCTintTo actionWithDuration:2 red:0 green:255 blue:0];
-        CCTintTo* tint4 = [CCTintTo actionWithDuration:2 red:0 green:255 blue:255];
-        CCTintTo* tint5 = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
-        CCTintTo* tint6 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:255];
-        CCSequence* tintSequence = [CCSequence actions:tint1, tint2, tint3, tint4, tint5, tint6, nil];
-        CCRepeatForever* repeatTint = [CCRepeatForever actionWithAction:tintSequence];
-        [gameOver runAction:repeatTint];
+
         
-        // 2) rotation with ease
-        CCRotateTo* rotate1 = [CCRotateTo actionWithDuration:2 angle:3];
-        CCEaseBounceInOut* bounce1 = [CCEaseBounceInOut actionWithAction:rotate1];
-        CCRotateTo* rotate2 = [CCRotateTo actionWithDuration:2 angle:-3];
-        CCEaseBounceInOut* bounce2 = [CCEaseBounceInOut actionWithAction:rotate2];
-        CCSequence* rotateSequence = [CCSequence actions:bounce1, bounce2, nil];
-        CCRepeatForever* repeatBounce = [CCRepeatForever actionWithAction:rotateSequence];
-        [gameOver runAction:repeatBounce];
+        CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"highscores.png" selectedImage:@"highscores.png" target:self selector:@selector(high)];
+        highscore.position = ccp(80, 60);
+        CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
+        starMenu.position = CGPointZero;
+        [self addChild:starMenu];
         
-        // 3) jumping
-        CCJumpBy* jump = [CCJumpBy actionWithDuration:3 position:CGPointZero height:screenSize.height / 3 jumps:1];
-        CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
-        [gameOver runAction:repeatJump];
+        CCLabelTTF *mgwu = [CCMenuItemImage itemFromNormalImage:@"mgwu.png" selectedImage:@"mgwu.png" target:self selector:@selector(mgwu)];
+        mgwu.position = ccp(240, 60);
+        CCMenu *mgmenu = [CCMenu menuWithItems:mgwu, nil];
+        mgmenu.position = CGPointZero;
+        [self addChild:mgmenu];
         
-        CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Start" target:self selector:@selector(unPause)];
-        CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"High Squirrel" target:self selector:@selector(restartGame)];
-        CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Moar Gaemrms" target:self selector:@selector(quitGame)];
-        [playAgain setFontName:@"Arial"];
-        [restart setFontName:@"Arial"];
-        //[quit setFontName:@"Arial"];
-        CCMenu *gameOverMenu = [CCMenu menuWithItems:playAgain, restart, quit, nil];
-        [gameOverMenu alignItemsVertically];
-        gameOverMenu.position = ccp(screenSize.width/2, screenSize.height/2 - 80);
-        gameOverMenu.color = ccc3(0, 0, 0);
-        [self addChild:gameOverMenu];
+        CCSprite* title = [CCSprite spriteWithFile:@"blue.png"];
+        title.position = ccp(160,400);
+        [self addChild:title];
+        
+
     }
     return self;
 }
 
--(void) quitGame
+-(void) mgwu
 {
     [MGWU displayCrossPromo];
     [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
 }
 
--(void) restartGame
+-(void) high
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelSelect node]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInR transitionWithDuration:0.5f scene:[LevelSelect node]]];
     [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
 }
 
@@ -93,7 +79,7 @@
     //    [[CCDirector sharedDirector] popSceneWithTransition:
     //       [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
     [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelSelect node]]];
+     [CCTransitionSlideInR transitionWithDuration:0.5f scene:[LevelSelect node]]];
     [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
 }
 

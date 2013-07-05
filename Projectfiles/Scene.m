@@ -6,13 +6,12 @@
 //
 //
 
-#import "LevelSelect.h"
+#import "Scene.h"
 #import "HelloWorldLayer.h"
 #import "Title.h"
-#import "Scene.h"
 //#import "Level2.h"
 
-@implementation LevelSelect
+@implementation Scene
 
 -(id) init
 {
@@ -32,19 +31,11 @@
         // add the labels shown during game over
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
-        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Endless Mode" fontName:@"Arial" fontSize:40];
-        gameOver.position = CGPointMake(160, 300);
+        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Scene Select" fontName:@"Arial" fontSize:40];
+        gameOver.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
         [self addChild:gameOver z:100 tag:100];
         
-        CCLabelTTF* bosstag = [CCLabelTTF labelWithString:@"Boss Bash" fontName:@"Bend2SquaresBRK" fontSize:40];
-        bosstag.position = CGPointMake(160, 50);
-        [self addChild:bosstag z:100 tag:100];
-        
-        CCTintTo* tint = [CCTintTo actionWithDuration:0.1 red:0 green:0 blue:255];
-        [gameOver runAction:tint];
-        CCTintTo* tint2 = [CCTintTo actionWithDuration:0.1 red:0 green:0 blue:255];
-        [bosstag runAction:tint2];
-        /*// game over label runs 3 different actions at the same time to create the combined effect
+        // game over label runs 3 different actions at the same time to create the combined effect
         // 1) color tinting
         CCTintTo* tint1 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:0];
         CCTintTo* tint2 = [CCTintTo actionWithDuration:2 red:255 green:255 blue:0];
@@ -64,82 +55,74 @@
         CCSequence* rotateSequence = [CCSequence actions:bounce1, bounce2, nil];
         CCRepeatForever* repeatBounce = [CCRepeatForever actionWithAction:rotateSequence];
         [gameOver runAction:repeatBounce];
-         d
+        
         // 3) jumping
         CCJumpBy* jump = [CCJumpBy actionWithDuration:3 position:CGPointZero height:screenSize.height / 3 jumps:1];
         CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
-        [gameOver runAction:repeatJump];*/
-        CCSprite* background = [CCSprite spriteWithFile:@"back3.png"];
-        background.position = ccp(160,240);
-        [self addChild:background];
+        [gameOver runAction:repeatJump];
         
-        CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"back" target:self selector:@selector(unPause)];
-        CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Endless Mode" target:self selector:@selector(level1)];
-        CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Scene Selection" target:self selector:@selector(level2)];
-         CCMenuItemFont *obama = [CCMenuItemFont itemFromString: @"Level 3" target:self selector:@selector(obama)];
-        [gameOver setFontName:@"Bend2SquaresBRK"];
-        /*[restart setFontName:@"Arial"];
+        CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Back" target:self selector:@selector(unPause)];
+        CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Big Blue" target:self selector:@selector(level1)];
+        CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Alien Blue" target:self selector:@selector(level2)];
+        CCMenuItemFont *obama = [CCMenuItemFont itemFromString: @"Bluebama" target:self selector:@selector(obama)];
+        CCMenuItemFont *flower = [CCMenuItemFont itemFromString: @"Blue Blossom" target:self selector:@selector(rose)];
+        [playAgain setFontName:@"Arial"];
+        [restart setFontName:@"Arial"];
         [quit setFontName:@"Arial"];
         [obama setFontName:@"Arial"];
-        CCMenu *gameOverMenu = [CCMenu menuWithItems:restart, quit, playAgain, nil];
+        [flower setFontName:@"Arial"];
+        CCMenu *gameOverMenu = [CCMenu menuWithItems:restart, quit, obama, flower, playAgain, nil];
         [gameOverMenu alignItemsVertically];
         gameOverMenu.position = ccp(screenSize.width/2, screenSize.height/2 - 80);
         gameOverMenu.color = ccc3(0, 0, 0);
-        [self addChild:gameOverMenu];*/
-        
-        
-        CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"endless.png" selectedImage:@"endless.png" target:self selector:@selector(level1)];
-        highscore.position = ccp(160, 390);
-        CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
-        starMenu.position = CGPointZero;
-        [self addChild:starMenu];
-        
-        CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"bossmode.png" selectedImage:@"bossmode.png" target:self selector:@selector(level2)];
-        boss.position = ccp(160, 150);
-        CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
-        moreMenu.position = CGPointZero;
-        [self addChild:moreMenu];
-        
-        CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"back.png" selectedImage:@"back.png" target:self selector:@selector(unPause)];
-        back.position = ccp(50, 240);
-        back.scale = 0.5;
-        CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
-        backmenu.position = CGPointZero;
-        [self addChild:backmenu];
+        [self addChild:gameOverMenu];
     }
     return self;
 }
 
 -(void) level2
 {
-   // NSNumber *leveldata = [NSNumber numberWithInteger:2];
-   // [[NSUserDefaults standardUserDefaults] setObject:leveldata forKey:@"leveldata"];
+    NSNumber *leveldata = [NSNumber numberWithInteger:2];
+    [[NSUserDefaults standardUserDefaults] setObject:leveldata forKey:@"leveldata"];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"endless"];
     
     //NSLog([NSString stringWithFormat:@"%d", level]);
     //NSLog(@"d");
     
     [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionSlideInR transitionWithDuration:0.5f scene:[Scene node]]];
+     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
     
-
+    
 }
 
 -(void) level1
 {
     NSNumber *leveldata = [NSNumber numberWithInteger:1];
     [[NSUserDefaults standardUserDefaults] setObject:leveldata forKey:@"leveldata"];
+    [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"endless"];
     
-    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"endless"];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInB transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
     
-
 }
 
 -(void) obama
 {
     NSNumber *leveldata = [NSNumber numberWithInteger:3];
     [[NSUserDefaults standardUserDefaults] setObject:leveldata forKey:@"leveldata"];
+    [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"endless"];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+    
+    
+}
+
+-(void) rose
+{
+    NSNumber *leveldata = [NSNumber numberWithInteger:4];
+    [[NSUserDefaults standardUserDefaults] setObject:leveldata forKey:@"leveldata"];
+    [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"endless"];
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
     
@@ -150,7 +133,7 @@
 {
     //    [[CCDirector sharedDirector] popSceneWithTransition:
     //       [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5f scene:[Title node]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[Title node]]];
 }
 
 
