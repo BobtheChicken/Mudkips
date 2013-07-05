@@ -31,8 +31,10 @@
         // add the labels shown during game over
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
-        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Oh great, you died. \n Nice going." fontName:@"Arial" fontSize:40];
-        gameOver.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
+        NSString *score = [NSString stringWithFormat:@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"score"]];
+        
+        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:score fontName:@"Arial" fontSize:40];
+        gameOver.position = CGPointMake(screenSize.width / 2, 400);
         [self addChild:gameOver z:100 tag:100];
         
         CCTintTo* tint = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
@@ -63,7 +65,7 @@
          CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
          [gameOver runAction:repeatJump];*/
         
-        CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Retry" target:self selector:@selector(retry)];
+       /* CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Retry" target:self selector:@selector(retry)];
         CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Level Select" target:self selector:@selector(sel)];
         CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Quit" target:self selector:@selector(quitGame)];
         [playAgain setFontName:@"Arial"];
@@ -74,6 +76,28 @@
         gameOverMenu.position = ccp(screenSize.width/2, screenSize.height/2 - 80);
         gameOverMenu.color = ccc3(0, 0, 0);
         [self addChild:gameOverMenu];
+        
+        */
+        CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"retry.png" selectedImage:@"retry.png" target:self selector:@selector(retry)];
+        highscore.position = ccp(160, 290);
+        highscore.scale = 2;
+        CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
+        starMenu.position = CGPointZero;
+        [self addChild:starMenu];
+        
+        CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"highscores.png" selectedImage:@"highscores.png" target:self selector:@selector(sel)];
+        boss.position = ccp(100, 80);
+        CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
+        moreMenu.position = CGPointZero;
+        [self addChild:moreMenu];
+        
+        CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"back.png" selectedImage:@"back.png" target:self selector:@selector(quitGame)];
+        back.position = ccp(240, 80);
+        back.scale = 0.5;
+        CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
+        backmenu.position = CGPointZero;
+        [self addChild:backmenu];
+        
     }
     return self;
 }
@@ -81,19 +105,19 @@
 -(void) quitGame
 {
     [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionCrossFade transitionWithDuration:0.5f scene:[Title node]]];
+     [CCTransitionSlideInL transitionWithDuration:0.5f scene:[Title node]]];
 }
 
 -(void) sel
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelSelect node]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInR transitionWithDuration:0.5f scene:[LevelSelect node]]];
 }
 
 -(void) retry
 {
     //    [[CCDirector sharedDirector] popSceneWithTransition:
     //       [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
 }
 
 

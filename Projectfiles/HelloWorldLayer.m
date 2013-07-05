@@ -1469,6 +1469,8 @@ int wowanothertemportalint;
             
             [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
             
+            [[NSUserDefaults standardUserDefaults] setInteger:intScore forKey:@"score"];
+            
             [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[Dead node]]];
         }
         for(int i = 0; i < [fakebullets count]; i++)
