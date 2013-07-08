@@ -38,6 +38,9 @@
         CCMenu *playmenu = [CCMenu menuWithItems:play, nil];
         playmenu.position = CGPointZero;
         [self addChild:playmenu];
+        play.scale = 0;
+        id bossscale = [CCScaleTo actionWithDuration:0.5f scale:1.0f];
+        [play runAction:bossscale];
         
 
         
@@ -46,12 +49,18 @@
         CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
+        highscore.scale = 0;
+        id menuscale = [CCScaleTo actionWithDuration:0.7f scale:1.0f];
+        [highscore runAction:menuscale];
         
         CCLabelTTF *mgwu = [CCMenuItemImage itemFromNormalImage:@"mgwu.png" selectedImage:@"mgwu.png" target:self selector:@selector(mgwu)];
         mgwu.position = ccp(240, 60);
         CCMenu *mgmenu = [CCMenu menuWithItems:mgwu, nil];
         mgmenu.position = CGPointZero;
         [self addChild:mgmenu];
+        mgwu.scale = 0;
+        id mmenuscale = [CCScaleTo actionWithDuration:0.7f scale:1.0f];
+        [mgwu runAction:mmenuscale];
         
         CCSprite* title = [CCSprite spriteWithFile:@"blue.png"];
         title.position = ccp(160,400);

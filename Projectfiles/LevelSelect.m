@@ -69,7 +69,7 @@
         CCJumpBy* jump = [CCJumpBy actionWithDuration:3 position:CGPointZero height:screenSize.height / 3 jumps:1];
         CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
         [gameOver runAction:repeatJump];*/
-        CCSprite* background = [CCSprite spriteWithFile:@"back3.png"];
+        CCSprite* background = [CCSprite spriteWithFile:@"back31.png"];
         background.position = ccp(160,240);
         [self addChild:background];
         
@@ -100,7 +100,7 @@
         moreMenu.position = CGPointZero;
         [self addChild:moreMenu];
         
-        CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"back.png" selectedImage:@"back.png" target:self selector:@selector(unPause)];
+        CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"bback.png" selectedImage:@"bback.png" target:self selector:@selector(unPause)];
         back.position = ccp(50, 240);
         back.scale = 0.5;
         CCMenu *backmenu = [CCMenu menuWithItems:back, nil];

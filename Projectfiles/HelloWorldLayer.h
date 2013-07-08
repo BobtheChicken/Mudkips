@@ -9,6 +9,7 @@
 #import "Player.h"
 #import "Pausue.h"
 #import "Bullet.h"
+#import "Powerup.h"
 #import "Donkey.h"
 
 @interface HelloWorldLayer : CCLayer
@@ -29,12 +30,15 @@
     NSMutableArray *bulletSpeed;
     NSMutableArray *fakebullets;
     NSMutableArray *donkeys;
+    NSMutableArray *powerups;
+    
     CCSprite* projectile;
     CCSprite* projectile2;
     int framespast;
     CGSize screenSize;
     CCSprite* pausebutton;
     CCLabelTTF* label;
+    CCLabelTTF* tut;
     NSString* score;
     int intScore;
     CCSprite* donkey;
@@ -44,6 +48,9 @@
     
     int attacktype;
     int tempattacktype;
+    
+    bool shieldon;
+    
     
 }
 

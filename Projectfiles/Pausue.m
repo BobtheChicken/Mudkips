@@ -66,7 +66,7 @@
         
         CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"play.png" selectedImage:@"play.png" target:self selector:@selector(unPause)];
         highscore.position = ccp(160, 290);
-        highscore.scale = 2;
+        highscore.scale = 1;
         CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];

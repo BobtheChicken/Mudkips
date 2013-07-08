@@ -78,9 +78,9 @@
         [self addChild:gameOverMenu];
         
         */
-        CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"retry.png" selectedImage:@"retry.png" target:self selector:@selector(retry)];
+        CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"2retry.png" selectedImage:@"2retry.png" target:self selector:@selector(retry)];
         highscore.position = ccp(160, 290);
-        highscore.scale = 2;
+        highscore.scale = 1;
         CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
