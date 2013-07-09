@@ -31,6 +31,7 @@
     NSMutableArray *fakebullets;
     NSMutableArray *donkeys;
     NSMutableArray *powerups;
+    NSMutableArray *flowerbullets;
     
     CCSprite* projectile;
     CCSprite* projectile2;
@@ -47,6 +48,8 @@
     
     int level;
     bool bosstime;
+    
+    bool isDying;
     
     int attacktype;
     int tempattacktype;

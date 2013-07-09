@@ -70,7 +70,7 @@ CCSprite* blank;
         }
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"tutorialcompleted"] == true)
         {
-            stagespast = 4;
+            stagespast = 14;
             attacktype = 4;
         }
         
@@ -87,6 +87,7 @@ CCSprite* blank;
         screenSize = [director winSize];
         bullets = [[NSMutableArray alloc] init];
         donkeys = [[NSMutableArray alloc] init];
+        flowerbullets = [[NSMutableArray alloc] init];
         //bulletSpeed = [[NSMutableArray alloc] init];
         fakebullets = [[NSMutableArray alloc] init];
         powerups = [[NSMutableArray alloc] init];
@@ -142,6 +143,11 @@ CCSprite* blank;
             {
                 bosstime = true;
                 stagespast = 15;
+            }
+            if(level == 4)
+            {
+                bosstime = true;
+                stagespast = 20;
             }
         }
         
@@ -566,18 +572,74 @@ CCSprite* blank;
                 {
                     
                     
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
                     
+                    for(int i = 0; i < 8;i++)
+                    {
+                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(160,460 - i*60)];
+                        [[flowerbullets objectAtIndex:i] runAction:flowermove];
+                    }
+                    
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    
+                    for(int i = 9; i < 16;i++)
+                    {
+                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(0,460 - (i-8)*60)];
+                        [[flowerbullets objectAtIndex:i] runAction:flowermove];
+                    }
+                    
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    
+                    for(int i = 17; i < 24;i++)
+                    {
+                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(320,460 - (i-16)*60)];
+                        [[flowerbullets objectAtIndex:i] runAction:flowermove];
+                    }
                     
                     
                 }
             }
             if(gameSegment ==1)
             {
-                if((framespast % 50) == 0)
+                if(framespast == 351)
                 {
                     
                     
-                    [self shootBulletwithPosDonkey:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    
+                    for(int i = 0; i < 8;i++)
+                    {
+                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(160,460 - i*60)];
+                        [[flowerbullets objectAtIndex:i] runAction:flowermove];
+                    }
                     
                     
                 }
@@ -1714,6 +1776,32 @@ CCSprite* blank;
             }
         }
     }
+    for(int i = 0; i < [flowerbullets count]; i++)
+    {
+        
+        NSInteger j = i;
+        CCSprite* tempSprite = [flowerbullets objectAtIndex:j];
+        if ([self isCollidingSphere:tempSprite WithSphere:player] == true) {
+            if(shieldon == true)
+            {
+                [self removeChild:tempSprite];
+                [flowerbullets removeObjectAtIndex:i];
+                [self removeChild:shield];
+                shieldon = false;
+                
+                if([[NSUserDefaults standardUserDefaults]boolForKey:@"protection"] == false)
+                {
+                    [MGWU showMessage:@"Achievement Get!      Chicken Blocked" withImage:nil];
+                    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"protection"];
+                }
+            }
+            else{
+                //NSLog(@"Collision detected!");
+                
+                [self playerdeath];
+            }
+        }
+    }
     
         for(int i = 0; i < [fakebullets count]; i++)
         {
@@ -1874,7 +1962,7 @@ CCSprite* blank;
     
     [self addChild:countdown z:9012];
     
-    
+    isDying = true;
     id scaleX = [CCScaleTo actionWithDuration:7.0f scaleX:0 scaleY:1];
     [countdown runAction:scaleX];
      [self schedule:@selector(gameover) interval:7.0];
@@ -1939,10 +2027,34 @@ CCSprite* blank;
     }
     
     [bullets removeAllObjects];
+    
+    
+    for(int i = 0; i < [flowerbullets count]; i++)
+    {
+        Bullet *temp = [flowerbullets objectAtIndex:i];
+        
+        [self removeChild:temp];
+        
+        
+        
+        
+        //  [bullets removeObjectAtIndex:j];
+        //[bulletDirection removeObjectAtIndex:j];
+        //[bulletSpeed removeObjectAtIndex:j];
+        
+        
+    }
+    
+    [flowerbullets removeAllObjects];
+    
+    isDying = false;
+    [self unschedule:@selector(gameover)];
 }
 
 -(void) gameover
 {
+    if(isDying == true)
+    {
     [self unschedule:@selector(gameover)];
     gameSegment = 0;
     framespast = 0;
@@ -1957,6 +2069,7 @@ CCSprite* blank;
     {
         [MGWU showMessage:@"Achievement Get!      Fall of the Orange" withImage:nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"doom"];
+    }
     }
 }
 -(void) pause
@@ -2061,6 +2174,23 @@ CCSprite* blank;
     [newB runAction:scale];
 }
 
+
+-(void) shootBulletwithPosNoArray: (float) speed angle:(float) angleInput xpos:(float) xInput ypos:(float) yInput
+{
+    Bullet *newB = [Bullet bullet:speed :angleInput];
+    //    Bullet *b = [[Bullet alloc] initWithValues:speed :angleInput];
+    newB.position = boss.position;
+    newB.position = ccp(newB.position.x + xInput, newB.position.y + yInput);
+    //    [b setPosition:player.position];
+    
+    //    b.position = ccp(30, 30);
+    [self addChild:newB z:9];
+    [flowerbullets addObject:newB];
+    newB.scale = 0;
+    id scale = [CCScaleTo actionWithDuration:1.0f scale:0.1f];
+    [newB runAction:scale];
+}
+
 -(void) shootBulletwithPosPowerup: (float) speed angle:(float) angleInput xpos:(float) xInput ypos:(float) yInput
 {
     if(shieldon == false)
@@ -2133,6 +2263,22 @@ CCSprite* blank;
     {
         NSInteger j = i;
         projectile = [bullets objectAtIndex:j];
+        fakebullet = [CCSprite spriteWithFile:@"orange.png"];
+        fakebullet.position = projectile.position;
+        [self addChild:fakebullet];
+        [fakebullets addObject:fakebullet];
+        fakebullet.scale = 0.1;
+        
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"bwooo.mp3"];
+        bwooo = false;
+        
+    }
+    
+    for(int i = 0; i < [flowerbullets count]; i++)
+    {
+        NSInteger j = i;
+        projectile = [flowerbullets objectAtIndex:j];
         fakebullet = [CCSprite spriteWithFile:@"orange.png"];
         fakebullet.position = projectile.position;
         [self addChild:fakebullet];
@@ -2579,67 +2725,18 @@ CCSprite* blank;
             
         }
         
-        //if(level == 4)
-        /*{
+        if(level == 4)
+        {
             if(framespast == 350)
             {
                 gameSegment = 1;
-                [self returnBullet];
-                for(int i = 0; i < [bullets count]; i++)
-                {
-                    Bullet *temp = [bullets objectAtIndex:i];
-                    
-                    [self removeChild:temp];
-                    
-                    
-                    
-                    
-                    //  [bullets removeObjectAtIndex:j];
-                    //[bulletDirection removeObjectAtIndex:j];
-                    //[bulletSpeed removeObjectAtIndex:j];
-                    
-                    
-                }
-                [bullets removeAllObjects];
+                [self deleteBullets];
                 
             }
             if(framespast == 650)
             {
                 gameSegment = 2;
-                [self returnBullet];
-                for(int i = 0; i < [bullets count]; i++)
-                {
-                    Bullet *temp = [bullets objectAtIndex:i];
-                    
-                    [self removeChild:temp];
-                    
-                    
-                    
-                    
-                    //  [bullets removeObjectAtIndex:j];
-                    //[bulletDirection removeObjectAtIndex:j];
-                    //[bulletSpeed removeObjectAtIndex:j];
-                    
-                    
-                }
-                for(int i = 0; i < [donkeys count]; i++)
-                {
-                    CCSprite *temp = [donkeys objectAtIndex:i];
-                    
-                    [self removeChild:temp];
-                    
-                    
-                    
-                    
-                    //  [bullets removeObjectAtIndex:j];
-                    //[bulletDirection removeObjectAtIndex:j];
-                    //[bulletSpeed removeObjectAtIndex:j];
-                    
-                    
-                }
-                
-                [donkeys removeAllObjects];
-                [bullets removeAllObjects];
+                [self deleteBullets];
             }
             if(framespast == 1050)
             {
@@ -2732,7 +2829,7 @@ CCSprite* blank;
             
             
             
-        }*/
+        }
     }
     
     
@@ -2839,6 +2936,64 @@ CCSprite* blank;
     
     
 }
+
+
+
+-(void) deleteBullets
+{
+    [self returnBullet];
+    for(int i = 0; i < [bullets count]; i++)
+    {
+        Bullet *temp = [bullets objectAtIndex:i];
+        
+        [self removeChild:temp];
+        
+        
+        
+        
+        //  [bullets removeObjectAtIndex:j];
+        //[bulletDirection removeObjectAtIndex:j];
+        //[bulletSpeed removeObjectAtIndex:j];
+        
+        
+    }
+    for(int i = 0; i < [donkeys count]; i++)
+    {
+        CCSprite *temp = [donkeys objectAtIndex:i];
+        
+        [self removeChild:temp];
+        
+        
+        
+        
+        //  [bullets removeObjectAtIndex:j];
+        //[bulletDirection removeObjectAtIndex:j];
+        //[bulletSpeed removeObjectAtIndex:j];
+        
+        
+    }
+    for(int i = 0; i < [flowerbullets count]; i++)
+    {
+        CCSprite *temp = [flowerbullets objectAtIndex:i];
+        
+        [self removeChild:temp];
+        
+        
+        
+        
+        //  [bullets removeObjectAtIndex:j];
+        //[bulletDirection removeObjectAtIndex:j];
+        //[bulletSpeed removeObjectAtIndex:j];
+        
+        
+    }
+    
+    
+    [donkeys removeAllObjects];
+    [bullets removeAllObjects];
+    [flowerbullets removeAllObjects];
+}
+
 
 -(void) deathplusdeath
 {

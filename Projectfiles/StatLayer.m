@@ -143,7 +143,7 @@ CGSize screenSize;
                                                fontName:@"Bend2SquaresBRK"
                                                fontSize:45];
         
-        label.position = ccp(screenSize.width / 2, screenSize.height - 85 - i * 20);
+        label.position = ccp(screenSize.width / 2, screenSize.height - 85 - i * 30);
         label.color = ccc3(0, 0, 0);
         [self addChild:label z: 2];
         
