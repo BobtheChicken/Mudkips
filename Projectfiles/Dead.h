@@ -9,5 +9,7 @@
 #import "CCScene.h"
 
 @interface Dead : CCScene
-
+{
+    UITextField* nameField;
+}
 @end

@@ -10,6 +10,7 @@
 #import "HelloWorldLayer.h"
 #import "Title.h"
 #import "LevelSelect.h"
+#import "StatLayer.h"
 
 @implementation Dead
 
@@ -98,6 +99,20 @@
         backmenu.position = CGPointZero;
         [self addChild:backmenu];
         
+        nameField = [[UITextField alloc] initWithFrame:CGRectMake(35, 220, 250, 25)];
+        [[[CCDirector sharedDirector] view] addSubview:nameField];
+        nameField.delegate = self;
+        nameField.placeholder = @"Tap to Enter Username";
+        nameField.borderStyle = UITextBorderStyleRoundedRect;
+        [nameField setReturnKeyType:UIReturnKeyDone];
+        [nameField setAutocorrectionType:UITextAutocorrectionTypeNo];
+        [nameField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
+        //        textField.visible = true;
+        
+        
+        
+       // [MGWU submitHighScore:[[NSUserDefaults standardUserDefaults] integerForKey:@"score"] byPlayer:@"Player" forLeaderboard:@"defaultLeaderboard"];
+        
     }
     return self;
 }
@@ -110,7 +125,7 @@
 
 -(void) sel
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInR transitionWithDuration:0.5f scene:[LevelSelect node]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInR transitionWithDuration:0.5f scene:[StatLayer node]]];
 }
 
 -(void) retry
@@ -120,6 +135,35 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
 }
 
+- (void)textFieldDidEndEditing:(UITextField*)textField
+{
+    if (textField == nameField && ![nameField.text isEqualToString:@""])
+    {
+        
+        [nameField endEditing:YES];
+        [nameField removeFromSuperview];
+        // here is where you should do something with the data they entered
+        NSString *result = nameField.text;
+        
+        NSLog(@"hurp");
+        //        username = result;
+        [[NSUserDefaults standardUserDefaults] setObject:result forKey:@"username"];
+        [MGWU submitHighScore:[[NSUserDefaults standardUserDefaults] integerForKey:@"score"] byPlayer:result forLeaderboard:@"defaultLeaderboard"];
+        
+    }
+}
+
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+	if (![nameField.text isEqualToString:@""])
+	{
+		//Hide keyboard when "done" clicked
+		[textField resignFirstResponder];
+		[nameField removeFromSuperview];
+		return YES;
+	}
+}
 
 @end
 

@@ -43,6 +43,8 @@
     int intScore;
     CCSprite* donkey;
     
+    CCLayerColor* colorLayer;
+    
     int level;
     bool bosstime;
     
@@ -50,6 +52,21 @@
     int tempattacktype;
     
     bool shieldon;
+    
+    int redtint;
+    int bluetint;
+    int greentint;
+    
+    CCSprite* border;
+    
+    CCSprite* countdown;
+    
+    CCLayerColor* gameOverLayer;
+    
+    CCMenu*  GameOverMenu;
+    
+    CCLabelTTF* gameOver;
+
     
     
 }

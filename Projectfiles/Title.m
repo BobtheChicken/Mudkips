@@ -10,6 +10,8 @@
 #import "HelloWorldLayer.h"
 #import "LevelSelect.h"
 #import "SimpleAudioEngine.h"
+#import "High.h"
+#import "StatLayer.h"
 
 @implementation Title
 
@@ -62,6 +64,8 @@
         id mmenuscale = [CCScaleTo actionWithDuration:0.7f scale:1.0f];
         [mgwu runAction:mmenuscale];
         
+        
+        
         CCSprite* title = [CCSprite spriteWithFile:@"blue.png"];
         title.position = ccp(160,400);
         [self addChild:title];
@@ -73,13 +77,25 @@
 
 -(void) mgwu
 {
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"data"] == false)
+    {
+        [MGWU showMessage:@"Achievement Get!      Clearing the data" withImage:nil];
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"data"];
+    }
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     [MGWU displayCrossPromo];
     [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
 }
 
 -(void) high
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInR transitionWithDuration:0.5f scene:[LevelSelect node]]];
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"high"] == false)
+    {
+        [MGWU showMessage:@"Achievement Get!      You found a bug!" withImage:nil];
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"high"];
+    }
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInR transitionWithDuration:0.5f scene:[StatLayer node]]];
     [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
 }
 

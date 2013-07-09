@@ -44,10 +44,16 @@ int stagespast;
 
 int wowanothertemportalint;
 
+CCSprite* blank;
+
 -(id) init
 {
     if ((self = [super init]))
     {
+        
+        redtint = 0;
+        greentint = 0;
+        bluetint = 255;
         wowanothertemportalint = 180;
         
         NSNumber *leveldata = [[NSUserDefaults standardUserDefaults] objectForKey:@"leveldata"];
@@ -58,7 +64,16 @@ int wowanothertemportalint;
         
         shieldon = false;
         
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"tutorialcompleted"] == false)
+        {
         stagespast = 0;
+        }
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"tutorialcompleted"] == true)
+        {
+            stagespast = 4;
+            attacktype = 4;
+        }
+        
         framespast = 0;
         secondspast = 0;
         gameSegment = 0;
@@ -71,7 +86,7 @@ int wowanothertemportalint;
         intScore = 0;
         screenSize = [director winSize];
         bullets = [[NSMutableArray alloc] init];
-        //donkeys = [[NSMutableArray alloc] init];
+        donkeys = [[NSMutableArray alloc] init];
         //bulletSpeed = [[NSMutableArray alloc] init];
         fakebullets = [[NSMutableArray alloc] init];
         powerups = [[NSMutableArray alloc] init];
@@ -88,7 +103,8 @@ int wowanothertemportalint;
         // initialize obstacles
         //[self initObstacles];
         // [self initBoss];
-        [self schedule:@selector(update:)];
+        //[self schedule:@selector(update:)];
+        [self scheduleUpdate];
         
         [self pause];
         
@@ -103,6 +119,11 @@ int wowanothertemportalint;
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"bwooo.mp3"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"zoom.mp3"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"swip.mp3"];
+        
+        blank = [CCSprite spriteWithFile:@"blank.png"];
+        blank.position = ccp(160,240);
+        [self addChild:blank z:-9005];
+        
         
         
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"endless"] == false)
@@ -149,9 +170,9 @@ int wowanothertemportalint;
     
     [self gameSeg];
     [self detectCollisions];
+   // [self countdown];
     
-    
-    
+   // [self tint];
     
     KKInput* input = [KKInput sharedInput];
     
@@ -165,12 +186,37 @@ int wowanothertemportalint;
 }
 
 
+-(void) flash:(int) red green:(int) green blue:(int) blue alpha:(int) alpha actionWithDuration:(float) duration
+{
+    colorLayer = [CCLayerColor layerWithColor:ccc4(red, green, blue, alpha)];
+    [self addChild:colorLayer z:0];
+    id delay = [CCDelayTime actionWithDuration:duration];
+    id fadeOut = [CCFadeOut actionWithDuration:0.5f];
+    [colorLayer runAction:[CCSequence actions:delay, fadeOut, nil]];
+    [self schedule:@selector(delflash) interval:0.5];
+    
+}
 
 
+
+
+
+
+- (void)delflash {
+    
+    [self unschedule:@selector(delflash)];
+    
+    [self removeChild:colorLayer];
+}
 
 -(void) initScore
 {
-    
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"startgame"] == false)
+    {
+    [MGWU showMessage:@"Achievement Get!      A Blue World" withImage:nil];
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"startgame"];
+    }
+
     label = [CCLabelTTF labelWithString:@"0" fontName:@"Bend2SquaresBRK" fontSize:24];
     
     label.position = ccp(50,465);
@@ -208,6 +254,7 @@ int wowanothertemportalint;
                     [self shootBullet:3 angle:240];
                     [self shootBullet:3 angle:270];
                     [self shootBullet:3 angle:300];
+                    
                 }
                 
             }
@@ -421,9 +468,9 @@ int wowanothertemportalint;
                     
                     
                 }
-                if((framespast % 100) == 0)
+                if((framespast % 130) == 0)
                 {
-                    [self makeDownvote:-30];
+                    [self makeDownvote:-65];
                     
                     
                     
@@ -483,6 +530,12 @@ int wowanothertemportalint;
                     [self shootBulletwithPos:7 angle:250 xpos:0 ypos:0];
                     
                     [self shootBulletwithPos:7 angle:290 xpos:0 ypos:0];
+                    
+                    if([[NSUserDefaults standardUserDefaults]boolForKey:@"obamablast"] == false)
+                    {
+                        [MGWU showMessage:@"Achievement Get!      Obamablast!" withImage:nil];
+                        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"obamablast"];
+                    }
                     
                 }
             }
@@ -578,6 +631,11 @@ int wowanothertemportalint;
             }
         }
         
+        if(gameSegment == 1)
+        {
+            [self removeChild:tut];
+        }
+        
     }
     
     
@@ -645,6 +703,7 @@ int wowanothertemportalint;
                 if(framespast == 10)
                 {
                     [self removeChild:tut];
+                    [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"tutorialcompleted"];
                 }
                 if((framespast % 50) == 0)
                 {
@@ -668,7 +727,7 @@ int wowanothertemportalint;
             
         }
         
-        
+        }
         if(stagespast > 4 && stagespast < 10)
         {
             if(attacktype == 0)
@@ -919,16 +978,23 @@ int wowanothertemportalint;
         
     }
     
+    
+    
+    
+
     [self moveBullet];
     [self moveFakeBullet];
-    
-    
-}
 }
 
 
 -(void) yeswecan
 {
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"yeswecan"] == false)
+    {
+        [MGWU showMessage:@"Achievement Get!      Run to the Bottom!" withImage:nil];
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"yeswecan"];
+    }
+    
     [self shootBulletwithPosSmall:1 angle:270 xpos:-140 ypos:0];
     [self shootBulletwithPosSmall:1 angle:270 xpos:-60 ypos:0];
     [self shootBulletwithPosSmall:1 angle:270 xpos:-20 ypos:0];
@@ -1035,6 +1101,11 @@ int wowanothertemportalint;
 }
 -(void) makeDownvote:(float) xOffset
 {
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"downvote"] == false)
+    {
+        [MGWU showMessage:@"Achievement Get!      Downvoted" withImage:nil];
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"downvote"];
+    }
     [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:0];
     //    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:0];
     [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:0];
@@ -1379,15 +1450,29 @@ int wowanothertemportalint;
 {
     if(bosstime == true)
     {
-        if(level == 1)
+        
+        if([[NSUserDefaults standardUserDefaults] integerForKey:@"boss"] < level)
         {
             tut = [CCLabelTTF labelWithString:@"New Boss!" fontName:@"Bend2SquaresBRK" fontSize:60];
             
             tut.position = ccp(160,320);
             
             tut.color = ccc3(0, 0, 0);
-            [self addChild:tut];
+            [self addChild:tut z:9002];
             
+            [[NSUserDefaults standardUserDefaults] setInteger:level forKey:@"boss"];
+            
+            
+        }
+        
+        if(level == 1)
+        {
+            
+            if([[NSUserDefaults standardUserDefaults]boolForKey:@"bigblue"] == false)
+            {
+                [MGWU showMessage:@"Achievement Get!      The Big Blue, ruler of Blutopia" withImage:nil];
+                [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"bigblue"];
+            }
             id newboss = [CCScaleTo actionWithDuration:0.5f scale:1.0f];
             [tut runAction:newboss];
             [self schedule:@selector(newBoss) interval:3.0];
@@ -1417,6 +1502,11 @@ int wowanothertemportalint;
             [boss runAction:bossscale];
             
             [self shootBullet:1 angle:90];
+            if([[NSUserDefaults standardUserDefaults]boolForKey:@"alienblue"] == false)
+            {
+                [MGWU showMessage:@"Achievement Get!      Alien Blue, Karmalord of Reddit" withImage:nil];
+                [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"alienblue"];
+            }
         }
         else if(level == 3)
         {
@@ -1431,6 +1521,11 @@ int wowanothertemportalint;
             [boss runAction:bossscale];
             
             [self shootBullet:1 angle:90];
+            if([[NSUserDefaults standardUserDefaults]boolForKey:@"obama"] == false)
+            {
+                [MGWU showMessage:@"Achievement Get!      Blubama, political overlord" withImage:nil];
+                [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"obama"];
+            }
         }
         else if(level == 4)
         {
@@ -1445,6 +1540,11 @@ int wowanothertemportalint;
             [boss runAction:bossscale];
             
             [self shootBullet:1 angle:90];
+            if([[NSUserDefaults standardUserDefaults]boolForKey:@"blossom"] == false)
+            {
+                [MGWU showMessage:@"Achievement Get!      Blossom, the blue rose" withImage:nil];
+                [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"blossom"];
+            }
         }
     }
     else if(bosstime == false)
@@ -1477,13 +1577,69 @@ int wowanothertemportalint;
 
 - (void)newBoss {
     
-    [self unschedule:@selector(mySelector)];
+    [self unschedule:@selector(newBoss)];
     
     
     [self removeChild:tut];
     
 }
 
+
+-(void) movePlayerPos: (CGPoint) rot_pos1 rot_pos2:(CGPoint) rot_pos2
+{
+    float rotation_theta = atan((rot_pos1.y-rot_pos2.y)/(rot_pos1.x-rot_pos2.x)) * 180 / M_PI;
+    
+    //        float rotation;
+    
+    if(rot_pos1.y - rot_pos2.y > 0)
+    {
+        if(rot_pos1.x - rot_pos2.x < 0)
+        {
+            touchangle = (-90-rotation_theta);
+        }
+        else if(rot_pos1.x - rot_pos2.x > 0)
+        {
+            touchangle = (90-rotation_theta);
+        }
+    }
+    else if(rot_pos1.y - rot_pos2.y < 0)
+    {
+        if(rot_pos1.x - rot_pos2.x < 0)
+        {
+            touchangle = (270-rotation_theta);
+        }
+        else if(rot_pos1.x - rot_pos2.x > 0)
+        {
+            touchangle = (90-rotation_theta);
+        }
+    }
+    
+    if (touchangle < 0)
+    {
+        touchangle+=360;
+    }
+    
+    
+    
+    
+    //        NSLog(@"%f", touchangle);
+    
+    float speed = 10; // Move 50 pixels in 60 frames (1 second)
+    
+    float vx = cos(touchangle * M_PI / 180) * speed;
+    float vy = sin(touchangle * M_PI / 180) * speed;
+    
+    CGPoint direction = ccp(vy,vx);
+    
+    // NSLog(NSStringFromCGPoint(direction));
+    
+    player.position = ccpAdd(player.position, direction);
+    
+    shield.position = player.position;
+    
+    //player.rotation = touchangle;
+
+}
 
 -(void) grabTouchCoord
 {
@@ -1507,65 +1663,13 @@ int wowanothertemportalint;
         CGPoint rot_pos2 = [player position];
         CGPoint rot_pos1 = posTouchScreen;
         
-        if(rot_pos2.x - rot_pos1.x > 1 || rot_pos1.x - rot_pos2.x > 1)
+        CGPoint newpos = posTouchScreen;
+        CGPoint oldpos = [player position];
+        
+        if(newpos.x - oldpos.x > 5 || newpos.x - oldpos.x < -5 || newpos.y - oldpos.y > 5 || newpos.y - oldpos.y < -5)
         {
-            if(rot_pos2.y - rot_pos1.y > 1 || rot_pos1.y - rot_pos2.y > 1)
-            {
-                
-                
-                float rotation_theta = atan((rot_pos1.y-rot_pos2.y)/(rot_pos1.x-rot_pos2.x)) * 180 / M_PI;
-                
-                //        float rotation;
-                
-                if(rot_pos1.y - rot_pos2.y > 0)
-                {
-                    if(rot_pos1.x - rot_pos2.x < 0)
-                    {
-                        touchangle = (-90-rotation_theta);
-                    }
-                    else if(rot_pos1.x - rot_pos2.x > 0)
-                    {
-                        touchangle = (90-rotation_theta);
-                    }
-                }
-                else if(rot_pos1.y - rot_pos2.y < 0)
-                {
-                    if(rot_pos1.x - rot_pos2.x < 0)
-                    {
-                        touchangle = (270-rotation_theta);
-                    }
-                    else if(rot_pos1.x - rot_pos2.x > 0)
-                    {
-                        touchangle = (90-rotation_theta);
-                    }
-                }
-                
-                if (touchangle < 0)
-                {
-                    touchangle+=360;
-                }
-                
-                
-                
-                
-                //        NSLog(@"%f", touchangle);
-                
-                float speed = 10; // Move 50 pixels in 60 frames (1 second)
-                
-                float vx = cos(touchangle * M_PI / 180) * speed;
-                float vy = sin(touchangle * M_PI / 180) * speed;
-                
-                CGPoint direction = ccp(vy,vx);
-                
-                // NSLog(NSStringFromCGPoint(direction));
-                
-                player.position = ccpAdd(player.position, direction);
-                
-                shield.position = player.position;
-                
-                //player.rotation = touchangle;
-                
-            }
+            [self movePlayerPos:rot_pos1 rot_pos2:rot_pos2];
+            //NSLog(@"Ohai.");
             
         }
         
@@ -1581,7 +1685,7 @@ int wowanothertemportalint;
     {
         // NSLog(@"Collision detected!");
         
-        [self removeChild:player cleanup:YES];
+       // [self removeChild:player cleanup:YES];
         
     }
     for(int i = 0; i < [bullets count]; i++)
@@ -1596,19 +1700,17 @@ int wowanothertemportalint;
                 [bullets removeObjectAtIndex:i];
                 [self removeChild:shield];
                 shieldon = false;
+                
+                if([[NSUserDefaults standardUserDefaults]boolForKey:@"protection"] == false)
+                {
+                    [MGWU showMessage:@"Achievement Get!      Chicken Blocked" withImage:nil];
+                    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"protection"];
+                }
             }
             else{
                 //NSLog(@"Collision detected!");
                 
-                gameSegment = 0;
-                framespast = 0;
-                secondspast = 0;
-                
-                [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
-                
-                [[NSUserDefaults standardUserDefaults] setInteger:intScore forKey:@"score"];
-                
-                [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[Dead node]]];
+                [self playerdeath];
             }
         }
     }
@@ -1676,11 +1778,187 @@ int wowanothertemportalint;
             shield.position = player.position;
             [self addChild:shield z:-10];
             shieldon = true;
+            [self flash:0 green:255 blue:0 alpha:255 actionWithDuration:0];
+            if([[NSUserDefaults standardUserDefaults]boolForKey:@"shield"] == false)
+            {
+                [MGWU showMessage:@"Achievement Get!      Green is the new Orange" withImage:nil];
+                [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"shield"];
+            }
+
             
         }
     }
 }
 
+
+
+-(void) playerdeath
+{
+    [self unscheduleUpdate];
+    
+    NSLog(@"burp");
+    
+    
+    //background
+    
+    
+    border = [CCSprite spriteWithFile:@"continue.png"];
+    
+    border.position = ccp(160,240);
+    
+    [self addChild:border z:9010];
+    
+    border.opacity = 100;
+    
+    
+    //background
+    
+    
+    gameOverLayer = [CCLayerColor layerWithColor: ccc4(0, 0, 0, 0) width: 200 height: 238];
+    
+    
+    
+    gameOverLayer.position = ccp(40, 95);
+    
+    
+    
+    
+    
+    [self addChild: gameOverLayer z:9010];
+    
+    
+    
+    
+    
+    
+    
+    
+    gameOver = [CCLabelTTF labelWithString:@"Continue?" fontName:@"Bend2SquaresBRK" fontSize:75];
+    
+    gameOver.position = ccp(160, 360);
+    
+    [self addChild:gameOver z:9011];
+    
+    
+    
+    
+    
+    gameOver.color=ccc3(0,0,0);
+    
+    
+    
+    CCMenuItemImage* mainMenuPause = [CCMenuItemImage itemWithNormalImage:@"orangeretry.png" selectedImage:@"orangeretry.png" target:self selector:@selector(continuee)];
+    
+    
+    
+   // CCMenuItemImage* restartPause = [CCMenuItemImage itemWithNormalImage:@"orangehigh.png" selectedImage:@"orangehigh.png" target:self selector:@selector(gameover:)];
+    
+    
+    
+    
+    
+    GameOverMenu = [CCMenu menuWithItems: mainMenuPause, nil];
+    
+    //[GameOverMenu alignItemsHorizontallyWithPadding:50.0];
+    
+    
+    
+    mainMenuPause.position = ccp(0, -80);
+    
+    
+    countdown = [CCSprite spriteWithFile:@"bar.png"];
+    
+    countdown.position = ccp(160,240);
+    
+    countdown.scale = 1;
+    
+    [self addChild:countdown z:9012];
+    
+    
+    id scaleX = [CCScaleTo actionWithDuration:7.0f scaleX:0 scaleY:1];
+    [countdown runAction:scaleX];
+     [self schedule:@selector(gameover) interval:7.0];
+    
+    [self addChild:GameOverMenu z:9011];
+    
+    
+    
+    self.isTouchEnabled = NO;
+}
+
+
+
+
+
+
+
+
+
+  
+
+
+-(void) setDimensionsInPixelsGraduallyOnSprite:(CCSprite *) spriteToSetDimensions width:(int) width height:(int) height
+{
+    float scaleXDimensions = width/[spriteToSetDimensions boundingBox].size.width;
+    float scaleYDimensions = height/[spriteToSetDimensions boundingBox].size.height;
+    id scaleX = [CCScaleTo actionWithDuration:0.5f scaleX:0 scaleY:1];
+    [spriteToSetDimensions runAction:scaleX];
+}
+
+
+-(void) continuee
+{
+    [MGWU testBuyProduct:@"com.xxx.xxx.productID1" withCallback:@selector(boughtProduct) onTarget:self];
+}
+
+-(void) boughtProduct
+{
+    [self removeChild:countdown];
+    [self scheduleUpdate];
+    [[CCDirector sharedDirector] resume];
+    [self removeChild:border];
+    [self removeChild:gameOver];
+    [self removeChild:gameOverLayer];
+    [self removeChild:GameOverMenu];
+    
+    [self returnBullet];
+    for(int i = 0; i < [bullets count]; i++)
+    {
+        Bullet *temp = [bullets objectAtIndex:i];
+        
+        [self removeChild:temp];
+        
+        
+        
+        
+        //  [bullets removeObjectAtIndex:j];
+        //[bulletDirection removeObjectAtIndex:j];
+        //[bulletSpeed removeObjectAtIndex:j];
+        
+        
+    }
+    
+    [bullets removeAllObjects];
+}
+
+-(void) gameover
+{
+    [self unschedule:@selector(gameover)];
+    gameSegment = 0;
+    framespast = 0;
+    secondspast = 0;
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:intScore forKey:@"score"];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[Dead node]]];
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"doom"] == false)
+    {
+        [MGWU showMessage:@"Achievement Get!      Fall of the Orange" withImage:nil];
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"doom"];
+    }
+}
 -(void) pause
 {
     [[CCDirector sharedDirector] pushScene:
@@ -1734,6 +2012,8 @@ int wowanothertemportalint;
         CGPoint direction = ccp(vx,vy);
         
         projectile.position = ccpAdd(projectile.position, direction);
+        
+        projectile.position = ccp(projectile.position.x,projectile.position.y - 1);
         
     }
     
@@ -1817,12 +2097,18 @@ int wowanothertemportalint;
     donkey = [CCSprite spriteWithFile:@"Democrat_Donkey.png"];
     donkey.position = newB.position;
     donkey.scale = 0;
-    [self addChild:donkey z:0];
+    [self addChild:donkey z:-20];
     
     id bossscale = [CCScaleTo actionWithDuration:1.0f scale:0.5f];
     [donkey runAction:bossscale];
     
     [donkeys addObject:donkey];
+    
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"donkey"] == false)
+    {
+        [MGWU showMessage:@"Achievement Get!      Democratic Donkey" withImage:nil];
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"donkey"];
+    }
 }
 
 -(void) shootBulletwithPosSmall: (float) speed angle:(float) angleInput xpos:(float) xInput ypos:(float) yInput
@@ -1858,6 +2144,8 @@ int wowanothertemportalint;
         bwooo = false;
         
     }
+    
+    [self flash:247 green:148 blue:29 alpha:255 actionWithDuration:0];
     
 }
 
@@ -2179,23 +2467,23 @@ int wowanothertemportalint;
                     
                     
                 }
-                for(int i = 0; i < [donkeys count]; i++)
-                {
-                    CCSprite *temp = [donkeys objectAtIndex:i];
-                    
-                    [self removeChild:temp];
-                    
-                    
-                    
-                    
-                    //  [bullets removeObjectAtIndex:j];
-                    //[bulletDirection removeObjectAtIndex:j];
-                    //[bulletSpeed removeObjectAtIndex:j];
-                    
-                    
-                }
-                
-                [donkeys removeAllObjects];
+//                for(int i = 0; i < [donkeys count]; i++)
+//                {
+//                    CCSprite *temp = [donkeys objectAtIndex:i];
+//                    
+//                    [self removeChild:temp];
+//                    
+//                    
+//                    
+//                    
+//                    //  [bullets removeObjectAtIndex:j];
+//                    //[bulletDirection removeObjectAtIndex:j];
+//                    //[bulletSpeed removeObjectAtIndex:j];
+//                    
+//                    
+//                }
+//                
+//                [donkeys removeAllObjects];
                 [bullets removeAllObjects];
             }
             if(framespast == 1050)
@@ -2240,7 +2528,7 @@ int wowanothertemportalint;
                 }
                 [bullets removeAllObjects];
             }
-            if(framespast == 1750)
+            if(framespast == 1700)
             {
                 gameSegment = 5;
                 [self returnBullet];
@@ -2291,8 +2579,8 @@ int wowanothertemportalint;
             
         }
         
-        if(level == 4)
-        {
+        //if(level == 4)
+        /*{
             if(framespast == 350)
             {
                 gameSegment = 1;
@@ -2444,7 +2732,7 @@ int wowanothertemportalint;
             
             
             
-        }
+        }*/
     }
     
     
@@ -2541,6 +2829,23 @@ int wowanothertemportalint;
 
 -(void) gameEnd
 {
+    
+    [self deathplusdeath];
+    
+    
+    
+    
+    
+    
+    
+}
+
+-(void) deathplusdeath
+{
+
+    
+    [self flash:0 green:0 blue:255 alpha:255 actionWithDuration:0];
+    
     [self shootBulletwithPosPowerup:3 angle:260 xpos:0 ypos:0];
     
     id bossscale = [CCScaleTo actionWithDuration:1.0f scale:2.0f];
@@ -2552,11 +2857,27 @@ int wowanothertemportalint;
     id bossscale2 = [CCScaleTo actionWithDuration:3.0f scale:0.0f];
     [boss runAction:bossscale2];
     
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"bossdefeat"] == false)
+    {
+        [MGWU showMessage:@"Achievement Get!      Boss Slayer" withImage:nil];
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"bossdefeat"];
+    }
+    
+    stagespast = stagespast + 1;
+    bosstime = false;
+    [self initBoss];
+    gameSegment = 0;
+    framespast = 0;
+    NSLog([NSString stringWithFormat:@"%d",stagespast]);
+    NSLog([NSString stringWithFormat:@"%d",bosstime]);
+    
     [self schedule:@selector(mySelector) interval:3.0];
     
-    
-    
-    
+    for(int i = 0; i<[donkeys count]; i++)
+    {
+        [self removeChild:[donkeys objectAtIndex:i]];
+    }
+    [donkeys removeAllObjects];
 }
 
 - (void)mySelector {
@@ -2577,6 +2898,7 @@ int wowanothertemportalint;
     [self initBoss];
     gameSegment = 0;
     framespast = 0;
+    NSLog(@"Boss defeated.");
     
 }
 

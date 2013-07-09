@@ -87,6 +87,7 @@
         gameOverMenu.color = ccc3(0, 0, 0);
         [self addChild:gameOverMenu];*/
         
+
         
         CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"endless.png" selectedImage:@"endless.png" target:self selector:@selector(level1)];
         highscore.position = ccp(160, 390);
