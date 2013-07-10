@@ -119,17 +119,23 @@
 
 -(void) quitGame
 {
+    [nameField removeFromSuperview];
+//    [nameField release];
     [[CCDirector sharedDirector] replaceScene:
      [CCTransitionSlideInL transitionWithDuration:0.5f scene:[Title node]]];
 }
 
 -(void) sel
 {
+    [nameField removeFromSuperview];
+//    [nameField release];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInR transitionWithDuration:0.5f scene:[StatLayer node]]];
 }
 
 -(void) retry
 {
+    [nameField removeFromSuperview];
+//    [nameField release];
     //    [[CCDirector sharedDirector] popSceneWithTransition:
     //       [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];

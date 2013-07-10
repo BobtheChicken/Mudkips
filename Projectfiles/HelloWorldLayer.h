@@ -69,6 +69,12 @@
     CCMenu*  GameOverMenu;
     
     CCLabelTTF* gameOver;
+    CCLabelTTF* gameOver1;
+    CCLabelTTF* gameOver2;
+    
+    CCLabelBMFont* coinLabel;
+    
+    int continueCost;
 
     
     

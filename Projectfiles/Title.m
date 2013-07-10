@@ -70,6 +70,8 @@
         title.position = ccp(160,400);
         [self addChild:title];
         
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"techno.mp3" loop:YES];
+        
 
     }
     return self;
@@ -79,6 +81,7 @@
 {
     if([[NSUserDefaults standardUserDefaults]boolForKey:@"data"] == false)
     {
+        [[NSUserDefaults standardUserDefaults] setInteger:6 forKey:@"coins"];
         [MGWU showMessage:@"Achievement Get!      Clearing the data" withImage:nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"data"];
     }

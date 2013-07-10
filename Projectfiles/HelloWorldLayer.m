@@ -10,6 +10,7 @@
 #import "Player.h"
 #import "Dead.h"
 #import "LevelSelect.h"
+#import "StoreLayer.h"
 
 @interface HelloWorldLayer (PrivateMethods)
 @end
@@ -44,12 +45,17 @@ int stagespast;
 
 int wowanothertemportalint;
 
+int coins;
+
 CCSprite* blank;
 
 -(id) init
 {
     if ((self = [super init]))
     {
+        
+        continueCost = 1;
+        coins = [[NSUserDefaults standardUserDefaults] integerForKey:@"coins"];
         
         redtint = 0;
         greentint = 0;
@@ -105,6 +111,7 @@ CCSprite* blank;
         //[self initObstacles];
         // [self initBoss];
         //[self schedule:@selector(update:)];
+        [self schedule:@selector(updateCoins)];
         [self scheduleUpdate];
         
         [self pause];
@@ -176,6 +183,7 @@ CCSprite* blank;
     
     [self gameSeg];
     [self detectCollisions];
+    //[self updateCoins];
    // [self countdown];
     
    // [self tint];
@@ -1927,11 +1935,39 @@ CCSprite* blank;
     
     [self addChild:gameOver z:9011];
     
+
+    gameOver1 = [CCLabelTTF labelWithString:@"Coins: " fontName:@"Bend2SquaresBRK" fontSize:75];
+    
+    gameOver1.position = ccp(160, 300);
+    
+    [self addChild:gameOver1 z:9011];
+    
+    coinLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",coins] fontName:@"Bend2SquaresBRK" fontSize:75];
+    
+    coinLabel.position = ccp(240, 300);
+    
+    [self addChild:coinLabel z:9011];
+    
+    NSString *hello = @"Continue for ";
+    NSString *world = [NSString stringWithFormat:@"%d",continueCost];
+    NSString *helloWorld = [hello stringByAppendingString:world];
+    NSString *burpworld = @" coins.";
+    NSString *coinc = [helloWorld stringByAppendingString:burpworld];
+    
+    
+    
+    gameOver2 = [CCLabelTTF labelWithString:coinc fontName:@"Bend2SquaresBRK" fontSize:75];
+    
+    gameOver2.position = ccp(160, 50);
+    
+    [self addChild:gameOver2 z:9011];
     
     
     
     
-    gameOver.color=ccc3(0,0,0);
+    
+    
+    //gameOver.color=ccc3(0,0,0);
     
     
     
@@ -1996,18 +2032,48 @@ CCSprite* blank;
 
 -(void) continuee
 {
-    [MGWU testBuyProduct:@"com.xxx.xxx.productID1" withCallback:@selector(boughtProduct) onTarget:self];
+    if(coins >= continueCost)
+    {
+        coins = coins - continueCost;
+        continueCost = continueCost * 2;
+        [self boughtProduct];
+    }
+    else{
+        
+        [[CCDirector sharedDirector] pushScene:
+         [CCTransitionCrossFade transitionWithDuration:0.5f scene:[StoreLayer node]]];
+    
+    //[MGWU testBuyProduct:@"com.xxx.xxx.productID1" withCallback:@selector(purchased) onTarget:self];
+    }
 }
 
+-(void) purchased
+{
+    
+}
+
+-(void) updateCoins
+{
+    coins = [[NSUserDefaults standardUserDefaults] integerForKey:@"coins"];
+    [coinLabel setString:[NSString stringWithFormat:@"%i",coins]];
+    NSLog([NSString stringWithFormat:@"%d",coins]);
+    
+}
 -(void) boughtProduct
 {
     [self removeChild:countdown];
-    [self scheduleUpdate];
-    [[CCDirector sharedDirector] resume];
+
     [self removeChild:border];
+    [self removeChild:coinLabel];
     [self removeChild:gameOver];
+    //[self removeChild:gameOver];
+   // [self removeChild:gameOver];
+    [self removeChild:gameOver1];
+    [self removeChild:gameOver2];
     [self removeChild:gameOverLayer];
     [self removeChild:GameOverMenu];
+    [self scheduleUpdate];
+    [[CCDirector sharedDirector] resume];
     
     [self returnBullet];
     for(int i = 0; i < [bullets count]; i++)
