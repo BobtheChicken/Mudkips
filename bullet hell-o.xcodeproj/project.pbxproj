@@ -50,6 +50,7 @@
 		84A8F8991784E3C300878094 /* Democrat_Donkey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84A8F8981784E3C300878094 /* Democrat_Donkey.jpg */; };
 		84A8F89C1784E40200878094 /* Donkey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A8F89B1784E40200878094 /* Donkey.m */; };
 		84A8F89E1784E87000878094 /* Democrat_Donkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A8F89D1784E87000878094 /* Democrat_Donkey.png */; };
+		84B44DAE178F213A00B70A4D /* orangestore.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B44DAD178F213A00B70A4D /* orangestore.png */; };
 		84C8E1401782083D00FD85D3 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C8E13F1782083D00FD85D3 /* Player.m */; };
 		84C8E1421782219400FD85D3 /* monster8.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C8E1411782219400FD85D3 /* monster8.png */; };
 		84C8E1441782234200FD85D3 /* download.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84C8E1431782234200FD85D3 /* download.jpeg */; };
@@ -259,6 +260,7 @@
 		84A8F89A1784E40200878094 /* Donkey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Donkey.h; sourceTree = "<group>"; };
 		84A8F89B1784E40200878094 /* Donkey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Donkey.m; sourceTree = "<group>"; };
 		84A8F89D1784E87000878094 /* Democrat_Donkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Democrat_Donkey.png; sourceTree = "<group>"; };
+		84B44DAD178F213A00B70A4D /* orangestore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangestore.png; sourceTree = "<group>"; };
 		84C8E13E1782083D00FD85D3 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		84C8E13F1782083D00FD85D3 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		84C8E1411782219400FD85D3 /* monster8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monster8.png; path = "../../../../../Downloads/game-art/monsters/regular/monster8.png"; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84B44DAD178F213A00B70A4D /* orangestore.png */,
 				847C6ABA178E09C200F96917 /* techno.mp3 */,
 				847C6AB8178DE1BD00F96917 /* coinbig.png */,
 				847C6AB6178DE1B500F96917 /* coinmedium.png */,
@@ -991,6 +994,7 @@
 				847C6AB7178DE1B500F96917 /* coinmedium.png in Resources */,
 				847C6AB9178DE1BD00F96917 /* coinbig.png in Resources */,
 				847C6ABB178E09C200F96917 /* techno.mp3 in Resources */,
+				84B44DAE178F213A00B70A4D /* orangestore.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

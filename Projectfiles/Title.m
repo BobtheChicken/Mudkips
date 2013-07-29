@@ -70,7 +70,10 @@
         title.position = ccp(160,400);
         [self addChild:title];
         
+        if([[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying] == false)
+        {
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"techno.mp3" loop:YES];
+        }
         
 
     }

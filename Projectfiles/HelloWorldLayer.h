@@ -71,6 +71,7 @@
     CCLabelTTF* gameOver;
     CCLabelTTF* gameOver1;
     CCLabelTTF* gameOver2;
+    CCLabelTTF* gameOver3;
     
     CCLabelBMFont* coinLabel;
     

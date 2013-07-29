@@ -22,7 +22,11 @@ CCLabelBMFont *coinsLabel;
 {
 	if ((self = [super init]))
 	{
-        glClearColor(255, 255, 255, 255);
+        CCSprite* background = [CCSprite spriteWithFile:@"blank.png"];
+        background.position = ccp(160,240);
+        [self addChild:background];
+        
+        //glClearColor(255, 255, 255, 255);
         screenSize = [[CCDirector sharedDirector] winSize];
         CGPoint screenCenter = [[CCDirector sharedDirector] screenCenter];
         CCLabelBMFont *gameTitle = [CCLabelTTF labelWithString:@"STORE" fontName:@"Bend2SquaresBRK" fontSize:75];
@@ -133,6 +137,7 @@ CCLabelBMFont *coinsLabel;
 
 -(void) goHome
 {
+    //glClearColor(0, 0, 0, 255);
     [[CCDirector sharedDirector] popScene];
 }
 

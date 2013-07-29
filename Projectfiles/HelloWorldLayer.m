@@ -49,10 +49,17 @@ int coins;
 
 CCSprite* blank;
 
+CCMotionStreak* streak;
+
 -(id) init
 {
     if ((self = [super init]))
     {
+        streak = [CCMotionStreak streakWithFade:0.5 minSeg:1 width:50 color:ccc3(247,148,29) textureFilename:@"orange.png"];
+        streak.position = player.position;
+        //[self addChild:streak];
+        
+        glClearColor(255,255,255,255);
         
         continueCost = 1;
         coins = [[NSUserDefaults standardUserDefaults] integerForKey:@"coins"];
@@ -76,7 +83,7 @@ CCSprite* blank;
         }
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"tutorialcompleted"] == true)
         {
-            stagespast = 14;
+            stagespast = 4;
             attacktype = 4;
         }
         
@@ -130,7 +137,7 @@ CCSprite* blank;
         
         blank = [CCSprite spriteWithFile:@"blank.png"];
         blank.position = ccp(160,240);
-        [self addChild:blank z:-9005];
+        //[self addChild:blank z:-9005];
         
         
         
@@ -173,6 +180,7 @@ CCSprite* blank;
 {
     [self grabTouchCoord];
     
+    [streak setPosition:player.position];
     
     framespast++;
     
@@ -211,6 +219,18 @@ CCSprite* blank;
     
 }
 
+-(void) rflash:(int) red green:(int) green blue:(int) blue alpha:(int) alpha actionWithDuration:(float) duration
+{
+    colorLayer = [CCLayerColor layerWithColor:ccc4(255, 255, 255, alpha)];
+    [self addChild:colorLayer z:0];
+    id tint = [CCTintTo actionWithDuration:0.5 red:red green:green blue:blue];
+    id delay = [CCDelayTime actionWithDuration:duration];
+    id fadeOut = [CCFadeOut actionWithDuration:0.5f];
+    [colorLayer runAction:[CCSequence actions:tint, delay, fadeOut, nil]];
+    [self schedule:@selector(delrflash) interval:0.5];
+    
+}
+
 
 
 
@@ -221,6 +241,23 @@ CCSprite* blank;
     [self unschedule:@selector(delflash)];
     
     [self removeChild:colorLayer];
+}
+
+- (void)delrflash {
+    
+    [self unschedule:@selector(delrflash)];
+    
+    [self removeChild:colorLayer];
+    
+    if(bosstime == true)
+    {
+        glClearColor(0, 0, 0, 255);
+        NSLog(@"ok, go.");
+    }
+    else{
+        glClearColor(255, 255, 255, 255);
+        NSLog(@"ok, go2.");
+    }
 }
 
 -(void) initScore
@@ -427,6 +464,13 @@ CCSprite* blank;
             }
             if(gameSegment ==3)
             {
+                
+                if([[NSUserDefaults standardUserDefaults]boolForKey:@"downwall"] == false)
+                {
+                    [MGWU showMessage:@"Achievement Get!      Retreat" withImage:nil];
+                    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"downwall"];
+                }
+                
                 if((framespast % 250) == 0)
                 {
                     [self makeDownvote:-200];
@@ -630,7 +674,100 @@ CCSprite* blank;
             }
             if(gameSegment ==1)
             {
+                if(framespast == 251)
+                {
+                    
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    
+                    for(int i = 0; i < 8;i++)
+                    {
+                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(i*40,400)];
+                        [[flowerbullets objectAtIndex:i] runAction:flowermove];
+                    }
+                    
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    
+                    for(int i = 9; i < 16;i++)
+                    {
+                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(0,460 - (i-8)*60)];
+                        [[flowerbullets objectAtIndex:i] runAction:flowermove];
+                    }
+                    
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    
+                    for(int i = 17; i < 24;i++)
+                    {
+                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(320,460 - (i-16)*60)];
+                        [[flowerbullets objectAtIndex:i] runAction:flowermove];
+                    }
+                    
+                    
+                    
+                }
+            }
+            if(gameSegment ==2)
+            {
                 if(framespast == 351)
+                {
+                    
+                    
+                    
+                    
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    
+                    for(int i = 0; i < 8;i++)
+                    {
+                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(160-(i*20),460 - i*60)];
+                        [[flowerbullets objectAtIndex:i] runAction:flowermove];
+                    }
+                    
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    
+                    for(int i = 8; i < 16;i++)
+                    {
+                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(160+((i-8)*20),460 - (i-8)*60)];
+                        [[flowerbullets objectAtIndex:i] runAction:flowermove];
+                    }
+                }
+            }
+            if(gameSegment ==3)
+            {
+                if(framespast == 451)
                 {
                     
                     
@@ -645,39 +782,24 @@ CCSprite* blank;
                     
                     for(int i = 0; i < 8;i++)
                     {
-                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(160,460 - i*60)];
+                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(160-(i*20),300)];
                         [[flowerbullets objectAtIndex:i] runAction:flowermove];
                     }
                     
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
+                    [self shootBulletwithPosNoArray:3 angle:270 xpos:0 ypos:0];
                     
-                }
-            }
-            if(gameSegment ==2)
-            {
-                if((framespast % 25) == 0)
-                {
-                    
-                    
-                    [self shootBulletwithPos:3 angle:omganothertemportalint xpos:0 ypos:0];
-                    
-                    omganothertemportalint = omganothertemportalint + 15;
-                    
-                    [self shootBulletwithPos:3 angle:omganothertemportalint xpos:0 ypos:0];
-                    
-                    omganothertemportalint = omganothertemportalint + 15;
-                }
-            }
-            if(gameSegment ==3)
-            {
-                if((framespast % 10) == 0)
-                {
-                    
-                    
-                    [self shootBulletwithPos:7 angle:270 xpos:0 ypos:0];
-                    
-                    [self shootBulletwithPos:7 angle:250 xpos:0 ypos:0];
-                    
-                    [self shootBulletwithPos:7 angle:290 xpos:0 ypos:0];
+                    for(int i = 8; i < 16;i++)
+                    {
+                        id flowermove = [CCMoveTo actionWithDuration:1.0 position:ccp(160+((i-8)*20),100)];
+                        [[flowerbullets objectAtIndex:i] runAction:flowermove];
+                    }
                     
                 }
             }
@@ -1520,6 +1642,11 @@ CCSprite* blank;
 {
     if(bosstime == true)
     {
+        streak = [CCMotionStreak streakWithFade:0.5 minSeg:1 width:50 color:ccc3(247,148,29) textureFilename:@"orange.png"];
+        streak.position = player.position;
+        [self addChild:streak];
+        [self rflash:0 green:0 blue:0 alpha:255 actionWithDuration:0];
+        NSLog(@"poop hehehehe");
         
         if([[NSUserDefaults standardUserDefaults] integerForKey:@"boss"] < level)
         {
@@ -1527,7 +1654,7 @@ CCSprite* blank;
             
             tut.position = ccp(160,320);
             
-            tut.color = ccc3(0, 0, 0);
+            tut.color = ccc3(255, 255, 255);
             [self addChild:tut z:9002];
             
             [[NSUserDefaults standardUserDefaults] setInteger:level forKey:@"boss"];
@@ -1904,7 +2031,7 @@ CCSprite* blank;
     
     [self addChild:border z:9010];
     
-    border.opacity = 100;
+    //border.opacity = 100;
     
     
     //background
@@ -1929,7 +2056,7 @@ CCSprite* blank;
     
     
     
-    gameOver = [CCLabelTTF labelWithString:@"Continue?" fontName:@"Bend2SquaresBRK" fontSize:75];
+    gameOver = [CCLabelTTF labelWithString:@"Game Over" fontName:@"Bend2SquaresBRK" fontSize:75];
     
     gameOver.position = ccp(160, 360);
     
@@ -1948,15 +2075,21 @@ CCSprite* blank;
     
     [self addChild:coinLabel z:9011];
     
-    NSString *hello = @"Continue for ";
-    NSString *world = [NSString stringWithFormat:@"%d",continueCost];
-    NSString *helloWorld = [hello stringByAppendingString:world];
-    NSString *burpworld = @" coins.";
-    NSString *coinc = [helloWorld stringByAppendingString:burpworld];
+    NSString* hello = @"";
+    NSString*  world= @"";
+    NSString*  helloWorld= @"";
+    NSString*  burpworld= @"";
+    NSString*  coinc= @"";
+    
+    hello = @"Continue for ";
+    world = [NSString stringWithFormat:@"%d",continueCost];
+    helloWorld = [hello stringByAppendingString:world];
+    burpworld = @" coins.";
+    coinc = [helloWorld stringByAppendingString:burpworld];
     
     
     
-    gameOver2 = [CCLabelTTF labelWithString:coinc fontName:@"Bend2SquaresBRK" fontSize:75];
+    gameOver2 = [CCLabelTTF labelWithString:coinc fontName:@"Bend2SquaresBRK" fontSize:40];
     
     gameOver2.position = ccp(160, 50);
     
@@ -1971,37 +2104,48 @@ CCSprite* blank;
     
     
     
-    CCMenuItemImage* mainMenuPause = [CCMenuItemImage itemWithNormalImage:@"orangeretry.png" selectedImage:@"orangeretry.png" target:self selector:@selector(continuee)];
+    CCMenuItemImage* mainMenuPause = [CCMenuItemImage itemWithNormalImage:@"orangehigh.png" selectedImage:@"orangehigh.png" target:self selector:@selector(continuee)];
     
     
     
-   // CCMenuItemImage* restartPause = [CCMenuItemImage itemWithNormalImage:@"orangehigh.png" selectedImage:@"orangehigh.png" target:self selector:@selector(gameover:)];
+    CCMenuItemImage* restartPause = [CCMenuItemImage itemWithNormalImage:@"orangeretry.png" selectedImage:@"orangeretry.png" target:self selector:@selector(gameover)];
     
     
     
     
     
-    GameOverMenu = [CCMenu menuWithItems: mainMenuPause, nil];
+    GameOverMenu = [CCMenu menuWithItems: mainMenuPause, restartPause, nil];
     
-    //[GameOverMenu alignItemsHorizontallyWithPadding:50.0];
-    
-    
-    
-    mainMenuPause.position = ccp(0, -80);
+    [GameOverMenu alignItemsHorizontallyWithPadding:50.0];
     
     
-    countdown = [CCSprite spriteWithFile:@"bar.png"];
     
-    countdown.position = ccp(160,240);
+    //mainMenuPause.position = ccp(0, -80);
     
-    countdown.scale = 1;
     
-    [self addChild:countdown z:9012];
+    //countdown = [CCSprite spriteWithFile:@"bar.png"];
+    
+    //countdown.position = ccp(160,240);
+    
+    //countdown.scale = 1;
+    
+    //[self addChild:countdown z:9012];
     
     isDying = true;
-    id scaleX = [CCScaleTo actionWithDuration:7.0f scaleX:0 scaleY:1];
-    [countdown runAction:scaleX];
-     [self schedule:@selector(gameover) interval:7.0];
+    //id scaleX = [CCScaleTo actionWithDuration:7.0f scaleX:0 scaleY:1];
+   // [countdown runAction:scaleX];
+     //[self schedule:@selector(gameover) interval:7.0];
+    
+    gameOver3 = [CCLabelTTF labelWithString:@"Continue        Retry" fontName:@"Bend2SquaresBRK" fontSize:40];
+    
+    gameOver3.position = ccp(160, 150);
+    
+    [self addChild:gameOver3 z:9011];
+    
+    
+
+    
+    GameOverMenu.position = ccp(160,210);
     
     [self addChild:GameOverMenu z:9011];
     
@@ -2034,7 +2178,7 @@ CCSprite* blank;
 {
     if(coins >= continueCost)
     {
-        coins = coins - continueCost;
+        [[NSUserDefaults standardUserDefaults] setInteger:(coins - continueCost) forKey:@"coins"];
         continueCost = continueCost * 2;
         [self boughtProduct];
     }
@@ -2056,12 +2200,12 @@ CCSprite* blank;
 {
     coins = [[NSUserDefaults standardUserDefaults] integerForKey:@"coins"];
     [coinLabel setString:[NSString stringWithFormat:@"%i",coins]];
-    NSLog([NSString stringWithFormat:@"%d",coins]);
+   // NSLog([NSString stringWithFormat:@"%d",coins]);
     
 }
 -(void) boughtProduct
 {
-    [self removeChild:countdown];
+    //[self removeChild:countdown];
 
     [self removeChild:border];
     [self removeChild:coinLabel];
@@ -2070,10 +2214,12 @@ CCSprite* blank;
    // [self removeChild:gameOver];
     [self removeChild:gameOver1];
     [self removeChild:gameOver2];
+    [self removeChild:gameOver3];
     [self removeChild:gameOverLayer];
     [self removeChild:GameOverMenu];
     [self scheduleUpdate];
     [[CCDirector sharedDirector] resume];
+    
     
     [self returnBullet];
     for(int i = 0; i < [bullets count]; i++)
@@ -2793,100 +2939,36 @@ CCSprite* blank;
         
         if(level == 4)
         {
-            if(framespast == 350)
+            if(framespast == 250)
             {
                 gameSegment = 1;
                 [self deleteBullets];
                 
             }
-            if(framespast == 650)
+            if(framespast == 350)
             {
                 gameSegment = 2;
                 [self deleteBullets];
             }
-            if(framespast == 1050)
+            if(framespast == 450)
             {
                 gameSegment = 3;
-                [self returnBullet];
-                for(int i = 0; i < [bullets count]; i++)
-                {
-                    Bullet *temp = [bullets objectAtIndex:i];
-                    
-                    [self removeChild:temp];
-                    
-                    
-                    
-                    
-                    //  [bullets removeObjectAtIndex:j];
-                    //[bulletDirection removeObjectAtIndex:j];
-                    //[bulletSpeed removeObjectAtIndex:j];
-                    
-                    
-                }
-                [bullets removeAllObjects];
+                [self deleteBullets];
             }
-            if(framespast == 1450)
+            if(framespast == 650)
             {
                 gameSegment = 4;
-                [self returnBullet];
-                for(int i = 0; i < [bullets count]; i++)
-                {
-                    Bullet *temp = [bullets objectAtIndex:i];
-                    
-                    [self removeChild:temp];
-                    
-                    
-                    
-                    
-                    //  [bullets removeObjectAtIndex:j];
-                    //[bulletDirection removeObjectAtIndex:j];
-                    //[bulletSpeed removeObjectAtIndex:j];
-                    
-                    
-                }
-                [bullets removeAllObjects];
+                [self deleteBullets];
             }
             if(framespast == 1750)
             {
                 gameSegment = 5;
-                [self returnBullet];
-                for(int i = 0; i < [bullets count]; i++)
-                {
-                    Bullet *temp = [bullets objectAtIndex:i];
-                    
-                    [self removeChild:temp];
-                    
-                    
-                    
-                    
-                    //  [bullets removeObjectAtIndex:j];
-                    //[bulletDirection removeObjectAtIndex:j];
-                    //[bulletSpeed removeObjectAtIndex:j];
-                    
-                    
-                }
-                [bullets removeAllObjects];
+                [self deleteBullets];
             }
             if(framespast == 2000)
             {
                 gameSegment = 6;
-                [self returnBullet];
-                for(int i = 0; i < [bullets count]; i++)
-                {
-                    Bullet *temp = [bullets objectAtIndex:i];
-                    
-                    [self removeChild:temp];
-                    
-                    
-                    
-                    
-                    //  [bullets removeObjectAtIndex:j];
-                    //[bulletDirection removeObjectAtIndex:j];
-                    //[bulletSpeed removeObjectAtIndex:j];
-                    
-                    
-                }
-                [bullets removeAllObjects];
+                [self deleteBullets];
                 
                 [self gameEnd];
             }
@@ -3064,8 +3146,10 @@ CCSprite* blank;
 -(void) deathplusdeath
 {
 
-    
+    [self removeChild:streak];
     [self flash:0 green:0 blue:255 alpha:255 actionWithDuration:0];
+    
+    [self rflash:255 green:255 blue:255 alpha:255 actionWithDuration:0];
     
     [self shootBulletwithPosPowerup:3 angle:260 xpos:0 ypos:0];
     
