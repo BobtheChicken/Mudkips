@@ -119,7 +119,7 @@ CCMotionStreak* streak;
         glClearColor(255, 255, 255, 255);
         // initialize player sprite
         player = [CCSprite spriteWithFile:@"orange.png"];
-        player.scale = 0.2;
+        player.scale = 0.15;
         player.position = [director screenCenter];
         [self addChild:player z:9001];
         
@@ -1035,7 +1035,7 @@ CCMotionStreak* streak;
                 {
                     if(isTimeWarped == false)
                     {
-                    tut = [CCLabelTTF labelWithString:@"Tap to move" fontName:@"Bend2SquaresBRK" fontSize:60];
+                    tut = [CCLabelTTF labelWithString:@"Touch to move" fontName:@"Bend2SquaresBRK" fontSize:60];
                     
                     tut.position = ccp(160,320);
                     
@@ -2443,7 +2443,7 @@ CCMotionStreak* streak;
             [self deleteBullets];
             
             shield = [CCSprite spriteWithFile:@"shield.png"];
-            shield.scale = 0.2;
+            shield.scale = 0.15;
             shield.position = player.position;
             [self addChild:shield z:-10];
             shieldon = true;
@@ -2528,22 +2528,27 @@ CCMotionStreak* streak;
     
     gameOver = [CCLabelTTF labelWithString:@"Game Over" fontName:@"Bend2SquaresBRK" fontSize:75];
     
-    gameOver.position = ccp(160, 360);
+    gameOver.position = ccp(160, 380);
+    
+    [gameOver setColor:ccc3(247, 148, 29)];
     
     [self addChild:gameOver z:9011];
     
-
-    gameOver1 = [CCLabelTTF labelWithString:@"Coins: " fontName:@"Bend2SquaresBRK" fontSize:75];
+    NSString* coinsl = @"Coins: ";
+    NSString* coincount = [coinsl stringByAppendingString:[NSString stringWithFormat:@"%i",coins]];
+    gameOver1 = [CCLabelTTF labelWithString:coincount fontName:@"Bend2SquaresBRK" fontSize:75];
     
-    gameOver1.position = ccp(160, 300);
+    gameOver1.position = ccp(160, 320);
     
     [self addChild:gameOver1 z:9011];
+    
+    
     
     coinLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",coins] fontName:@"Bend2SquaresBRK" fontSize:75];
     
     coinLabel.position = ccp(240, 300);
     
-    [self addChild:coinLabel z:9011];
+    //[self addChild:coinLabel z:9011];
     
     NSString* hello = @"";
     NSString*  world= @"";
@@ -2574,11 +2579,11 @@ CCMotionStreak* streak;
     
     
     
-    CCMenuItemImage* mainMenuPause = [CCMenuItemImage itemWithNormalImage:@"orangehigh.png" selectedImage:@"orangehigh.png" target:self selector:@selector(continuee)];
+    CCMenuItemImage* mainMenuPause = [CCMenuItemImage itemWithNormalImage:@"orangecont.png" selectedImage:@"orangecont.png" target:self selector:@selector(continuee)];
     
     
     
-    CCMenuItemImage* restartPause = [CCMenuItemImage itemWithNormalImage:@"orangeretry.png" selectedImage:@"orangeretry.png" target:self selector:@selector(gameover)];
+    CCMenuItemImage* restartPause = [CCMenuItemImage itemWithNormalImage:@"orangedead.png" selectedImage:@"orangedead.png" target:self selector:@selector(gameover)];
     
     
     
@@ -2586,7 +2591,7 @@ CCMotionStreak* streak;
     
     GameOverMenu = [CCMenu menuWithItems: mainMenuPause, restartPause, nil];
     
-    [GameOverMenu alignItemsHorizontallyWithPadding:50.0];
+    [GameOverMenu alignItemsVerticallyWithPadding:10.0];
     
     
     
@@ -2610,12 +2615,12 @@ CCMotionStreak* streak;
     
     gameOver3.position = ccp(160, 150);
     
-    [self addChild:gameOver3 z:9011];
+    //[self addChild:gameOver3 z:9011];
     
     
 
     
-    GameOverMenu.position = ccp(160,210);
+    GameOverMenu.position = ccp(160,190);
     
     [self addChild:GameOverMenu z:9011];
     
@@ -2677,7 +2682,7 @@ CCMotionStreak* streak;
 {
     
     id tintp = [CCTintTo actionWithDuration:0.5 red:247 green:147 blue:29];
-    id scalep = [CCScaleTo actionWithDuration:0.5 scale:0.2];
+    id scalep = [CCScaleTo actionWithDuration:0.5 scale:0.15];
     [player runAction:tintp];
     [player runAction:scalep];
     deathanimation = true;
@@ -2741,7 +2746,7 @@ CCMotionStreak* streak;
     [self unschedule:@selector(gameover)];
     
     shield = [CCSprite spriteWithFile:@"shield.png"];
-    shield.scale = 0.2;
+    shield.scale = 0.15;
     shield.position = player.position;
     [self addChild:shield z:-10];
     ubershieldon = true;
@@ -3853,7 +3858,7 @@ CCMotionStreak* streak;
 //obj2 is the player
 -(BOOL) isCollidingSphere:(CCSprite *) obj1 WithSphere:(CCSprite *) obj2
 {
-    float minDistance = 15 + 30;
+    float minDistance = 12 + 30;
     float dx = obj2.position.x - obj1.position.x;
     float dy = obj2.position.y - obj1.position.y;
     if (! (dx > minDistance || dy > minDistance) )

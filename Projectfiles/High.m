@@ -147,11 +147,14 @@ CGSize screenSize;
         p.rank = rank;
         
         CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@) %@ : %@", rank, name, score]
-                                               fontName:@"Bend2SquaresBRK"
+                                               fontName:@"NexaBold"
                                                fontSize:16];
-        
+        label.anchorPoint = ccp(0.0f,0.5f);
         label.position = ccp(screenSize.width / 2, screenSize.height - 55 - i * 20);
         label.color = ccc3(0, 0, 0);
+        
+        
+        
         [self addChild:label z: 2];
         
         [allPlayers addObject:p];

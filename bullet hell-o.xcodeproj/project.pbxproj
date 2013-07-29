@@ -27,6 +27,10 @@
 		84685DDF17A6DA24000BF802 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 84685DDE17A6DA24000BF802 /* facebook.png */; };
 		84685DE117A6DA2D000BF802 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 84685DE017A6DA2D000BF802 /* twitter.png */; };
 		84685DE617A71351000BF802 /* NexaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84685DE517A71351000BF802 /* NexaBold.ttf */; };
+		84685DEB17A7272E000BF802 /* orangecont-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 84685DE717A7272E000BF802 /* orangecont-hd.png */; };
+		84685DEC17A7272E000BF802 /* orangecont.png in Resources */ = {isa = PBXBuildFile; fileRef = 84685DE817A7272E000BF802 /* orangecont.png */; };
+		84685DED17A7272E000BF802 /* orangedead-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 84685DE917A7272E000BF802 /* orangedead-hd.png */; };
+		84685DEE17A7272E000BF802 /* orangedead.png in Resources */ = {isa = PBXBuildFile; fileRef = 84685DEA17A7272E000BF802 /* orangedead.png */; };
 		847C6AB3178DDDCA00F96917 /* StoreLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 847C6AB2178DDDCA00F96917 /* StoreLayer.m */; };
 		847C6AB5178DE1AD00F96917 /* coinsmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 847C6AB4178DE1AD00F96917 /* coinsmall.png */; };
 		847C6AB7178DE1B500F96917 /* coinmedium.png in Resources */ = {isa = PBXBuildFile; fileRef = 847C6AB6178DE1B500F96917 /* coinmedium.png */; };
@@ -281,6 +285,10 @@
 		84685DDE17A6DA24000BF802 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		84685DE017A6DA2D000BF802 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
 		84685DE517A71351000BF802 /* NexaBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NexaBold.ttf; sourceTree = "<group>"; };
+		84685DE717A7272E000BF802 /* orangecont-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "orangecont-hd.png"; path = "Hd Resources/orangecont-hd.png"; sourceTree = "<group>"; };
+		84685DE817A7272E000BF802 /* orangecont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orangecont.png; path = "Hd Resources/orangecont.png"; sourceTree = "<group>"; };
+		84685DE917A7272E000BF802 /* orangedead-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "orangedead-hd.png"; path = "Hd Resources/orangedead-hd.png"; sourceTree = "<group>"; };
+		84685DEA17A7272E000BF802 /* orangedead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orangedead.png; path = "Hd Resources/orangedead.png"; sourceTree = "<group>"; };
 		847C6AB1178DDDCA00F96917 /* StoreLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreLayer.h; sourceTree = "<group>"; };
 		847C6AB2178DDDCA00F96917 /* StoreLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreLayer.m; sourceTree = "<group>"; };
 		847C6AB4178DE1AD00F96917 /* coinsmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinsmall.png; sourceTree = "<group>"; };
@@ -808,6 +816,10 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84685DE717A7272E000BF802 /* orangecont-hd.png */,
+				84685DE817A7272E000BF802 /* orangecont.png */,
+				84685DE917A7272E000BF802 /* orangedead-hd.png */,
+				84685DEA17A7272E000BF802 /* orangedead.png */,
 				84685DE517A71351000BF802 /* NexaBold.ttf */,
 				84685DE017A6DA2D000BF802 /* twitter.png */,
 				84685DDE17A6DA24000BF802 /* facebook.png */,
@@ -1198,6 +1210,10 @@
 				84685DDF17A6DA24000BF802 /* facebook.png in Resources */,
 				84685DE117A6DA2D000BF802 /* twitter.png in Resources */,
 				84685DE617A71351000BF802 /* NexaBold.ttf in Resources */,
+				84685DEB17A7272E000BF802 /* orangecont-hd.png in Resources */,
+				84685DEC17A7272E000BF802 /* orangecont.png in Resources */,
+				84685DED17A7272E000BF802 /* orangedead-hd.png in Resources */,
+				84685DEE17A7272E000BF802 /* orangedead.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

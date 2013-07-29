@@ -19,7 +19,7 @@ CGSize screenSize;
         glClearColor(255, 255, 255, 255);
         screenSize = [[CCDirector sharedDirector] winSize];
         CGPoint screenCenter = [[CCDirector sharedDirector] screenCenter];
-        CCLabelBMFont *gameTitle = [CCLabelTTF labelWithString:@"USER STATS" fontName:@"Bend2SquaresBRK" fontSize:60];
+        CCLabelBMFont *gameTitle = [CCLabelTTF labelWithString:@"HIGH SCORES" fontName:@"Bend2SquaresBRK" fontSize:60];
         gameTitle.color = ccc3(0,0,0);
         gameTitle.position = ccp(screenCenter.x, screenCenter.y + 210);
         [self addChild:gameTitle];
@@ -134,18 +134,34 @@ CGSize screenSize;
         //        NSNumber *rank = [playerDict objectForKey:@"rank"];
         NSNumber *rank = [NSNumber numberWithInt:i + 1];
         
+        
+        if (name.length > 17) {
+            name = [[name substringToIndex:18] stringByAppendingString:@"..."];
+        }
+        
         LeaderBoardPlayer *p = [[LeaderBoardPlayer alloc] init];
         p.name = name;
         p.score = score;
         p.rank = rank;
         
-        CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@) %@ : %@", rank, name, score]
-                                               fontName:@"Bend2SquaresBRK"
-                                               fontSize:45];
-        
-        label.position = ccp(screenSize.width / 2, screenSize.height - 85 - i * 30);
+        CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@) %@", rank, name]
+                                               fontName:@"HelveticaNeue-Light"
+                                               fontSize:20];
+        label.anchorPoint = ccp(0.0f,0.5f);
+
+        label.position = ccp(10, screenSize.height - 85 - i * 30);
         label.color = ccc3(0, 0, 0);
         [self addChild:label z: 2];
+        
+        
+        CCLabelTTF *label2 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", score]
+                                               fontName:@"NexaBold"
+                                               fontSize:20];
+        label2.anchorPoint = ccp(1.0f,0.5f);
+        
+        label2.position = ccp(screenSize.width-10, screenSize.height - 85 - i * 30);
+        label2.color = ccc3(0, 0, 0);
+        [self addChild:label2 z: 2];
         
         [allPlayers addObject:p];
     }
