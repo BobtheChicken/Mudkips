@@ -2,8 +2,8 @@
 //  StatLayer.m
 //  Moon Landing
 //
-//  Created by Gautam Mittal on 6/27/13.
-//
+//  Borrowed from Gautam Mittal on 6/27/13.
+//   Modifeied by kevin frans with permissuon
 //
 
 #import "StatLayer.h"

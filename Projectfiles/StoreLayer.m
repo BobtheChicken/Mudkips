@@ -44,6 +44,22 @@ CCLabelBMFont *coinsLabel;
         [self addChild:coinsLabel];
         
         
+        CCLabelBMFont *label1 = [CCLabelTTF labelWithString:@"1.00" fontName:@"Bend2SquaresBRK" fontSize:30];
+        label1.color = ccc3(0,0,0);
+        label1.position = ccp(80, 280);
+        [self addChild:label1];
+        
+        CCLabelBMFont *label2 = [CCLabelTTF labelWithString:@"2.00" fontName:@"Bend2SquaresBRK" fontSize:30];
+        label2.color = ccc3(0,0,0);
+        label2.position = ccp(240, 280);
+        [self addChild:label2];
+        
+        CCLabelBMFont *label3 = [CCLabelTTF labelWithString:@"5.00" fontName:@"Bend2SquaresBRK" fontSize:30];
+        label3.color = ccc3(0,0,0);
+        label3.position = ccp(160, 160);
+        [self addChild:label3];
+        
+        
         /*CCMenuItemFont *goBackToHome = [CCMenuItemFont itemFromString: @"Back to Menu" target:self selector:@selector(goHome)];
         [goBackToHome setFontName:@"Bend2SquaresBRK"];
         [goBackToHome setFontSize:25];

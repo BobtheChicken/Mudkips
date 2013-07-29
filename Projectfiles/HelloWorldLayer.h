@@ -54,6 +54,12 @@
     int attacktype;
     int tempattacktype;
     
+    bool isTimeWarped;
+    
+    bool deathanimation;
+    
+    
+    bool ubershieldon;
     bool shieldon;
     
     int redtint;

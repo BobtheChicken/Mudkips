@@ -203,7 +203,7 @@
             [self addChild:backmenu2];
         }
         
-        if([[NSUserDefaults standardUserDefaults]integerForKey:@"boss"] == 4)
+        if([[NSUserDefaults standardUserDefaults]integerForKey:@"boss"] >= 4)
         {
             CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"bigblue.png" selectedImage:@"bigblue.png" target:self selector:@selector(level1)];
             highscore.position = ccp(80, 390);

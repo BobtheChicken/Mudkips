@@ -19,6 +19,70 @@
 {
     if ((self = [super init]))
     {
+        CGSize screensize = [[CCDirector sharedDirector] screenSizeInPixels];
+        if(screensize.height == 1136)
+        {
+            glClearColor(255, 255, 255, 255);
+            [self unscheduleAllSelectors];
+            
+            // have everything stop
+            CCNode* node;
+            CCARRAY_FOREACH([self children], node)
+            {
+                [node pauseSchedulerAndActions];
+            }
+            
+            
+            
+            [[SimpleAudioEngine sharedEngine] preloadEffect:@"zoom.mp3"];
+            // add the labels shown during game over
+           // CGSize screenSize = [[CCDirector sharedDirector] winSize];
+            
+            CCLabelTTF* play = [CCMenuItemImage itemFromNormalImage:@"play.png" selectedImage:@"play.png" target:self selector:@selector(unPause)];
+            play.position = ccp(160, 230);
+            CCMenu *playmenu = [CCMenu menuWithItems:play, nil];
+            playmenu.position = CGPointZero;
+            [self addChild:playmenu];
+            play.scale = 0;
+            id bossscale = [CCScaleTo actionWithDuration:0.5f scale:1.0f];
+            [play runAction:bossscale];
+            
+            
+            
+            CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"highscores.png" selectedImage:@"highscores.png" target:self selector:@selector(high)];
+            highscore.position = ccp(80, 60);
+            CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
+            starMenu.position = CGPointZero;
+            [self addChild:starMenu];
+            highscore.scale = 0;
+            id menuscale = [CCScaleTo actionWithDuration:0.7f scale:1.0f];
+            [highscore runAction:menuscale];
+            
+            CCLabelTTF *mgwu = [CCMenuItemImage itemFromNormalImage:@"mgwu.png" selectedImage:@"mgwu.png" target:self selector:@selector(mgwu)];
+            mgwu.position = ccp(240, 60);
+            CCMenu *mgmenu = [CCMenu menuWithItems:mgwu, nil];
+            mgmenu.position = CGPointZero;
+            [self addChild:mgmenu];
+            mgwu.scale = 0;
+            id mmenuscale = [CCScaleTo actionWithDuration:0.7f scale:1.0f];
+            [mgwu runAction:mmenuscale];
+            
+            
+            
+            CCSprite* title = [CCSprite spriteWithFile:@"blue.png"];
+            title.position = ccp(160,650);
+            [self addChild:title];
+            
+            id movein = [CCMoveTo actionWithDuration:0.7f position:ccp(160,440)];
+            [title runAction:movein];
+            
+            //if([[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying] == false)
+            //{
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"techno.mp3" loop:YES];
+            //}
+
+        }
+        else{
         glClearColor(255, 255, 255, 255);
         [self unscheduleAllSelectors];
         
@@ -70,9 +134,10 @@
         title.position = ccp(160,400);
         [self addChild:title];
         
-        if([[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying] == false)
-        {
+        //if([[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying] == false)
+        //{
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"techno.mp3" loop:YES];
+        //}
         }
         
 
@@ -93,6 +158,12 @@
     [MGWU displayCrossPromo];
     [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
 }
+
+
+
+
+
+
 
 -(void) high
 {

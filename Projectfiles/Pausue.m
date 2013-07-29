@@ -35,7 +35,8 @@
         
         
         CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Paused" fontName:@"Arial" fontSize:40];
-        gameOver.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
+        [gameOver setColor:ccc3(0, 0, 0)];
+        gameOver.position = CGPointMake(screenSize.width / 2, 440);
         [self addChild:gameOver z:100 tag:100];
         
        /* // game over label runs 3 different actions at the same time to create the combined effect

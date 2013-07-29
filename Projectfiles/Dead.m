@@ -18,6 +18,8 @@
 {
     if ((self = [super init]))
     {
+        
+        size = [[CCDirector sharedDirector] winSize];
         glClearColor(255, 255, 255, 255);
         [self unscheduleAllSelectors];
         
@@ -32,14 +34,23 @@
         // add the labels shown during game over
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
-        NSString *score = [NSString stringWithFormat:@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"score"]];
+        score = [NSString stringWithFormat:@"%i", [[NSUserDefaults standardUserDefaults] integerForKey:@"score"]];
         
-        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:score fontName:@"Arial" fontSize:40];
+        
+        
+        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Game Over" fontName:@"NexaBold" fontSize:40];
         gameOver.position = CGPointMake(screenSize.width / 2, 400);
+        gameOver.color = ccc3(0, 0, 0);
         [self addChild:gameOver z:100 tag:100];
         
-        CCTintTo* tint = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
-        [gameOver runAction:tint];
+        
+        CCLabelTTF* gameOver2 = [CCLabelTTF labelWithString:score fontName:@"NexaBold" fontSize:30];
+        gameOver2.position = CGPointMake(screenSize.width / 2, 370);
+        gameOver2.color = ccc3(0, 0, 0);
+        [self addChild:gameOver2 z:100 tag:100];
+        
+        //CCTintTo* tint = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
+        //[gameOver runAction:tint];
         /*// game over label runs 3 different actions at the same time to create the combined effect
          // 1) color tinting
          CCTintTo* tint1 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:0];
@@ -80,7 +91,7 @@
         
         */
         CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"2retry.png" selectedImage:@"2retry.png" target:self selector:@selector(retry)];
-        highscore.position = ccp(160, 290);
+        highscore.position = ccp(160, 200);
         highscore.scale = 1;
         CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
         starMenu.position = CGPointZero;
@@ -99,7 +110,9 @@
         backmenu.position = CGPointZero;
         [self addChild:backmenu];
         
-        nameField = [[UITextField alloc] initWithFrame:CGRectMake(35, 220, 250, 25)];
+        
+        //xyhw
+        nameField = [[UITextField alloc] initWithFrame:CGRectMake(35, 140, 260, 25)];
         [[[CCDirector sharedDirector] view] addSubview:nameField];
         nameField.delegate = self;
         nameField.placeholder = @"Tap to Enter Username";
@@ -111,10 +124,39 @@
         
         
         
+            NSLog(@"derp");
+        CCLabelTTF *fb = [CCMenuItemImage itemFromNormalImage:@"facebook.png" selectedImage:@"facebook.png" target:self selector:@selector(fb)];
+        fb.position = ccp(size.width - 16, size.height - 16);
+        fb.scale = 1;
+        CCMenu *fbm = [CCMenu menuWithItems:fb, nil];
+        fbm.position = CGPointZero;
+        [self addChild:fbm];
+        
+        
+        
+        
+        
        // [MGWU submitHighScore:[[NSUserDefaults standardUserDefaults] integerForKey:@"score"] byPlayer:@"Player" forLeaderboard:@"defaultLeaderboard"];
         
     }
     return self;
+}
+
+-(void) fblogin
+{
+    [MGWU loginToFacebook];
+}
+-(void) fb
+{
+    if([MGWU isFacebookActive])
+    {
+    NSString *myString = @"I just finished a run of Blue and got a score of ";
+    NSString *test = [myString stringByAppendingString:score];
+    [MGWU shareWithTitle:@"Blue" caption:[MGWU getUsername] andDescription:test];
+    }
+else{
+    [self fblogin];
+}
 }
 
 -(void) quitGame

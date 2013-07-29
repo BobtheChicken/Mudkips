@@ -11,5 +11,7 @@
 @interface Dead : CCScene
 {
     UITextField* nameField;
+    NSString* score;
+    CGSize size;
 }
 @end
