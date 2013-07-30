@@ -9,5 +9,9 @@
 #import "CCScene.h"
 
 @interface Title : CCScene
+{
+    CCSprite* bluemove;
+    CCSprite* orangemove;
+}
 
 @end

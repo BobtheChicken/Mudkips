@@ -90,7 +90,7 @@ CCMotionStreak* streak;
         }
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"tutorialcompleted"] == true)
         {
-            stagespast = 4;
+            stagespast = 15;
             attacktype = 4;
         }
         
@@ -195,6 +195,11 @@ CCMotionStreak* streak;
     [streak setPosition:player.position];
     
     framespast++;
+    
+    if(isTimeWarped)
+    {
+        framespast++;
+    }
     
     secondspast = framespast/60;
     
@@ -489,7 +494,7 @@ CCMotionStreak* streak;
                     
                     [self makeDownvote:-100];
                     
-                    if(isTimeWarped != false)
+                    if(isTimeWarped == false)
                     {
                     [self makeDownvote:0];
                     }
@@ -3722,6 +3727,8 @@ CCMotionStreak* streak;
 
 -(void) deathplusdeath
 {
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:(coins + 1) forKey:@"coins"];
 
     [self removeChild:streak];
     [self flash:0 green:0 blue:255 alpha:255 actionWithDuration:0];

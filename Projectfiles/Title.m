@@ -83,7 +83,7 @@
 
         }
         else{
-        glClearColor(255, 255, 255, 255);
+        glClearColor(0.91,0.92, 0.91, 1.0);
         [self unscheduleAllSelectors];
         
         // have everything stop
@@ -130,19 +130,95 @@
         
         
         
-        CCSprite* title = [CCSprite spriteWithFile:@"blue.png"];
-        title.position = ccp(160,400);
+        CCSprite* title = [CCSprite spriteWithFile:@"title_logo.png"];
+        title.position = ccp(160,390);
         [self addChild:title];
         
         //if([[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying] == false)
         //{
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"techno.mp3" loop:YES];
         //}
+            
+            
+            
+            
+            
+            bluemove = [CCSprite spriteWithFile:@"Glowing_Blue_Orb.png"];
+            bluemove.scale = 0.1;
+            bluemove.position = ccp(250,450);
+            [self addChild:bluemove];
+            
+            orangemove = [CCSprite spriteWithFile:@"orange.png"];
+            orangemove.scale = 0.05;
+            orangemove.position = ccp(245,365);
+            [self addChild:orangemove];
+            
+            
+            id moveAction = [CCMoveTo actionWithDuration:1 position:ccp(290,365)];
+            id moveActionBack = [CCMoveTo actionWithDuration:1 position:ccp(245,365)];
+            id delayTimeAction = [CCDelayTime actionWithDuration:1];
+            id delayTime2 = [CCDelayTime actionWithDuration:2];
+            CCSequence *act =[CCSequence actions:moveAction,delayTimeAction,moveActionBack,delayTimeAction,nil];
+            CCRepeatForever *repeat = [CCRepeatForever actionWithAction:act];
+            [orangemove runAction:repeat];
+            id makeblueball = [CCCallFunc actionWithTarget:self selector:@selector(makeblueball)];
+            id makeblueball2 = [CCCallFunc actionWithTarget:self selector:@selector(makeblueball2)];
+            
+            id moveBlueLeft = [CCMoveTo actionWithDuration:2 position:ccp(250,345)];
+            id removeMySprite = [CCCallFuncND actionWithTarget:bluemove selector:@selector(removeFromParentAndCleanup:) data:(void*)NO];
+            [bluemove runAction:[CCSequence actions:moveBlueLeft,removeMySprite,nil]];
+            
+            CCSequence *spawnBlue = [CCSequence actions:makeblueball,delayTime2,makeblueball2,delayTime2,nil];
+            CCRepeatForever *repblue = [CCRepeatForever actionWithAction:spawnBlue];
+            [self runAction:repblue];
+            
+            
+            
+            
         }
         
 
     }
     return self;
+}
+
+
+-(void) makeblueball
+{
+ 
+    
+    bluemove = [CCSprite spriteWithFile:@"Glowing_Blue_Orb.png"];
+    bluemove.scale = 0.1;
+    bluemove.position = ccp(250,450);
+    [self addChild:bluemove];
+    
+    id fadein = [CCFadeIn actionWithDuration:0.5];
+    id delay = [CCDelayTime actionWithDuration:1];
+     id fadeout = [CCFadeOut actionWithDuration:0.5];
+    
+    id moveBlueLeft = [CCMoveTo actionWithDuration:2 position:ccp(250,345)];
+    id removeMySprite = [CCCallFuncND actionWithTarget:bluemove selector:@selector(removeFromParentAndCleanup:) data:(void*)NO];
+    [bluemove runAction:[CCSequence actions:moveBlueLeft,removeMySprite,nil]];
+    [bluemove runAction:[CCSequence actions:fadein,delay,fadeout, nil]];
+}
+
+-(void) makeblueball2
+{
+    
+    
+    bluemove = [CCSprite spriteWithFile:@"Glowing_Blue_Orb.png"];
+    bluemove.scale = 0.1;
+    bluemove.position = ccp(280,450);
+    [self addChild:bluemove];
+    
+    id fadein = [CCFadeIn actionWithDuration:0.5];
+    id delay = [CCDelayTime actionWithDuration:1];
+    id fadeout = [CCFadeOut actionWithDuration:0.5];
+    
+    id moveBlueLeft = [CCMoveTo actionWithDuration:2 position:ccp(280,345)];
+    id removeMySprite = [CCCallFuncND actionWithTarget:bluemove selector:@selector(removeFromParentAndCleanup:) data:(void*)NO];
+    [bluemove runAction:[CCSequence actions:moveBlueLeft,removeMySprite,nil]];
+    [bluemove runAction:[CCSequence actions:fadein,delay,fadeout, nil]];
 }
 
 -(void) mgwu

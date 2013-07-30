@@ -31,6 +31,10 @@
         }
         
         
+        CCSprite* background = [CCSprite spriteWithFile:@"sunbg.png"];
+        background.position = ccp(size.height/2,size.width/2);
+        [self addChild:background z:-10000];
+        
         // add the labels shown during game over
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
@@ -38,14 +42,14 @@
         
         
         
-        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Game Over" fontName:@"NexaBold" fontSize:40];
-        gameOver.position = CGPointMake(screenSize.width / 2, 400);
+        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Game Over" fontName:@"NexaBold" fontSize:32];
+        gameOver.position = CGPointMake((screenSize.width / 2)-60, 400);
         gameOver.color = ccc3(0, 0, 0);
         [self addChild:gameOver z:100 tag:100];
         
         
         CCLabelTTF* gameOver2 = [CCLabelTTF labelWithString:score fontName:@"NexaBold" fontSize:30];
-        gameOver2.position = CGPointMake(screenSize.width / 2, 370);
+        gameOver2.position = CGPointMake((screenSize.width / 2)-60, 370);
         gameOver2.color = ccc3(0, 0, 0);
         [self addChild:gameOver2 z:100 tag:100];
         
