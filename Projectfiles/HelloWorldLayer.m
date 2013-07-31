@@ -90,7 +90,7 @@ CCMotionStreak* streak;
         }
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"tutorialcompleted"] == true)
         {
-            stagespast = 15;
+            stagespast = 4;
             attacktype = 4;
         }
         

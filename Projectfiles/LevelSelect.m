@@ -128,17 +128,17 @@
             // add the labels shown during game over
             CGSize screenSize = [[CCDirector sharedDirector] winSize];
             
-            CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Endless Mode" fontName:@"Arial" fontSize:40];
+            CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Endless Mode" fontName:@"NexaBold" fontSize:30];
             gameOver.position = CGPointMake(160, 300);
             [self addChild:gameOver z:100 tag:100];
             
-            CCLabelTTF* bosstag = [CCLabelTTF labelWithString:@"Boss Bash" fontName:@"Bend2SquaresBRK" fontSize:40];
+            CCLabelTTF* bosstag = [CCLabelTTF labelWithString:@"Boss Bash" fontName:@"NexaBold" fontSize:30];
             bosstag.position = CGPointMake(160, 50);
             [self addChild:bosstag z:100 tag:100];
             
-            CCTintTo* tint = [CCTintTo actionWithDuration:0.1 red:0 green:0 blue:255];
+            CCTintTo* tint = [CCTintTo actionWithDuration:0 red:0 green:0 blue:0];
             [gameOver runAction:tint];
-            CCTintTo* tint2 = [CCTintTo actionWithDuration:0.1 red:0 green:0 blue:255];
+            CCTintTo* tint2 = [CCTintTo actionWithDuration:0 red:0 green:0 blue:0];
             [bosstag runAction:tint2];
             /*// game over label runs 3 different actions at the same time to create the combined effect
              // 1) color tinting
@@ -166,7 +166,7 @@
              CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
              [gameOver runAction:repeatJump];*/
             CCSprite* background = [CCSprite spriteWithFile:@"back31.png"];
-            background.position = ccp(160,240);
+            background.position = ccp(screen.width/2,screen.height/2);
             
             [self addChild:background];
             
@@ -174,7 +174,7 @@
             CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Endless Mode" target:self selector:@selector(level1)];
             CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Scene Selection" target:self selector:@selector(level2)];
             CCMenuItemFont *obama = [CCMenuItemFont itemFromString: @"Level 3" target:self selector:@selector(obama)];
-            [gameOver setFontName:@"Bend2SquaresBRK"];
+            [gameOver setFontName:@"NexaBold"];
             /*[restart setFontName:@"Arial"];
              [quit setFontName:@"Arial"];
              [obama setFontName:@"Arial"];

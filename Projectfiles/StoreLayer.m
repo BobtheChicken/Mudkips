@@ -22,7 +22,7 @@ CCLabelBMFont *coinsLabel;
 {
 	if ((self = [super init]))
 	{
-        CCSprite* background = [CCSprite spriteWithFile:@"blank.png"];
+        CCSprite* background = [CCSprite spriteWithFile:@"storeback.png"];
         background.position = ccp(160,240);
         [self addChild:background];
         
@@ -32,14 +32,14 @@ CCLabelBMFont *coinsLabel;
         CCLabelBMFont *gameTitle = [CCLabelTTF labelWithString:@"STORE" fontName:@"Bend2SquaresBRK" fontSize:75];
         gameTitle.color = ccc3(0,0,0);
         gameTitle.position = ccp(screenCenter.x, screenCenter.y + 210);
-        [self addChild:gameTitle];
+     //   [self addChild:gameTitle];
         
         int CoinNumber = [[NSUserDefaults standardUserDefaults] integerForKey:@"coins"];
         //        NSNumber *endingHighScoreNumber = [MGWU objectForKey:@"sharedHighScore"];
         coins = CoinNumber;
         CoinString = [[NSString alloc] initWithFormat:@"Coins: %i", coins];
-        coinsLabel = [CCLabelTTF labelWithString:CoinString fontName:@"Bend2SquaresBRK" fontSize:60];
-        coinsLabel.position = ccp(screenSize.width/2, screenSize.height -100);
+        coinsLabel = [CCLabelTTF labelWithString:CoinString fontName:@"NexaBold" fontSize:30];
+        coinsLabel.position = ccp(screenSize.width/2, screenSize.height -125);
         coinsLabel.color = ccc3(0, 0, 0);
         [self addChild:coinsLabel];
         
@@ -47,17 +47,17 @@ CCLabelBMFont *coinsLabel;
         CCLabelBMFont *label1 = [CCLabelTTF labelWithString:@"1.00" fontName:@"Bend2SquaresBRK" fontSize:30];
         label1.color = ccc3(0,0,0);
         label1.position = ccp(80, 280);
-        [self addChild:label1];
+      //  [self addChild:label1];
         
         CCLabelBMFont *label2 = [CCLabelTTF labelWithString:@"2.00" fontName:@"Bend2SquaresBRK" fontSize:30];
         label2.color = ccc3(0,0,0);
         label2.position = ccp(240, 280);
-        [self addChild:label2];
+     //   [self addChild:label2];
         
         CCLabelBMFont *label3 = [CCLabelTTF labelWithString:@"5.00" fontName:@"Bend2SquaresBRK" fontSize:30];
         label3.color = ccc3(0,0,0);
         label3.position = ccp(160, 160);
-        [self addChild:label3];
+       // [self addChild:label3];
         
         
         /*CCMenuItemFont *goBackToHome = [CCMenuItemFont itemFromString: @"Back to Menu" target:self selector:@selector(goHome)];
@@ -71,26 +71,26 @@ CCLabelBMFont *coinsLabel;
         [self addChild:goHomeMenu];*/
         
         
-        CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"coinsmall.png" selectedImage:@"coinsmall.png" target:self selector:@selector(buyCash1)];
-        highscore.position = ccp(80, 300);
+        CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"smallcoins.png" selectedImage:@"smallcoins.png" target:self selector:@selector(buyCash1)];
+        highscore.position = ccp(160, 300);
         CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
         
-        CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"coinmedium.png" selectedImage:@"coinmedium.png" target:self selector:@selector(buyCash2)];
-        boss.position = ccp(240, 300);
+        CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"medcoins.png" selectedImage:@"medcoins.png" target:self selector:@selector(buyCash2)];
+        boss.position = ccp(160, 220);
         CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
         moreMenu.position = CGPointZero;
         [self addChild:moreMenu];
         
-        CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"coinbig.png" selectedImage:@"coinbig.png" target:self selector:@selector(buyCash3)];
-        back.position = ccp(160, 180);
+        CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"bigconins.png" selectedImage:@"bigconins.png" target:self selector:@selector(buyCash3)];
+        back.position = ccp(160, 140);
         //back.scale = 0.5;
         CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
         backmenu.position = CGPointZero;
         [self addChild:backmenu];
         
-        CCLabelTTF *back2 = [CCMenuItemImage itemFromNormalImage:@"back.png" selectedImage:@"back.png" target:self selector:@selector(goHome)];
+        CCLabelTTF *back2 = [CCMenuItemImage itemFromNormalImage:@"leave.png" selectedImage:@"leave.png" target:self selector:@selector(goHome)];
         back2.position = ccp(160, 70);
         back2.scale = 0.8;
         CCMenu *backmenu2 = [CCMenu menuWithItems:back2, nil];
