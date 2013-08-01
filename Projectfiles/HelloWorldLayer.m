@@ -285,9 +285,11 @@ CCMotionStreak* streak;
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"startgame"];
     }
 
-    label = [CCLabelTTF labelWithString:@"0" fontName:@"Bend2SquaresBRK" fontSize:24];
+    label = [CCLabelTTF labelWithString:@"0" fontName:@"NexaBold" fontSize:24];
     
-    label.position = ccp(50,465);
+    label.position = ccp(5,463);
+    
+    label.anchorPoint = ccp(0.0,0.5);
     
     label.color = ccc3(0, 0, 0);
     
@@ -1724,39 +1726,39 @@ CCMotionStreak* streak;
         [MGWU showMessage:@"Achievement Get!      Downvoted" withImage:nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"downvote"];
     }
-    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:0];
+    [self shootBulletwithPos:1 angle:270 xpos:52+xOffset ypos:0];
     //    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:0];
-    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:0];
+   // [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:0];
     //    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:0];
-    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:0];
+    [self shootBulletwithPos:1 angle:270 xpos:88+xOffset ypos:0];
     //    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:0];
     
-    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:10];
+    [self shootBulletwithPos:1 angle:270 xpos:52+xOffset ypos:10];
     //    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:10];
-    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:10];
+   // [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:10];
     //    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:10];
-    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:10];
+    [self shootBulletwithPos:1 angle:270 xpos:88+xOffset ypos:10];
     //    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:10];
     
-    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:20];
+    [self shootBulletwithPos:1 angle:270 xpos:52+xOffset ypos:20];
     //    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:20];
-    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:20];
+   // [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:20];
     //    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:20];
-    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:20];
+    [self shootBulletwithPos:1 angle:270 xpos:88+xOffset ypos:20];
     //    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:20];
     
-    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:30];
+    [self shootBulletwithPos:1 angle:270 xpos:52+xOffset ypos:30];
     //    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:30];
-    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:30];
+   // [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:30];
     //    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:30];
-    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:30];
+    [self shootBulletwithPos:1 angle:270 xpos:88+xOffset ypos:30];
     //    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:30];
     
-    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:40];
+    [self shootBulletwithPos:1 angle:270 xpos:52+xOffset ypos:40];
     //    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:40];
-    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:40];
+  //  [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:40];
     //    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:40];
-    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:40];
+    [self shootBulletwithPos:1 angle:270 xpos:88+xOffset ypos:40];
     //    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:40];
     
     [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:50];
@@ -1768,27 +1770,27 @@ CCMotionStreak* streak;
     
     [self shootBulletwithPos:1 angle:270 xpos:30+xOffset ypos:-10];
     //    [self shootBulletwithPos:1 angle:270 xpos:40 ypos:-10];
-    [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:-10];
+   // [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:-10];
     //    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:-10];
-    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:-10];
+  //  [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:-10];
     //    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:-10];
-    [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:-10];
+   // [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:-10];
     //    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:-10];
     [self shootBulletwithPos:1 angle:270 xpos:110+xOffset ypos:-10];
     //    [self shootBulletwithPos:1 angle:270 xpos:120 ypos:-10];
     
     [self shootBulletwithPos:1 angle:270 xpos:40+xOffset ypos:-20];
     //    [self shootBulletwithPos:1 angle:270 xpos:50 ypos:-20];
-    [self shootBulletwithPos:1 angle:270 xpos:60+xOffset ypos:-20];
-    //    [self shootBulletwithPos:1 angle:270 xpos:70 ypos:-20];
-    [self shootBulletwithPos:1 angle:270 xpos:80+xOffset ypos:-20];
+  //  [self shootBulletwithPos:1 angle:270 xpos:60+xOffset ypos:-20];
+        [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:-20];
+  //  [self shootBulletwithPos:1 angle:270 xpos:80+xOffset ypos:-20];
     //    [self shootBulletwithPos:1 angle:270 xpos:90 ypos:-20];
     [self shootBulletwithPos:1 angle:270 xpos:100+xOffset ypos:-20];
     //    [self shootBulletwithPos:1 angle:270 xpos:110 ypos:-20];
     
     [self shootBulletwithPos:1 angle:270 xpos:50+xOffset ypos:-30];
     //    [self shootBulletwithPos:1 angle:270 xpos:60 ypos:-30];
-    [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:-30];
+ //   [self shootBulletwithPos:1 angle:270 xpos:70+xOffset ypos:-30];
     //    [self shootBulletwithPos:1 angle:270 xpos:80 ypos:-30];
     [self shootBulletwithPos:1 angle:270 xpos:90+xOffset ypos:-30];
     //    [self shootBulletwithPos:1 angle:270 xpos:100 ypos:-30];
@@ -2068,6 +2070,7 @@ CCMotionStreak* streak;
 {
     if(bosstime == true)
     {
+        label.color = ccc3(255, 255, 255);
         streak = [CCMotionStreak streakWithFade:0.5 minSeg:1 width:50 color:ccc3(247,148,29) textureFilename:@"orange.png"];
         streak.position = player.position;
         [self addChild:streak];
@@ -3736,6 +3739,8 @@ CCMotionStreak* streak;
     [self rflash:255 green:255 blue:255 alpha:255 actionWithDuration:0];
     
     [self shootBulletwithPosPowerup:3 angle:260 xpos:0 ypos:0];
+    
+    label.color = ccc3(0, 0, 0);
     
     id bossscale = [CCScaleTo actionWithDuration:1.0f scale:2.0f];
     [boss runAction:bossscale];
