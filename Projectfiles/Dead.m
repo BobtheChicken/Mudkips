@@ -30,13 +30,16 @@
             [node pauseSchedulerAndActions];
         }
         
+        CGPoint screencenter = [[CCDirector sharedDirector] screenCenter];
         
         CCSprite* background = [CCSprite spriteWithFile:@"sunbg.png"];
-        background.position = ccp(size.height/2,size.width/2);
+        background.position = screencenter;
         [self addChild:background z:-10000];
         
         // add the labels shown during game over
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
+        
+        CGSize screenSize1 = [[CCDirector sharedDirector] winSizeInPixels];
         
         score = [NSString stringWithFormat:@"%i", [[NSUserDefaults standardUserDefaults] integerForKey:@"score"]];
         
@@ -128,7 +131,7 @@
         
         
         
-            NSLog(@"derp");
+           // NSLog(@"derp");
         CCLabelTTF *fb = [CCMenuItemImage itemFromNormalImage:@"facebook.png" selectedImage:@"facebook.png" target:self selector:@selector(fb)];
         fb.position = ccp(size.width - 16, size.height - 16);
         fb.scale = 1;
@@ -137,6 +140,20 @@
         [self addChild:fbm];
         
         
+        
+        
+        
+        if(screenSize1.height == 1136)
+        {
+            [self setDimensionsInPixelsOnSprite:background width:450 height:568];
+            
+            background.position = ccp(screencenter.x+50,screencenter.y);
+
+            gameOver.position = ccp((screenSize.width / 2)-60, 490);
+
+            gameOver2.position = ccp((screenSize.width / 2)-60, 460);
+
+        }
         
         
         
@@ -204,7 +221,11 @@ else{
         
     }
 }
-
+-(void) setDimensionsInPixelsOnSprite:(CCSprite *) spriteToSetDimensions width:(int) width height:(int) height
+{
+    spriteToSetDimensions.scaleX = width/[spriteToSetDimensions boundingBox].size.width;
+    spriteToSetDimensions.scaleY = height/[spriteToSetDimensions boundingBox].size.height;
+}
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
 {

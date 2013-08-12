@@ -51,6 +51,8 @@
     
     bool isDying;
     
+    bool isStuffMoving;
+    
     int attacktype;
     int tempattacktype;
     

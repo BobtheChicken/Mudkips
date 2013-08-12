@@ -226,11 +226,11 @@
     if([[NSUserDefaults standardUserDefaults]boolForKey:@"data"] == false)
     {
         [[NSUserDefaults standardUserDefaults] setInteger:6 forKey:@"coins"];
-        [MGWU showMessage:@"Achievement Get!      Clearing the data" withImage:nil];
+        [MGWU showMessage:@"Achievement Get!      More Games" withImage:nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"data"];
     }
-    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    //NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    //[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     [MGWU displayCrossPromo];
     [[SimpleAudioEngine sharedEngine] playEffect:@"zoom.mp3"];
 }
@@ -245,7 +245,7 @@
 {
     if([[NSUserDefaults standardUserDefaults]boolForKey:@"high"] == false)
     {
-        [MGWU showMessage:@"Achievement Get!      You found a bug!" withImage:nil];
+        [MGWU showMessage:@"Achievement Get!      High Scores!" withImage:nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"high"];
     }
     [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInR transitionWithDuration:0.5f scene:[StatLayer node]]];

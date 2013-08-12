@@ -19,7 +19,8 @@
     if ((self = [super init]))
     {
         CGSize screen = [[CCDirector sharedDirector] screenSize];
-        if(screen.height == 1136)
+        CGSize screenpi = [[CCDirector sharedDirector] winSizeInPixels];
+        if(screenpi.height == 1136)
         {
         glClearColor(255, 255, 255, 255);
         [self unscheduleAllSelectors];
@@ -77,6 +78,9 @@
             [self setDimensionsInPixelsOnSprite:background width:320 height:568];
         
         [self addChild:background];
+            
+            
+        
         
         CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"back" target:self selector:@selector(unPause)];
         CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Endless Mode" target:self selector:@selector(level1)];
@@ -129,7 +133,7 @@
             CGSize screenSize = [[CCDirector sharedDirector] winSize];
             
             CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Endless Mode" fontName:@"NexaBold" fontSize:30];
-            gameOver.position = CGPointMake(160, 300);
+            gameOver.position = CGPointMake(160, 320);
             [self addChild:gameOver z:100 tag:100];
             
             CCLabelTTF* bosstag = [CCLabelTTF labelWithString:@"Boss Bash" fontName:@"NexaBold" fontSize:30];
@@ -170,6 +174,8 @@
             
             [self addChild:background];
             
+            [self setDimensionsInPixelsOnSprite:background width:320 height:568];
+            
             CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"back" target:self selector:@selector(unPause)];
             CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Endless Mode" target:self selector:@selector(level1)];
             CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Scene Selection" target:self selector:@selector(level2)];
@@ -187,7 +193,7 @@
             
             
             CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"endless.png" selectedImage:@"endless.png" target:self selector:@selector(level1)];
-            highscore.position = ccp(160, 390);
+            highscore.position = ccp(160, 420);
             CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
             starMenu.position = CGPointZero;
             [self addChild:starMenu];
@@ -222,6 +228,9 @@
     
 
 }
+
+
+
 
 -(void) setDimensionsInPixelsOnSprite:(CCSprite *) spriteToSetDimensions width:(int) width height:(int) height
 {

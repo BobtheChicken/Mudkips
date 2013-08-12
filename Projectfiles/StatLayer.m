@@ -17,11 +17,17 @@ CGSize screenSize;
 	if ((self = [super init]))
 	{
         glClearColor(255, 255, 255, 255);
+        CGSize deviceScreenSize = [[CCDirector sharedDirector] winSizeInPixels];
         screenSize = [[CCDirector sharedDirector] winSize];
         CGPoint screenCenter = [[CCDirector sharedDirector] screenCenter];
+        
         CCLabelBMFont *gameTitle = [CCLabelTTF labelWithString:@"HIGH SCORES" fontName:@"Bend2SquaresBRK" fontSize:60];
         gameTitle.color = ccc3(0,0,0);
         gameTitle.position = ccp(screenCenter.x, screenCenter.y + 210);
+        if(deviceScreenSize.height == 1136)
+        {
+            gameTitle.position = ccp(screenCenter.x, screenCenter.y + 240);
+        }
         [self addChild:gameTitle];
         
         
@@ -123,7 +129,7 @@ CGSize screenSize;
     //        count = 250;
     //    }
     
-    for (int i = 0; i < count; i ++)
+    for (int i = 0; i < 10; i ++)
     {
         NSMutableDictionary *playerDict = [otherPlayers objectAtIndex:i];
         NSNumber * score = [playerDict objectForKey:@"score"];

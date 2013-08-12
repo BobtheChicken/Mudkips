@@ -59,6 +59,8 @@ CCMotionStreak* streak;
         
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"hex.mp3" loop:YES];
         
+        isStuffMoving = true;
+        
         
         deathanimation = true;
         
@@ -180,6 +182,14 @@ CCMotionStreak* streak;
         [self initBoss];
         
         
+        if ([[CCDirector sharedDirector] winSizeInPixels].height == 1136)
+        {
+            CCSprite* bar = [CCSprite spriteWithFile:@"black.png"];
+            bar.position = ccp(160,586-50);
+            [self addChild:bar];
+        }
+        
+        
     }
     return self;
 }
@@ -194,6 +204,9 @@ CCMotionStreak* streak;
     
     [streak setPosition:player.position];
     
+    
+    if(isStuffMoving == true)
+    {
     framespast++;
     
     if(isTimeWarped)
@@ -208,6 +221,7 @@ CCMotionStreak* streak;
     
     [self gameSeg];
     [self detectCollisions];
+    
     //[self updateCoins];
    // [self countdown];
     
@@ -218,6 +232,7 @@ CCMotionStreak* streak;
     if ([input isAnyTouchOnNode:pausebutton touchPhase:KKTouchPhaseAny]) {
         
         [self pause];
+    }
         
     }
     
@@ -443,7 +458,7 @@ CCMotionStreak* streak;
         {
             if(gameSegment ==0)
             {
-                if((framespast % 100) == 0)
+                if((framespast % 200) == 0)
                 {
                     int tempInt = (arc4random() % 300) -245;
                     
@@ -490,20 +505,20 @@ CCMotionStreak* streak;
                     [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"downwall"];
                 }
                 
-                if((framespast % 250) == 0)
+                if((framespast % 260) == 0)
                 {
                     [self makeDownvote:-200];
                     
                     [self makeDownvote:-100];
                     
-                    if(isTimeWarped == false)
-                    {
-                    [self makeDownvote:0];
-                    }
+                    //if(isTimeWarped == false)
+                   // {
+                  //  [self makeDownvote:0];
+                  //  }
                     
                     [self makeDownvote:100];
                     
-                    [self makeDownvote:200];
+                    //[self makeDownvote:200];
                     
                     
                     
@@ -1042,7 +1057,7 @@ CCMotionStreak* streak;
                 {
                     if(isTimeWarped == false)
                     {
-                    tut = [CCLabelTTF labelWithString:@"Touch to move" fontName:@"Bend2SquaresBRK" fontSize:60];
+                    tut = [CCLabelTTF labelWithString:@"Drag to move" fontName:@"Bend2SquaresBRK" fontSize:60];
                     
                     tut.position = ccp(160,320);
                     
@@ -1447,7 +1462,7 @@ CCMotionStreak* streak;
             
             else if(attacktype == 6)
             {
-                if((framespast % 75) == 0)
+                if((framespast % 150) == 0)
                 {
                     int tempInt = (arc4random() % 300) -245;
                     
@@ -2473,6 +2488,7 @@ CCMotionStreak* streak;
     if(deathanimation == true)
     {
     NSLog(@"derp");
+        isStuffMoving = false;
     [self flash:255 green:0 blue:0 alpha:255 actionWithDuration:0];
     [self schedule:@selector(scalePlayer) interval:0.5];
         deathanimation = false;
@@ -2498,6 +2514,8 @@ CCMotionStreak* streak;
     [self unscheduleUpdate];
     
     NSLog(@"burp");
+    
+    isStuffMoving = true;
     
     
     //background
@@ -2765,6 +2783,7 @@ CCMotionStreak* streak;
 -(void) deleteubershield
 {
     [self unschedule:@selector(deleteubershield)];
+    //[self removeChild:shield cleanup:true];
     ubershieldon = false;
     [self removeChild:shield cleanup:true];
     }
@@ -2799,6 +2818,83 @@ CCMotionStreak* streak;
 
 -(void) moveBullet
 {
+    
+    if(level == 2)
+    {
+        if(gameSegment == 0 || gameSegment == 2 || gameSegment == 3)
+        {
+            for(int i = 0; i < [bullets count]; i++)
+            {
+                projectile = [bullets objectAtIndex:i];
+                
+                projectile.position = ccp(projectile.position.x,projectile.position.y - 3); 
+            }
+        }
+        else
+        {
+            //move the bullets
+            for(int i = 0; i < [bullets count]; i++)
+            {
+                NSInteger j = i;
+                projectile = [bullets objectAtIndex:j];
+                float angle = [[bullets objectAtIndex:j] getAngle];
+                float speed = [[bullets objectAtIndex:j] getSpeed]; // Move 50 pixels in 60 frames (1 second)
+                
+                
+                if(isTimeWarped == true)
+                {
+                    speed = speed + 3;
+                }
+                
+                
+                
+                
+                
+                float vx = cos(angle * M_PI / 180) * speed;
+                float vy = sin(angle * M_PI / 180) * speed;
+                
+                CGPoint direction = ccp(vx,vy);
+                
+                projectile.position = ccpAdd(projectile.position, direction);
+                
+            }
+            for(int i = 0; i < [donkeys count]; i++)
+            {
+                NSInteger j = i;
+                projectile = [donkeys objectAtIndex:j];
+                float angle = 270;
+                float speed = 3;
+                
+                float vx = cos(angle * M_PI / 180) * speed;
+                float vy = sin(angle * M_PI / 180) * speed;
+                
+                CGPoint direction = ccp(vx,vy);
+                
+                projectile.position = ccpAdd(projectile.position, direction);
+                
+            }
+            for(int i = 0; i < [powerups count]; i++)
+            {
+                NSInteger j = i;
+                projectile = [powerups objectAtIndex:j];
+                float angle = [[powerups objectAtIndex:j] getAngle];
+                float speed = [[powerups objectAtIndex:j] getSpeed]; // Move 50 pixels in 60 frames (1 second)
+                
+                float vx = cos(angle * M_PI / 180) * speed;
+                float vy = sin(angle * M_PI / 180) * speed;
+                
+                CGPoint direction = ccp(vx,vy);
+                
+                projectile.position = ccpAdd(projectile.position, direction);
+                
+                projectile.position = ccp(projectile.position.x,projectile.position.y - 1);
+                
+            }
+
+        }
+    }
+    else
+    {
     //move the bullets
     for(int i = 0; i < [bullets count]; i++)
     {
@@ -2859,7 +2955,7 @@ CCMotionStreak* streak;
     }
     
     
-    
+    }
     
     //NSLog([NSString stringWithFormat:@"%d", [bullets count]]);
     //NSLog([NSString stringWithFormat:@"%d", [fakebullets count]]);
@@ -2923,6 +3019,7 @@ CCMotionStreak* streak;
 {
     if(shieldon == false)
     {
+        [self removeChild:shield cleanup:true];
         Powerup *newB = [Powerup powerup:speed :angleInput];
         //    Bullet *b = [[Bullet alloc] initWithValues:speed :angleInput];
         newB.position = boss.position;
@@ -3639,7 +3736,7 @@ CCMotionStreak* streak;
 
 -(void) gameEnd
 {
-    
+    [self removeChild:boss cleanup:YES];
     [self deathplusdeath];
     
     
@@ -3679,7 +3776,7 @@ CCMotionStreak* streak;
     {
         Bullet *temp = [bullets objectAtIndex:i];
         
-        [self removeChild:temp];
+        [self removeChild:temp cleanup:YES];
         
         
         
@@ -3767,6 +3864,24 @@ CCMotionStreak* streak;
     //create one
     //delay
     //create second
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"endless"] == false)
+    {
+        label = [CCLabelTTF labelWithString:@"0" fontName:@"NexaBold" fontSize:24];
+        
+        label.position = ccp(5,463);
+        
+        label.anchorPoint = ccp(0.0,0.5);
+        
+        label.color = ccc3(0, 0, 0);
+        
+        [self addChild: label];
+        [[CCDirector sharedDirector] pushScene:
+         [CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelSelect node]]];
+    }
+    
+    
+    [self schedule:@selector(goback) interval:2.0];
     [self schedule:@selector(mySelector) interval:3.0];
     
     for(int i = 0; i<[donkeys count]; i++)
@@ -3776,16 +3891,35 @@ CCMotionStreak* streak;
     [donkeys removeAllObjects];
 }
 
+
+
+- (void)goback {
+    
+    [self unschedule:@selector(goback)];
+    
+    CCLabelTTF* slabel = [CCLabelTTF labelWithString:@"0" fontName:@"NexaBold" fontSize:24];
+    
+    
+    
+    slabel.position = ccp(320,640);
+    
+   // slabel.anchorPoint = ccp(0.0,0.5);
+    
+    slabel.color = ccc3(192, 57, 43);
+    
+    [slabel setString:@"Boss Defeated!!"];
+    
+    [self addChild: slabel];
+    
+    
+    
+}
 - (void)mySelector {
     
     [self unschedule:@selector(mySelector)];
     
     //create one
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"endless"] == false)
-    {
-        [[CCDirector sharedDirector] pushScene:
-         [CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelSelect node]]];
-    }
+    
     
     // [[CCDirector sharedDirector] pushScene:
     //[CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelSelect node]]];
