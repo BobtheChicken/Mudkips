@@ -13,5 +13,7 @@
     UITextField* nameField;
     NSString* score;
     CGSize size;
+    
+    int intscore;
 }
 @end

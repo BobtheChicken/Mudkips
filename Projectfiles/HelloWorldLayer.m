@@ -299,6 +299,8 @@ CCMotionStreak* streak;
     [MGWU showMessage:@"Achievement Get!      A Blue World" withImage:nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"startgame"];
     }
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"score"];
 
     label = [CCLabelTTF labelWithString:@"0" fontName:@"NexaBold" fontSize:24];
     

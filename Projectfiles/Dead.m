@@ -35,6 +35,9 @@
         CCSprite* background = [CCSprite spriteWithFile:@"sunbg.png"];
         background.position = screencenter;
         [self addChild:background z:-10000];
+        [self setDimensionsInPixelsOnSprite:background width:380 height:480];
+        
+        
         
         // add the labels shown during game over
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
@@ -43,16 +46,18 @@
         
         score = [NSString stringWithFormat:@"%i", [[NSUserDefaults standardUserDefaults] integerForKey:@"score"]];
         
+        intscore = [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
         
         
-        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Game Over" fontName:@"NexaBold" fontSize:32];
-        gameOver.position = CGPointMake((screenSize.width / 2)-60, 400);
+        
+        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Game Over" fontName:@"NexaBold" fontSize:23];
+        gameOver.position = CGPointMake((screenSize.width / 2)-90, 420);
         gameOver.color = ccc3(0, 0, 0);
         [self addChild:gameOver z:100 tag:100];
         
         
-        CCLabelTTF* gameOver2 = [CCLabelTTF labelWithString:score fontName:@"NexaBold" fontSize:30];
-        gameOver2.position = CGPointMake((screenSize.width / 2)-60, 370);
+        CCLabelTTF* gameOver2 = [CCLabelTTF labelWithString:score fontName:@"NexaBold" fontSize:19];
+        gameOver2.position = CGPointMake((screenSize.width / 2)-90, 390);
         gameOver2.color = ccc3(0, 0, 0);
         [self addChild:gameOver2 z:100 tag:100];
         
@@ -145,13 +150,13 @@
         
         if(screenSize1.height == 1136)
         {
-            [self setDimensionsInPixelsOnSprite:background width:450 height:568];
+            //[self setDimensionsInPixelsOnSprite:background width:450 height:568];
             
-            background.position = ccp(screencenter.x+50,screencenter.y);
+            //ackground.position = ccp(screencenter.x+50,screencenter.y);
 
-            gameOver.position = ccp((screenSize.width / 2)-60, 490);
+            //gameOver.position = ccp((screenSize.width / 2)-60, 490);
 
-            gameOver2.position = ccp((screenSize.width / 2)-60, 460);
+            //gameOver2.position = ccp((screenSize.width / 2)-60, 460);
 
         }
         
@@ -208,16 +213,25 @@ else{
 {
     if (textField == nameField && ![nameField.text isEqualToString:@""])
     {
+       
+        //if([[NSUserDefaults standardUserDefaults] integerForKey:@"score"] > 0)
+       // {
         
         [nameField endEditing:YES];
         [nameField removeFromSuperview];
         // here is where you should do something with the data they entered
         NSString *result = nameField.text;
         
+        
+        if(intscore > 0)
+        {
         NSLog(@"hurp");
         //        username = result;
         [[NSUserDefaults standardUserDefaults] setObject:result forKey:@"username"];
         [MGWU submitHighScore:[[NSUserDefaults standardUserDefaults] integerForKey:@"score"] byPlayer:result forLeaderboard:@"defaultLeaderboard"];
+        //}
+        }
+        
         
     }
 }
