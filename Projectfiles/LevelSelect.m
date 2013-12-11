@@ -136,11 +136,11 @@
             
             CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Endless Mode" fontName:@"NexaBold" fontSize:30];
             gameOver.position = CGPointMake(160, 290);
-            [self addChild:gameOver z:100 tag:100];
+           // [self addChild:gameOver z:100 tag:100];
             
             CCLabelTTF* bosstag = [CCLabelTTF labelWithString:@"Boss Bash" fontName:@"NexaBold" fontSize:30];
             bosstag.position = CGPointMake(160, 50);
-            [self addChild:bosstag z:100 tag:100];
+           // [self addChild:bosstag z:100 tag:100];
             
             CCTintTo* tint = [CCTintTo actionWithDuration:0 red:0 green:0 blue:0];
             [gameOver runAction:tint];
@@ -171,12 +171,14 @@
              CCJumpBy* jump = [CCJumpBy actionWithDuration:3 position:CGPointZero height:screenSize.height / 3 jumps:1];
              CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
              [gameOver runAction:repeatJump];*/
-            CCSprite* background = [CCSprite spriteWithFile:@"back31.png"];
-            background.position = ccp(screen.width/2,screen.height/2);
+            CCSprite* background = [CCSprite spriteWithFile:@"level-selection.png"];
+        
+        
+            background.position = [CCDirector sharedDirector].screenCenter;
             
             [self addChild:background];
             
-            [self setDimensionsInPixelsOnSprite:background width:320 height:568];
+           // [self setDimensionsInPixelsOnSprite:background width:320 height:568];
             
             CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"back" target:self selector:@selector(unPause)];
             CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Endless Mode" target:self selector:@selector(level1)];
@@ -193,27 +195,33 @@
              [self addChild:gameOverMenu];*/
             
             
-            
-            CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"endless.png" selectedImage:@"endless.png" target:self selector:@selector(level1)];
-            highscore.position = ccp(160, 390);
-            CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
-            starMenu.position = CGPointZero;
-            [self addChild:starMenu];
-            
-            CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"bossmode.png" selectedImage:@"bossmode.png" target:self selector:@selector(level2)];
-            boss.position = ccp(160, 150);
-            CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
-            moreMenu.position = CGPointZero;
-            [self addChild:moreMenu];
-            
-            CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"bback.png" selectedImage:@"bback.png" target:self selector:@selector(unPause)];
-            back.position = ccp(50, 240);
-            back.scale = 0.5;
-            CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
-            backmenu.position = CGPointZero;
-            [self addChild:backmenu];
+//            
+//            CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"endless.png" selectedImage:@"endless.png" target:self selector:@selector(level1)];
+//            highscore.position = ccp(160, 390);
+//            CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
+//            starMenu.position = CGPointZero;
+//            [self addChild:starMenu];
+//            
+//            CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"bossmode.png" selectedImage:@"bossmode.png" target:self selector:@selector(level2)];
+//            boss.position = ccp(160, 150);
+//            CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
+//            moreMenu.position = CGPointZero;
+//            [self addChild:moreMenu];
+//            
+//            CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"bback.png" selectedImage:@"bback.png" target:self selector:@selector(unPause)];
+//            back.position = ccp(50, 240);
+//            back.scale = 0.5;
+//            CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
+//            backmenu.position = CGPointZero;
+//            [self addChild:backmenu];
         
         
+        CCSprite* overlaybg = [CCSprite spriteWithFile:@"darkbluebg.png"];
+        overlaybg.position = [CCDirector sharedDirector].screenCenter;
+        //overlaybg.scale = 2;
+       // [self addChild:overlaybg z:-50];
+        
+        [self scheduleUpdate];
         
         NSLog(@"KEVIN");
        // }
@@ -221,6 +229,36 @@
     return self;
 }
 
+
+
+
+-(void) update:(ccTime)delta
+{
+    
+    if ([KKInput sharedInput].anyTouchBeganThisFrame)
+    {
+        KKInput* input = [KKInput sharedInput];
+        CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
+        
+        NSLog(@"%f  %f",pos.x,pos.y);
+        
+        
+        if(pos.y < 350 && pos.y > 220)
+        {
+            [self level1];
+        }
+        
+        if(pos.y < 220 && pos.y > 90)
+        {
+            [self level2];
+        }
+        
+        if(pos.y < 480 && pos.y > 430 && pos.x < 40)
+        {
+            [self unPause];
+        }
+    }
+}
 -(void) level2
 {
     // NSNumber *leveldata = [NSNumber numberWithInteger:2];

@@ -32,10 +32,10 @@
         
         CGPoint screencenter = [[CCDirector sharedDirector] screenCenter];
         
-        CCSprite* background = [CCSprite spriteWithFile:@"sunbg.png"];
+        CCSprite* background = [CCSprite spriteWithFile:@"gameoverbg.png"];
         background.position = screencenter;
         [self addChild:background z:-10000];
-        [self setDimensionsInPixelsOnSprite:background width:380 height:480];
+        [self setDimensionsInPixelsOnSprite:background width:320 height:480];
         
         
         
@@ -50,14 +50,11 @@
         
         
         
-        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Game Over" fontName:@"NexaBold" fontSize:23];
-        gameOver.position = CGPointMake((screenSize.width / 2)-90, 420);
-        gameOver.color = ccc3(0, 0, 0);
-        [self addChild:gameOver z:100 tag:100];
+       
         
         
-        CCLabelTTF* gameOver2 = [CCLabelTTF labelWithString:score fontName:@"NexaBold" fontSize:19];
-        gameOver2.position = CGPointMake((screenSize.width / 2)-90, 390);
+        CCLabelTTF* gameOver2 = [CCLabelTTF labelWithString:score fontName:@"NexaBold" fontSize:42];
+        gameOver2.position = ccp(160, 330);
         gameOver2.color = ccc3(0, 0, 0);
         [self addChild:gameOver2 z:100 tag:100];
         
@@ -103,28 +100,19 @@
         
         */
         CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"2retry.png" selectedImage:@"2retry.png" target:self selector:@selector(retry)];
-        highscore.position = ccp(160, 200);
+        highscore.position = ccp(160, 130);
         highscore.scale = 1;
         CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
         
-        CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"highscores.png" selectedImage:@"highscores.png" target:self selector:@selector(sel)];
-        boss.position = ccp(100, 80);
-        CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
-        moreMenu.position = CGPointZero;
-        [self addChild:moreMenu];
         
-        CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"back.png" selectedImage:@"back.png" target:self selector:@selector(quitGame)];
-        back.position = ccp(240, 80);
-        back.scale = 0.5;
-        CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
-        backmenu.position = CGPointZero;
-        [self addChild:backmenu];
+        
+        
         
         
         //xyhw
-        nameField = [[UITextField alloc] initWithFrame:CGRectMake(35, 140, 260, 25)];
+        nameField = [[UITextField alloc] initWithFrame:CGRectMake(50, 260, 230, 35)];
         [[[CCDirector sharedDirector] view] addSubview:nameField];
         nameField.delegate = self;
         nameField.placeholder = @"Tap to Enter Username";
@@ -161,11 +149,39 @@
         }
         
         
+        [self scheduleUpdate];
         
        // [MGWU submitHighScore:[[NSUserDefaults standardUserDefaults] integerForKey:@"score"] byPlayer:@"Player" forLeaderboard:@"defaultLeaderboard"];
         
     }
     return self;
+}
+
+
+
+-(void) update:(ccTime)delta
+{
+    
+    if ([KKInput sharedInput].anyTouchBeganThisFrame)
+    {
+        KKInput* input = [KKInput sharedInput];
+        CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
+        
+
+        
+        
+        
+        
+        if(pos.y < 480 && pos.y > 430 && pos.x < 40)
+        {
+            [self quitGame];
+        }
+        
+        if(pos.y > 0 && pos.y < 50 && pos.x < 40)
+        {
+            [self sel];
+        }
+    }
 }
 
 -(void) fblogin

@@ -20,6 +20,8 @@
 	<string>317776771691564</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<dict>
 		<key>armv7</key>
@@ -29,8 +31,6 @@
 		<key>accelerometer</key>
 		<true/>
 	</dict>
-	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -44,6 +44,7 @@
 	<string>com.kev.blu</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Avenir-Next.ttc</string>
 		<string>NexaBold.ttf</string>
 		<string>bewilder.ttf</string>
 		<string>b2sq.ttf</string>

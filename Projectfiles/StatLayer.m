@@ -21,6 +21,8 @@ CGSize screenSize;
         screenSize = [[CCDirector sharedDirector] winSize];
         CGPoint screenCenter = [[CCDirector sharedDirector] screenCenter];
         
+        
+        
         CCLabelBMFont *gameTitle = [CCLabelTTF labelWithString:@"HIGH SCORES" fontName:@"Bend2SquaresBRK" fontSize:60];
         gameTitle.color = ccc3(0,0,0);
         gameTitle.position = ccp(screenCenter.x, screenCenter.y + 210);
@@ -28,7 +30,12 @@ CGSize screenSize;
         {
             gameTitle.position = ccp(screenCenter.x, screenCenter.y + 240);
         }
-        [self addChild:gameTitle];
+        //[self addChild:gameTitle];
+        
+        
+        CCSprite* bg = [CCSprite spriteWithFile:@"statbg.png"];
+        bg.position = ccp(160,240);
+        [self addChild:bg z:-20];
         
         
         /*NSNumber *savedHighScore = [[NSUserDefaults standardUserDefaults] objectForKey:@"sharedHighScore"];
@@ -65,10 +72,35 @@ CGSize screenSize;
         CCMenu *goHomeMenu = [CCMenu menuWithItems:goBackToHome, nil];
         [goHomeMenu alignItemsVertically];
         goHomeMenu.position = ccp(screenSize.width/2, 40);
-        [self addChild:goHomeMenu];
+       // [self addChild:goHomeMenu];
+        
+        [self scheduleUpdate];
         
     }
     return self;
+}
+
+
+-(void) update:(ccTime)delta
+{
+    
+    if ([KKInput sharedInput].anyTouchBeganThisFrame)
+    {
+        KKInput* input = [KKInput sharedInput];
+        CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
+        
+        
+        
+        
+        
+        
+        if(pos.y < 480 && pos.y > 430 && pos.x < 40)
+        {
+            [self goHome];
+        }
+        
+        
+    }
 }
 
 -(void) goHome
@@ -150,22 +182,22 @@ CGSize screenSize;
         p.score = score;
         p.rank = rank;
         
-        CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@) %@", rank, name]
+        CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@  %@", rank, name]
                                                fontName:@"HelveticaNeue-Light"
-                                               fontSize:20];
+                                               fontSize:15];
         label.anchorPoint = ccp(0.0f,0.5f);
 
-        label.position = ccp(10, screenSize.height - 85 - i * 30);
+        label.position = ccp(45, screenSize.height - 119 - i * 30);
         label.color = ccc3(0, 0, 0);
         [self addChild:label z: 2];
         
         
         CCLabelTTF *label2 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@", score]
-                                               fontName:@"NexaBold"
-                                               fontSize:20];
+                                               fontName:@"HelveticaNeue-Light"
+                                               fontSize:15];
         label2.anchorPoint = ccp(1.0f,0.5f);
         
-        label2.position = ccp(screenSize.width-10, screenSize.height - 85 - i * 30);
+        label2.position = ccp(screenSize.width-50, screenSize.height - 119 - i * 30);
         label2.color = ccc3(0, 0, 0);
         [self addChild:label2 z: 2];
         

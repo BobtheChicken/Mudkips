@@ -70,6 +70,12 @@ CCMotionStreak* streak;
         
         glClearColor(255,255,255,255);
         
+        CCSprite* bg = [CCSprite spriteWithFile:@"darkbluebg.png"];
+        bg.scale = 3;
+        [self addChild:bg z:-9009];
+        bg.position = [CCDirector sharedDirector].screenCenter;
+        
+        
         continueCost = 1;
         coins = [[NSUserDefaults standardUserDefaults] integerForKey:@"coins"];
         
@@ -1063,7 +1069,7 @@ CCMotionStreak* streak;
                     
                     tut.position = ccp(160,320);
                     
-                    tut.color = ccc3(0, 0, 0);
+                    tut.color = ccc3(255, 255, 255);
                     
                     [self addChild: tut];
                     }
@@ -1073,7 +1079,7 @@ CCMotionStreak* streak;
                         
                         tut.position = ccp(160,320);
                         
-                        tut.color = ccc3(0, 0, 0);
+                        tut.color = ccc3(255, 255, 255);
                         
                         [self addChild: tut];
                     }
@@ -1092,7 +1098,7 @@ CCMotionStreak* streak;
                     
                     tut.position = ccp(160,320);
                     
-                    tut.color = ccc3(0, 0, 0);
+                    tut.color = ccc3(255, 255, 255);
                     [self addChild:tut];
                 }
             }
@@ -1109,7 +1115,7 @@ CCMotionStreak* streak;
                     
                     tut.position = ccp(160,320);
                     
-                    tut.color = ccc3(0, 0, 0);
+                    tut.color = ccc3(255, 255, 255);
                     [self addChild:tut];
                 }
             }
@@ -2125,7 +2131,7 @@ CCMotionStreak* streak;
             boss = [CCSprite spriteWithFile:@"Glowing_Blue_Orb.png"];
             boss.position = ccp(x,y);
             boss.scale = 0;
-            [self addChild:boss z:0];
+            [self addChild:boss z:9050];
             
             id bossscale = [CCScaleTo actionWithDuration:1.0f scale:0.5f];
             [boss runAction:bossscale];
@@ -2140,7 +2146,7 @@ CCMotionStreak* streak;
             boss = [CCSprite spriteWithFile:@"download.png"];
             boss.position = ccp(x,y);
             boss.scale = 0;
-            [self addChild:boss z:0];
+            [self addChild:boss z:9050];
             
             id bossscale = [CCScaleTo actionWithDuration:1.0f scale:0.5f];
             [boss runAction:bossscale];
@@ -2159,7 +2165,7 @@ CCMotionStreak* streak;
             boss = [CCSprite spriteWithFile:@"w_obama.png"];
             boss.position = ccp(x,y);
             boss.scale = 0;
-            [self addChild:boss z:0];
+            [self addChild:boss z:9050];
             
             id bossscale = [CCScaleTo actionWithDuration:1.0f scale:0.5f];
             [boss runAction:bossscale];
@@ -2178,7 +2184,7 @@ CCMotionStreak* streak;
             boss = [CCSprite spriteWithFile:@"flower.png"];
             boss.position = ccp(x,y);
             boss.scale = 0;
-            [self addChild:boss z:0];
+            [self addChild:boss z:9050];
             
             id bossscale = [CCScaleTo actionWithDuration:1.0f scale:1.0f];
             [boss runAction:bossscale];
@@ -2197,7 +2203,7 @@ CCMotionStreak* streak;
             boss = [CCSprite spriteWithFile:@"Glowing_Blue_Orb.png"];
             boss.position = ccp(x,y);
             boss.scale = 0;
-            [self addChild:boss z:0];
+            [self addChild:boss z:9050];
             
             id bossscale = [CCScaleTo actionWithDuration:1.0f scale:0.1f];
             [boss runAction:bossscale];
@@ -2437,6 +2443,7 @@ CCMotionStreak* streak;
                 {
                     // NSLog(@"Collision detected!");
                     
+                    [self removeChild:[fakebullets objectAtIndex:j] cleanup:YES];
                     [self removeChild:tempFakeSprite cleanup:YES];
                     [fakebullets removeObjectAtIndex:j];
                     intScore = intScore + 100;
@@ -2527,7 +2534,7 @@ CCMotionStreak* streak;
     
     border.position = ccp(160,240);
     
-    [self addChild:border z:9010];
+    [self addChild:border z:9051];
     
     //border.opacity = 100;
     
@@ -2545,7 +2552,7 @@ CCMotionStreak* streak;
     
     
     
-    [self addChild: gameOverLayer z:9010];
+    [self addChild: gameOverLayer z:9051];
     
     
     
@@ -2554,25 +2561,25 @@ CCMotionStreak* streak;
     
     
     
-    gameOver = [CCLabelTTF labelWithString:@"Game Over" fontName:@"Bend2SquaresBRK" fontSize:75];
+    gameOver = [CCLabelTTF labelWithString:@"Game Over" fontName:@"Avenir" fontSize:45];
     
     gameOver.position = ccp(160, 380);
     
-    [gameOver setColor:ccc3(247, 148, 29)];
+    [gameOver setColor:ccc3(44, 62, 80)];
     
-    [self addChild:gameOver z:9011];
+    [self addChild:gameOver z:9052];
     
     NSString* coinsl = @"Coins: ";
     NSString* coincount = [coinsl stringByAppendingString:[NSString stringWithFormat:@"%i",coins]];
-    gameOver1 = [CCLabelTTF labelWithString:coincount fontName:@"Bend2SquaresBRK" fontSize:75];
+    gameOver1 = [CCLabelTTF labelWithString:coincount fontName:@"Avenir" fontSize:45];
     
     gameOver1.position = ccp(160, 320);
     
-    [self addChild:gameOver1 z:9011];
+    [self addChild:gameOver1 z:9052];
     
     
     
-    coinLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",coins] fontName:@"Bend2SquaresBRK" fontSize:75];
+    coinLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",coins] fontName:@"Avenir" fontSize:45];
     
     coinLabel.position = ccp(240, 300);
     
@@ -2592,11 +2599,11 @@ CCMotionStreak* streak;
     
     
     
-    gameOver2 = [CCLabelTTF labelWithString:coinc fontName:@"Bend2SquaresBRK" fontSize:40];
+    gameOver2 = [CCLabelTTF labelWithString:coinc fontName:@"Avenir" fontSize:30];
     
     gameOver2.position = ccp(160, 80);
     
-    [self addChild:gameOver2 z:9011];
+    [self addChild:gameOver2 z:9052];
     
     
     
@@ -2611,7 +2618,7 @@ CCMotionStreak* streak;
     
     
     
-    CCMenuItemImage* restartPause = [CCMenuItemImage itemWithNormalImage:@"orangedead.png" selectedImage:@"orangedead.png" target:self selector:@selector(gameover)];
+    CCMenuItemImage* restartPause = [CCMenuItemImage itemWithNormalImage:@"giveup.png" selectedImage:@"giveup.png" target:self selector:@selector(gameover)];
     
     
     
@@ -2639,7 +2646,7 @@ CCMotionStreak* streak;
    // [countdown runAction:scaleX];
      //[self schedule:@selector(gameover) interval:7.0];
     
-    gameOver3 = [CCLabelTTF labelWithString:@"Continue     Submit Score" fontName:@"Bend2SquaresBRK" fontSize:40];
+    gameOver3 = [CCLabelTTF labelWithString:@"Continue     Submit Score" fontName:@"Avenir" fontSize:20];
     
     gameOver3.position = ccp(160, 150);
     
@@ -2650,7 +2657,7 @@ CCMotionStreak* streak;
     
     GameOverMenu.position = ccp(160,190);
     
-    [self addChild:GameOverMenu z:9011];
+    [self addChild:GameOverMenu z:9052];
     
     
     
@@ -2709,7 +2716,7 @@ CCMotionStreak* streak;
 -(void) boughtProduct
 {
     
-    id tintp = [CCTintTo actionWithDuration:0.5 red:247 green:147 blue:29];
+    id tintp = [CCTintTo actionWithDuration:0.5 red:255 green:255 blue:255];
     id scalep = [CCScaleTo actionWithDuration:0.5 scale:0.15];
     [player runAction:tintp];
     [player runAction:scalep];

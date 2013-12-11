@@ -38,7 +38,7 @@
         
         CCLabelTTF* bosstag = [CCLabelTTF labelWithString:@"Boss Bash" fontName:@"Bend2SquaresBRK" fontSize:40];
         bosstag.position = CGPointMake(160, 440);
-        [self addChild:bosstag z:100 tag:100];
+        //[self addChild:bosstag z:100 tag:100];
         
         CCTintTo* tint = [CCTintTo actionWithDuration:0.1 red:0 green:0 blue:255];
         //[gameOver runAction:tint];
@@ -69,7 +69,7 @@
          CCJumpBy* jump = [CCJumpBy actionWithDuration:3 position:CGPointZero height:screenSize.height / 3 jumps:1];
          CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
          [gameOver runAction:repeatJump];*/
-        CCSprite* background = [CCSprite spriteWithFile:@"yellowback.png"];
+        CCSprite* background = [CCSprite spriteWithFile:@"boss-bash.png"];
         background.position = ccp(160,240);
         [self addChild:background];
         
@@ -89,143 +89,143 @@
         
         if([[NSUserDefaults standardUserDefaults]integerForKey:@"boss"] == 0)
         {
-            CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
-            highscore.position = ccp(80, 390);
-            CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
-            starMenu.position = CGPointZero;
-            [self addChild:starMenu];
-            
-            CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
-            boss.position = ccp(240, 390);
-            CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
-            moreMenu.position = CGPointZero;
-            [self addChild:moreMenu];
-            
-            CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
-            back.position = ccp(80, 240);
-            //back.scale = 0.5;
-            CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
-            backmenu.position = CGPointZero;
-            [self addChild:backmenu];
-            
-            CCLabelTTF *back2 = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
-            back2.position = ccp(240, 240);
-            //back2.scale = 0.5;
-            CCMenu *backmenu2 = [CCMenu menuWithItems:back2, nil];
-            backmenu2.position = CGPointZero;
-            [self addChild:backmenu2];
+//            CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
+//            highscore.position = ccp(80, 290);
+//            CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
+//            starMenu.position = CGPointZero;
+//            [self addChild:starMenu];
+//            
+//            CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
+//            boss.position = ccp(240, 290);
+//            CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
+//            moreMenu.position = CGPointZero;
+//            [self addChild:moreMenu];
+//            
+//            CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
+//            back.position = ccp(80, 160);
+//            //back.scale = 0.5;
+//            CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
+//            backmenu.position = CGPointZero;
+//            [self addChild:backmenu];
+//            
+//            CCLabelTTF *back2 = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
+//            back2.position = ccp(240, 160);
+//            //back2.scale = 0.5;
+//            CCMenu *backmenu2 = [CCMenu menuWithItems:back2, nil];
+//            backmenu2.position = CGPointZero;
+//            [self addChild:backmenu2];
         }
         
         if([[NSUserDefaults standardUserDefaults]integerForKey:@"boss"] == 1)
         {
             CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"bigblue.png" selectedImage:@"bigblue.png" target:self selector:@selector(level1)];
-            highscore.position = ccp(80, 390);
+            highscore.position = ccp(80, 290);
             CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
             starMenu.position = CGPointZero;
             [self addChild:starMenu];
             
-            CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
-            boss.position = ccp(240, 390);
-            CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
-            moreMenu.position = CGPointZero;
-            [self addChild:moreMenu];
-            
-            CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
-            back.position = ccp(80, 240);
-            //back.scale = 0.5;
-            CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
-            backmenu.position = CGPointZero;
-            [self addChild:backmenu];
-            
-            CCLabelTTF *back2 = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
-            back2.position = ccp(240, 240);
-            //back2.scale = 0.5;
-            CCMenu *backmenu2 = [CCMenu menuWithItems:back2, nil];
-            backmenu2.position = CGPointZero;
-            [self addChild:backmenu2];
+//            CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
+//            boss.position = ccp(240, 390);
+//            CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
+//            moreMenu.position = CGPointZero;
+//            [self addChild:moreMenu];
+//            
+//            CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
+//            back.position = ccp(80, 160);
+//            //back.scale = 0.5;
+//            CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
+//            backmenu.position = CGPointZero;
+//            [self addChild:backmenu];
+//            
+//            CCLabelTTF *back2 = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
+//            back2.position = ccp(240, 160);
+//            //back2.scale = 0.5;
+//            CCMenu *backmenu2 = [CCMenu menuWithItems:back2, nil];
+//            backmenu2.position = CGPointZero;
+//            [self addChild:backmenu2];
         }
         
         if([[NSUserDefaults standardUserDefaults]integerForKey:@"boss"] == 2)
         {
             CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"bigblue.png" selectedImage:@"bigblue.png" target:self selector:@selector(level1)];
-            highscore.position = ccp(80, 390);
+            highscore.position = ccp(80, 290);
             CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
             starMenu.position = CGPointZero;
             [self addChild:starMenu];
             
             CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"alienblue.png" selectedImage:@"alienblue.png" target:self selector:@selector(level2)];
-            boss.position = ccp(240, 390);
+            boss.position = ccp(240, 290);
             CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
             moreMenu.position = CGPointZero;
             [self addChild:moreMenu];
             
-            CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
-            back.position = ccp(80, 240);
-            //back.scale = 0.5;
-            CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
-            backmenu.position = CGPointZero;
-            [self addChild:backmenu];
-            
-            CCLabelTTF *back2 = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
-            back2.position = ccp(240, 240);
-            //back2.scale = 0.5;
-            CCMenu *backmenu2 = [CCMenu menuWithItems:back2, nil];
-            backmenu2.position = CGPointZero;
-            [self addChild:backmenu2];
+//            CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
+//            back.position = ccp(80, 160);
+//            //back.scale = 0.5;
+//            CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
+//            backmenu.position = CGPointZero;
+//            [self addChild:backmenu];
+//            
+//            CCLabelTTF *back2 = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
+//            back2.position = ccp(240, 160);
+//            //back2.scale = 0.5;
+//            CCMenu *backmenu2 = [CCMenu menuWithItems:back2, nil];
+//            backmenu2.position = CGPointZero;
+//            [self addChild:backmenu2];
         }
         
         if([[NSUserDefaults standardUserDefaults]integerForKey:@"boss"] == 3)
         {
             CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"bigblue.png" selectedImage:@"bigblue.png" target:self selector:@selector(level1)];
-            highscore.position = ccp(80, 390);
+            highscore.position = ccp(80, 290);
             CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
             starMenu.position = CGPointZero;
             [self addChild:starMenu];
             
             CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"alienblue.png" selectedImage:@"alienblue.png" target:self selector:@selector(level2)];
-            boss.position = ccp(240, 390);
+            boss.position = ccp(240, 290);
             CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
             moreMenu.position = CGPointZero;
             [self addChild:moreMenu];
             
             CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"blubama.png" selectedImage:@"blubama.png" target:self selector:@selector(obama)];
-            back.position = ccp(80, 240);
+            back.position = ccp(80, 160);
             //back.scale = 0.5;
             CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
             backmenu.position = CGPointZero;
             [self addChild:backmenu];
             
-            CCLabelTTF *back2 = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
-            back2.position = ccp(240, 240);
-            //back2.scale = 0.5;
-            CCMenu *backmenu2 = [CCMenu menuWithItems:back2, nil];
-            backmenu2.position = CGPointZero;
-            [self addChild:backmenu2];
+//            CCLabelTTF *back2 = [CCMenuItemImage itemFromNormalImage:@"locked.png" selectedImage:@"locked.png" target:self selector:@selector(locked)];
+//            back2.position = ccp(240, 160);
+//            //back2.scale = 0.5;
+//            CCMenu *backmenu2 = [CCMenu menuWithItems:back2, nil];
+//            backmenu2.position = CGPointZero;
+//            [self addChild:backmenu2];
         }
         
         if([[NSUserDefaults standardUserDefaults]integerForKey:@"boss"] >= 4)
         {
             CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"bigblue.png" selectedImage:@"bigblue.png" target:self selector:@selector(level1)];
-            highscore.position = ccp(80, 390);
+            highscore.position = ccp(80, 290);
             CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
             starMenu.position = CGPointZero;
             [self addChild:starMenu];
             
             CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"alienblue.png" selectedImage:@"alienblue.png" target:self selector:@selector(level2)];
-            boss.position = ccp(240, 390);
+            boss.position = ccp(240, 290);
             CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
             moreMenu.position = CGPointZero;
             [self addChild:moreMenu];
             
             CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"blubama.png" selectedImage:@"blubama.png" target:self selector:@selector(obama)];
-            back.position = ccp(80, 240);
+            back.position = ccp(80, 160);
             //back.scale = 0.5;
             CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
             backmenu.position = CGPointZero;
             [self addChild:backmenu];
             
             CCLabelTTF *back2 = [CCMenuItemImage itemFromNormalImage:@"blueblossom.png" selectedImage:@"blueblossom.png" target:self selector:@selector(rose)];
-            back2.position = ccp(240, 240);
+            back2.position = ccp(240, 160);
             //back2.scale = 0.5;
             CCMenu *backmenu2 = [CCMenu menuWithItems:back2, nil];
             backmenu2.position = CGPointZero;
@@ -235,16 +235,33 @@
         
         
         
-        CCLabelTTF *back3 = [CCMenuItemImage itemFromNormalImage:@"bback.png" selectedImage:@"bback.png" target:self selector:@selector(unPause)];
-        back3.position = ccp(160, 80);
-        back3.scale = 0.5;
-        CCMenu *backmenu3 = [CCMenu menuWithItems:back3, nil];
-        backmenu3.position = CGPointZero;
-        [self addChild:backmenu3];
+        [self scheduleUpdate];
 
     }
     return self;
 }
+
+
+-(void) update:(ccTime)delta
+{
+    
+    if ([KKInput sharedInput].anyTouchBeganThisFrame)
+    {
+        KKInput* input = [KKInput sharedInput];
+        CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
+        
+        NSLog(@"%f  %f",pos.x,pos.y);
+        
+        
+        
+        
+        if(pos.y < 480 && pos.y > 430 && pos.x < 40)
+        {
+            [self unPause];
+        }
+    }
+}
+
 
 -(void) level2
 {

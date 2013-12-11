@@ -31,14 +31,12 @@
         // add the labels shown during game over
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
-        CCSprite* background = [CCSprite spriteWithFile:@"pauseback.png"];
+        CCSprite* background = [CCSprite spriteWithFile:@"paused.png"];
         background.position = ccp(160,240);
         [self addChild:background];
         
         
-        CCLabelTTF* gameOver = [CCLabelTTF labelWithString:@"Paused" fontName:@"Arial" fontSize:40];
-        [gameOver setColor:ccc3(0, 0, 0)];
-        gameOver.position = CGPointMake(screenSize.width / 2, 440);
+       
         //[self addChild:gameOver z:100 tag:100];
         
        /* // game over label runs 3 different actions at the same time to create the combined effect
