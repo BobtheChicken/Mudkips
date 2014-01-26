@@ -120,7 +120,7 @@
 //        }
        // else
         //{
-            glClearColor(255, 255, 255, 255);
+            glClearColor(7, 26, 43, 255);
             [self unscheduleAllSelectors];
             
             // have everything stop
@@ -173,9 +173,20 @@
              [gameOver runAction:repeatJump];*/
             CCSprite* background = [CCSprite spriteWithFile:@"level-selection.png"];
         
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"]) //iphone 5
+            {
+                background.position = ccp([CCDirector sharedDirector].screenCenter.x,([CCDirector sharedDirector].screenCenter.y + 44));
+                
+                CCSprite* bluebg = [CCSprite spriteWithFile:@"darkbluefill.png"];
+                bluebg.position = [CCDirector sharedDirector].screenCenter;
+                [self addChild:bluebg];
+            }
+            else
+            {
+                background.position = [CCDirector sharedDirector].screenCenter;
+
+            }
         
-            background.position = [CCDirector sharedDirector].screenCenter;
-            
             [self addChild:background];
             
            // [self setDimensionsInPixelsOnSprite:background width:320 height:568];
@@ -217,6 +228,7 @@
         
         
         CCSprite* overlaybg = [CCSprite spriteWithFile:@"darkbluebg.png"];
+        
         overlaybg.position = [CCDirector sharedDirector].screenCenter;
         //overlaybg.scale = 2;
        // [self addChild:overlaybg z:-50];
@@ -235,27 +247,57 @@
 -(void) update:(ccTime)delta
 {
     
-    if ([KKInput sharedInput].anyTouchBeganThisFrame)
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"] == true)
     {
-        KKInput* input = [KKInput sharedInput];
-        CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
         
-        NSLog(@"%f  %f",pos.x,pos.y);
-        
-        
-        if(pos.y < 350 && pos.y > 220)
+        if ([KKInput sharedInput].anyTouchBeganThisFrame) //iphone 5
         {
-            [self level1];
+            KKInput* input = [KKInput sharedInput];
+            CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
+            
+            NSLog(@"%f  %f",pos.x,pos.y);
+            
+            
+            if(pos.y < 428 && pos.y > 308)
+            {
+                [self level1];
+            }
+            
+            if(pos.y < 308 && pos.y > 178)
+            {
+                [self level2];
+            }
+            
+            if(pos.y < 568 && pos.y > 518 && pos.x < 40)
+            {
+                [self unPause];
+            }
         }
-        
-        if(pos.y < 220 && pos.y > 90)
+    }
+    else //iphone 4
+    {
+        if ([KKInput sharedInput].anyTouchBeganThisFrame)
         {
-            [self level2];
-        }
-        
-        if(pos.y < 480 && pos.y > 430 && pos.x < 40)
-        {
-            [self unPause];
+            KKInput* input = [KKInput sharedInput];
+            CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
+            
+            NSLog(@"%f  %f",pos.x,pos.y);
+            
+            
+            if(pos.y < 350 && pos.y > 220)
+            {
+                [self level1];
+            }
+            
+            if(pos.y < 220 && pos.y > 90)
+            {
+                [self level2];
+            }
+            
+            if(pos.y < 480 && pos.y > 430 && pos.x < 40)
+            {
+                [self unPause];
+            }
         }
     }
 }

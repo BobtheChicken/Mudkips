@@ -31,8 +31,19 @@
             [node pauseSchedulerAndActions];
         }
         
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        if (screenBounds.size.height == 568) {
+            // code for iPhone 5
+            NSLog(@"iphone 5, load bigger things.");
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"iphone5"];
+        } else {
+            // code for all other iOS devices
+            NSLog(@"its not an iphone 5. smaller images.");
+            [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"iphone5"];
+        }
         
-        CCSprite* bg = [CCSprite spriteWithFile:@"darkbluebg.png"];
+        
+        CCSprite* bg = [CCSprite spriteWithFile:@"darkbluefill.png"];
         bg.position = [CCDirector sharedDirector].screenCenter;
         [self addChild:bg z:-100];
         bg.scale = 2;

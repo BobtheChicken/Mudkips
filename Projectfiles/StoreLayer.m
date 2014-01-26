@@ -22,7 +22,7 @@ CCLabelBMFont *coinsLabel;
 {
 	if ((self = [super init]))
 	{
-        CCSprite* background = [CCSprite spriteWithFile:@"storeback.png"];
+        CCSprite* background = [CCSprite spriteWithFile:@"shop.png"];
         background.position = ccp(160,240);
         [self addChild:background];
         
@@ -38,9 +38,9 @@ CCLabelBMFont *coinsLabel;
         //        NSNumber *endingHighScoreNumber = [MGWU objectForKey:@"sharedHighScore"];
         coins = CoinNumber;
         CoinString = [[NSString alloc] initWithFormat:@"Coins: %i", coins];
-        coinsLabel = [CCLabelTTF labelWithString:CoinString fontName:@"NexaBold" fontSize:30];
-        coinsLabel.position = ccp(screenSize.width/2, screenSize.height -125);
-        coinsLabel.color = ccc3(0, 0, 0);
+        coinsLabel = [CCLabelTTF labelWithString:CoinString fontName:@"AvenirNext-UltraLight" fontSize:30];
+        coinsLabel.position = ccp(screenSize.width/2, 75);
+        coinsLabel.color = ccc3(255, 255, 255);
         [self addChild:coinsLabel];
         
         
@@ -95,9 +95,22 @@ CCLabelBMFont *coinsLabel;
         back2.scale = 0.8;
         CCMenu *backmenu2 = [CCMenu menuWithItems:back2, nil];
         backmenu2.position = CGPointZero;
-        [self addChild:backmenu2];
+       // [self addChild:backmenu2];
         
         [self scheduleUpdate];
+        
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"])
+        {
+            background.position = ccp(160,328);
+            highscore.position = ccp(160,388);
+            boss.position = ccp(160,308);
+            back.position = ccp(160,228);
+            back2.position = ccp(160,158);
+            
+            CCSprite* bluebg = [CCSprite spriteWithFile:@"nightfill.png"];
+            bluebg.position = [CCDirector sharedDirector].screenCenter;
+            [self addChild:bluebg z:-10 ];
+        }
         
     }
     return self;
@@ -160,8 +173,31 @@ CCLabelBMFont *coinsLabel;
 
 -(void) update:(ccTime)delta
 {
-    CoinString = [[NSString alloc] initWithFormat:@"Coins: %i", coins];
-    [coinsLabel setString:CoinString];
+    
+    if ([KKInput sharedInput].anyTouchBeganThisFrame)
+    {
+        KKInput* input = [KKInput sharedInput];
+        CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
+        
+        NSLog(@"%f  %f",pos.x,pos.y);
+        
+        
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"] == true)
+        {
+            
+            if(pos.y < 568 && pos.y > 518 && pos.x < 40)
+            {
+                [self goHome];
+            }
+        }
+        else
+        {
+            if(pos.y < 480 && pos.y > 430 && pos.x < 40)
+            {
+                [self goHome];
+            }
+        }
+    }
 }
 
 @end

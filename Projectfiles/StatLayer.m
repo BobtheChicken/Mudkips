@@ -37,7 +37,13 @@ CGSize screenSize;
         bg.position = ccp(160,240);
         [self addChild:bg z:-20];
         
-        
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"] == true)
+        {
+            bg.position = ccp(160,328);
+            CCSprite* fill = [CCSprite spriteWithFile:@"darkbluefill.png"];
+            fill.position = [CCDirector sharedDirector].screenCenter;
+            [self addChild:fill z:-100];
+        }
         /*NSNumber *savedHighScore = [[NSUserDefaults standardUserDefaults] objectForKey:@"sharedHighScore"];
         int highScore = [savedHighScore intValue];
         NSString *highScoreString = [[NSString alloc] initWithFormat:@"High Score: %i", highScore];

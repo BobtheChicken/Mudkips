@@ -90,6 +90,7 @@ CCMotionStreak* streak;
         
         
         
+        
         shieldon = false;
         
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"tutorialcompleted"] == false)
@@ -141,10 +142,10 @@ CCMotionStreak* streak;
         [self pause];
         
         
-        pausebutton = [CCSprite spriteWithFile:@"pause.png"];
+        pausebutton = [CCSprite spriteWithFile:@"pausebutton.png"];
         pausebutton.position = ccp(305,465);
-        pausebutton.scale = 1;
-        [self addChild:pausebutton];
+        pausebutton.scale = 0.7;
+        [self addChild:pausebutton z:9301];
         
         [self initScore];
         
@@ -158,6 +159,8 @@ CCMotionStreak* streak;
         blank = [CCSprite spriteWithFile:@"blank.png"];
         blank.position = ccp(160,240);
         //[self addChild:blank z:-9005];
+        
+       
         
         
         
@@ -191,8 +194,12 @@ CCMotionStreak* streak;
         if ([[CCDirector sharedDirector] winSizeInPixels].height == 1136)
         {
             CCSprite* bar = [CCSprite spriteWithFile:@"black.png"];
-            bar.position = ccp(160,586-50);
-            [self addChild:bar];
+            bar.position = ccp(160,586-55);
+            [self addChild:bar z:9300];
+            
+            pausebutton.position = ccp(305,545);
+
+
         }
         
         
@@ -314,9 +321,14 @@ CCMotionStreak* streak;
     
     label.anchorPoint = ccp(0.0,0.5);
     
-    label.color = ccc3(0, 0, 0);
+    label.color = ccc3(255, 255, 255);
     
-    [self addChild: label];
+    [self addChild:label z:9301];
+    
+    if ([[CCDirector sharedDirector] winSizeInPixels].height == 1136)
+    {
+        label.position = ccp(5,543);
+    }
 }
 
 
@@ -2680,6 +2692,14 @@ CCMotionStreak* streak;
     float scaleXDimensions = width/[spriteToSetDimensions boundingBox].size.width;
     float scaleYDimensions = height/[spriteToSetDimensions boundingBox].size.height;
     id scaleX = [CCScaleTo actionWithDuration:0.5f scaleX:0 scaleY:1];
+    [spriteToSetDimensions runAction:scaleX];
+}
+
+-(void) setDimensionsInPixelsOnSprite:(CCSprite *) spriteToSetDimensions width:(int) width height:(int) height
+{
+    float scaleXDimensions = width/[spriteToSetDimensions boundingBox].size.width;
+    float scaleYDimensions = height/[spriteToSetDimensions boundingBox].size.height;
+    id scaleX = [CCScaleTo actionWithDuration:0.0f scaleX:0 scaleY:1];
     [spriteToSetDimensions runAction:scaleX];
 }
 

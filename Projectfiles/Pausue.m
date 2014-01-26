@@ -27,12 +27,16 @@
             [node pauseSchedulerAndActions];
         }
         
+        CCSprite* bluebg = [CCSprite spriteWithFile:@"nightfill.png"];
+        bluebg.position = [CCDirector sharedDirector].screenCenter;
+        [self addChild:bluebg];
+        
         
         // add the labels shown during game over
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
         
         CCSprite* background = [CCSprite spriteWithFile:@"paused.png"];
-        background.position = ccp(160,240);
+        background.position = ccp(160,328);
         [self addChild:background];
         
         
@@ -66,23 +70,31 @@
         [gameOver runAction:repeatJump];*/
         
         CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"orangecont.png" selectedImage:@"orangecont.png" target:self selector:@selector(unPause)];
-        highscore.position = ccp(160, 290);
+        highscore.position = ccp(160, 378);
         highscore.scale = 1;
         CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
         
         CCLabelTTF *boss = [CCMenuItemImage itemFromNormalImage:@"giveup.png" selectedImage:@"giveup.png" target:self selector:@selector(restartGame)];
-        boss.position = ccp(160, 210);
+        boss.position = ccp(160, 298);
         CCMenu *moreMenu = [CCMenu menuWithItems:boss, nil];
         moreMenu.position = CGPointZero;
         [self addChild:moreMenu];
         
         CCLabelTTF *back = [CCMenuItemImage itemFromNormalImage:@"panic.png" selectedImage:@"panic.png" target:self selector:@selector(quitGame)];
-        back.position = ccp(160, 130);
+        back.position = ccp(160, 218);
         CCMenu *backmenu = [CCMenu menuWithItems:back, nil];
         backmenu.position = CGPointZero;
         [self addChild:backmenu];
+        
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"] == false)
+        {
+            background.position = ccp(160,240);
+            highscore.position = ccp(160,290);
+            boss.position = ccp(160,210);
+            back.position = ccp(160,130);
+        }
         
 
     }
