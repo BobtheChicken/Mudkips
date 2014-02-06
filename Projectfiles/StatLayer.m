@@ -100,11 +100,15 @@ CGSize screenSize;
         
         
         
-        if(pos.y < 480 && pos.y > 430 && pos.x < 40)
+        if(pos.y < 568 && pos.y > 518 && pos.x < 40)
         {
             [self goHome];
         }
         
+        if(pos.y < 50 && pos.y > 0 && pos.x < 40)
+        {
+            [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"tutorialcompleted"];
+        }
         
     }
 }

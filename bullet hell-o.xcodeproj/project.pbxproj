@@ -12,6 +12,7 @@
 		840BCDF217F25F140062F895 /* darkbluebg-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 840BCDF117F25F140062F895 /* darkbluebg-hd.png */; };
 		840BCDF917F264E40062F895 /* level-selection-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 840BCDF717F264E40062F895 /* level-selection-hd.png */; };
 		840BCDFA17F264E40062F895 /* level-selection.png in Resources */ = {isa = PBXBuildFile; fileRef = 840BCDF817F264E40062F895 /* level-selection.png */; };
+		842F0874184A4227002D0BA6 /* boss-bash-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 842F0871184A4227002D0BA6 /* boss-bash-hd.png */; };
 		842F0875184A4227002D0BA6 /* paused-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 842F0872184A4227002D0BA6 /* paused-hd.png */; };
 		842F0876184A4227002D0BA6 /* paused.png in Resources */ = {isa = PBXBuildFile; fileRef = 842F0873184A4227002D0BA6 /* paused.png */; };
 		842F087A184ECB5E002D0BA6 /* gameoverbg-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 842F0878184ECB5E002D0BA6 /* gameoverbg-hd.png */; };
@@ -137,6 +138,7 @@
 		84B44DFE178F397900B70A4D /* retry-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B44DD3178F397600B70A4D /* retry-hd.png */; };
 		84B44DFF178F397900B70A4D /* shield-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B44DD4178F397600B70A4D /* shield-hd.png */; };
 		84B44E00178F397900B70A4D /* ship-hd-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B44DD5178F397700B70A4D /* ship-hd-hd.png */; };
+		84B44E01178F397900B70A4D /* ship-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B44DD6178F397700B70A4D /* ship-hd.png */; };
 		84B44E02178F397900B70A4D /* title-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B44DD7178F397800B70A4D /* title-hd.png */; };
 		84B44E03178F397900B70A4D /* w_obama-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B44DD8178F397800B70A4D /* w_obama-hd.png */; };
 		84B44E04178F397900B70A4D /* yellowback-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B44DD9178F397900B70A4D /* yellowback-hd.png */; };
@@ -288,6 +290,12 @@
 		DC979E3E13B35F8800656CB9 /* libcocos2d-extensions-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC979E3D13B35F8800656CB9 /* libcocos2d-extensions-mac.a */; };
 		DC979E5A13B3607E00656CB9 /* libchipmunk-spacemanager-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC979E5913B3607E00656CB9 /* libchipmunk-spacemanager-mac.a */; };
 		DCC1A0FC13A94ED5005BD75D /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A0FB13A94ED5005BD75D /* fps_images.png */; };
+		DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A0FD13A94ED5005BD75D /* Icon-72.png */; };
+		DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A0FF13A94ED5005BD75D /* Icon-Small-50.png */; };
+		DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A10113A94ED5005BD75D /* Icon-Small.png */; };
+		DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A10313A94ED5005BD75D /* Icon-Small@2x.png */; };
+		DCC1A10613A94ED5005BD75D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A10513A94ED5005BD75D /* Icon.png */; };
+		DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A10713A94ED5005BD75D /* Icon@2x.png */; };
 		DCC1A26913A94EE6005BD75D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A26713A94EE6005BD75D /* InfoPlist.strings */; };
 		DCC1A26C13A94EE6005BD75D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A26A13A94EE6005BD75D /* MainMenu.xib */; };
 		DCC1A26E13A94EE6005BD75D /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC1A26D13A94EE6005BD75D /* fps_images.png */; };
@@ -1159,11 +1167,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
-				TargetAttributes = {
-					DCC1A0E213A94ED5005BD75D = {
-						DevelopmentTeam = VW9422VWZP;
-					};
-				};
 			};
 			buildConfigurationList = DCC1A0DB13A94EC0005BD75D /* Build configuration list for PBXProject "bullet hell-o" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1190,6 +1193,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCC1A0FC13A94ED5005BD75D /* fps_images.png in Resources */,
+				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
+				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
+				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
+				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
+				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
+				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				DC485B4813AA194F00F2BC70 /* ship.png in Resources */,
 				DC485B4B13AA1C0E00F2BC70 /* ship-hd.png in Resources */,
@@ -1341,6 +1350,7 @@
 				84B44DFE178F397900B70A4D /* retry-hd.png in Resources */,
 				84B44DFF178F397900B70A4D /* shield-hd.png in Resources */,
 				84B44E00178F397900B70A4D /* ship-hd-hd.png in Resources */,
+				84B44E01178F397900B70A4D /* ship-hd.png in Resources */,
 				84B44E02178F397900B70A4D /* title-hd.png in Resources */,
 				84B44E03178F397900B70A4D /* w_obama-hd.png in Resources */,
 				84B44E04178F397900B70A4D /* yellowback-hd.png in Resources */,
@@ -1399,6 +1409,7 @@
 				84A3655817FBBA93005E3D29 /* glogo.png in Resources */,
 				84A3655B17FBBBE0005E3D29 /* boss-bash-hd.png in Resources */,
 				84A3655C17FBBBE0005E3D29 /* boss-bash.png in Resources */,
+				842F0874184A4227002D0BA6 /* boss-bash-hd.png in Resources */,
 				842F0875184A4227002D0BA6 /* paused-hd.png in Resources */,
 				842F0876184A4227002D0BA6 /* paused.png in Resources */,
 				842F087A184ECB5E002D0BA6 /* gameoverbg-hd.png in Resources */,
@@ -1520,21 +1531,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yohan Frans (2929FN3KFH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/mgwuSDK.embeddedframework\"",
 				);
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
-				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"$(KKFRAMEWORKS_IOS)",
 					"-lsqlite3.0",
 				);
-				PROVISIONING_PROFILE = "D5B923C8-4065-42D0-B42B-4D4DEDED8189";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D5B923C8-4065-42D0-B42B-4D4DEDED8189";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40B86FAD-2DAC-4AAE-856E-7567F6B9E37A";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1543,21 +1550,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yohan Frans (2929FN3KFH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/mgwuSDK.embeddedframework\"",
 				);
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
-				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"$(KKFRAMEWORKS_IOS)",
 					"-lsqlite3.0",
 				);
-				PROVISIONING_PROFILE = "D5B923C8-4065-42D0-B42B-4D4DEDED8189";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D5B923C8-4065-42D0-B42B-4D4DEDED8189";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40B86FAD-2DAC-4AAE-856E-7567F6B9E37A";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

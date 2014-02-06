@@ -125,8 +125,11 @@
 {
      //   [[CCDirector sharedDirector] popSceneWithTransition:
        //    [CCTransitionCrossFade transitionWithDuration:0.5f scene:[HelloWorldLayer node]]];
+    [HelloWorldLayer unpause];
     [[CCDirector sharedDirector] popScene];
 }
+
+
 
 
 @end

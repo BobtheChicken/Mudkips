@@ -50,6 +50,7 @@
             
             score = [NSString stringWithFormat:@"%i", [[NSUserDefaults standardUserDefaults] integerForKey:@"score"]];
             
+            
             intscore = [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
             
             
@@ -58,6 +59,23 @@
             
             
             CCLabelTTF* gameOver2 = [CCLabelTTF labelWithString:score fontName:@"NexaBold" fontSize:42];
+            if(score.length == 6)
+            {
+                gameOver2.fontSize = 35;
+            }
+            if(score.length == 7)
+            {
+                gameOver2.fontSize = 30;
+            }
+            if(score.length == 8)
+            {
+                gameOver2.fontSize = 25;
+            }
+            if(score.length == 9)
+            {
+                gameOver2.fontSize = 20;
+                score = @"the scores too high";
+            }
             gameOver2.position = ccp(160, 418);
             gameOver2.color = ccc3(0, 0, 0);
             [self addChild:gameOver2 z:100 tag:100];

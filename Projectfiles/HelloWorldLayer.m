@@ -51,6 +51,11 @@ CCSprite* blank;
 
 CCMotionStreak* streak;
 
+bool paused = false;
+int countdownint = 0;
+
+CCLabelTTF* countdownlabel;
+
 -(id) init
 {
     if ((self = [super init]))
@@ -161,7 +166,9 @@ CCMotionStreak* streak;
         //[self addChild:blank z:-9005];
         
        
-        
+        countdownlabel = [CCLabelTTF labelWithString:@"" fontName:@"Avenir" fontSize:50];
+        countdownlabel.position = [[CCDirector sharedDirector] screenCenter];
+        [self addChild:countdownlabel z:9200];
         
         
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"endless"] == false)
@@ -213,42 +220,73 @@ CCMotionStreak* streak;
 
 -(void)update:(ccTime)dt
 {
-    [self grabTouchCoord];
-    
-    [streak setPosition:player.position];
-    
-    
-    if(isStuffMoving == true)
+    if(paused == false)
     {
-    framespast++;
-    
-    if(isTimeWarped)
+        [self grabTouchCoord];
+        
+        [streak setPosition:player.position];
+        
+        
+        if(isStuffMoving == true)
+        {
+            framespast++;
+            
+            if(isTimeWarped)
+            {
+                framespast++;
+            }
+            
+            secondspast = framespast/60;
+            
+            [self bossAttack];
+            //[self moveBullet];
+            
+            [self gameSeg];
+            [self detectCollisions];
+            
+            //[self updateCoins];
+            // [self countdown];
+            
+            // [self tint];
+            
+            KKInput* input = [KKInput sharedInput];
+            
+            if ([input isAnyTouchOnNode:pausebutton touchPhase:KKTouchPhaseAny]) {
+                
+                [self pause];
+            }
+            
+        }
+    }
+    else
     {
-        framespast++;
-    }
-    
-    secondspast = framespast/60;
-    
-    [self bossAttack];
-    //[self moveBullet];
-    
-    [self gameSeg];
-    [self detectCollisions];
-    
-    //[self updateCoins];
-   // [self countdown];
-    
-   // [self tint];
-    
-    KKInput* input = [KKInput sharedInput];
-    
-    if ([input isAnyTouchOnNode:pausebutton touchPhase:KKTouchPhaseAny]) {
+        countdownint++;
         
-        [self pause];
-    }
+        if(countdownint < 40)
+        {
         
+            [countdownlabel setString:@"3"];
+        }
+        if(countdownint == 40)
+        {
+            [countdownlabel setString:@"2"];
+        }
+        if(countdownint == 80)
+        {
+            [countdownlabel setString:@"1"];
+        }
+        if(countdownint == 120)
+        {
+            [countdownlabel setString:@"GO"];
+        }
+        if(countdownint > 120)
+        {
+            paused = false;
+            NSLog(@"nope");
+            countdownint = 0;
+            [countdownlabel setString:@""];
+        }
     }
-    
     
 }
 
@@ -315,7 +353,7 @@ CCMotionStreak* streak;
     
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"score"];
 
-    label = [CCLabelTTF labelWithString:@"0" fontName:@"NexaBold" fontSize:24];
+    label = [CCLabelTTF labelWithString:@"0" fontName:@"Avenir" fontSize:24];
     
     label.position = ccp(5,463);
     
@@ -1077,7 +1115,7 @@ CCMotionStreak* streak;
                 {
                     if(isTimeWarped == false)
                     {
-                    tut = [CCLabelTTF labelWithString:@"Drag to move" fontName:@"Bend2SquaresBRK" fontSize:60];
+                    tut = [CCLabelTTF labelWithString:@"Drag to move" fontName:@"Avenir" fontSize:60];
                     
                     tut.position = ccp(160,320);
                     
@@ -1087,7 +1125,7 @@ CCMotionStreak* streak;
                     }
                     else if(isTimeWarped == true)
                     {
-                        tut = [CCLabelTTF labelWithString:@"time has been warped" fontName:@"Bend2SquaresBRK" fontSize:30];
+                        tut = [CCLabelTTF labelWithString:@"time has been warped" fontName:@"Avenir" fontSize:30];
                         
                         tut.position = ccp(160,320);
                         
@@ -1106,7 +1144,7 @@ CCMotionStreak* streak;
                     
                     [self removeChild:tut];
                     
-                    tut = [CCLabelTTF labelWithString:@"Don't touch blue" fontName:@"Bend2SquaresBRK" fontSize:60];
+                    tut = [CCLabelTTF labelWithString:@"Don't touch blue" fontName:@"Avenir" fontSize:60];
                     
                     tut.position = ccp(160,320);
                     
@@ -1123,7 +1161,7 @@ CCMotionStreak* streak;
                     
                     [self removeChild:tut];
                     
-                    tut = [CCLabelTTF labelWithString:@"Grab powerups for\nan additional shield" fontName:@"Bend2SquaresBRK" fontSize:60];
+                    tut = [CCLabelTTF labelWithString:@"Grab powerups for\nan additional shield" fontName:@"Avenir" fontSize:60];
                     
                     tut.position = ccp(160,320);
                     
@@ -2114,7 +2152,7 @@ CCMotionStreak* streak;
         
         if([[NSUserDefaults standardUserDefaults] integerForKey:@"boss"] < level)
         {
-            tut = [CCLabelTTF labelWithString:@"New Boss!" fontName:@"Bend2SquaresBRK" fontSize:60];
+            tut = [CCLabelTTF labelWithString:@"New Boss!" fontName:@"Avenir" fontSize:60];
             
             tut.position = ccp(160,320);
             
@@ -2357,6 +2395,10 @@ CCMotionStreak* streak;
     }
 }
 
+-(void) removeShield
+{
+    shieldon = false;
+}
 
 
 -(void) detectCollisions
@@ -2380,7 +2422,8 @@ CCMotionStreak* streak;
                 [self removeChild:tempSprite];
                 [bullets removeObjectAtIndex:i];
                 [self removeChild:shield];
-                shieldon = false;
+                //schedule shieldoff
+                [self schedule:@selector(removeShield) interval:0.5];
                 
                 if([[NSUserDefaults standardUserDefaults]boolForKey:@"protection"] == false)
                 {
@@ -2487,7 +2530,7 @@ CCMotionStreak* streak;
             [self deleteBullets];
             
             shield = [CCSprite spriteWithFile:@"shield.png"];
-            shield.scale = 0.15;
+            shield.scale = 0.16;
             shield.position = player.position;
             [self addChild:shield z:-10];
             shieldon = true;
@@ -2801,7 +2844,7 @@ CCMotionStreak* streak;
     [self unschedule:@selector(gameover)];
     
     shield = [CCSprite spriteWithFile:@"shield.png"];
-    shield.scale = 0.15;
+    shield.scale = 0.16;
     shield.position = player.position;
     [self addChild:shield z:-10];
     ubershieldon = true;
@@ -2842,6 +2885,24 @@ CCMotionStreak* streak;
 {
     [[CCDirector sharedDirector] pushScene:
      [CCTransitionCrossFade transitionWithDuration:0.5f scene:[Pausue node]]];
+    
+    NSLog(@"heyary");
+}
+
+
++(void) unpause
+{
+    NSLog(@"unpaused.");
+    paused = true;
+    
+    
+}
+
++(void) resumegame
+{
+    NSLog(@"resume");
+    paused = false;
+    
 }
 
 
@@ -3896,7 +3957,7 @@ CCMotionStreak* streak;
     
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"endless"] == false)
     {
-        label = [CCLabelTTF labelWithString:@"0" fontName:@"NexaBold" fontSize:24];
+        label = [CCLabelTTF labelWithString:@"0" fontName:@"Avenir" fontSize:24];
         
         label.position = ccp(5,463);
         
@@ -3926,7 +3987,7 @@ CCMotionStreak* streak;
     
     [self unschedule:@selector(goback)];
     
-    CCLabelTTF* slabel = [CCLabelTTF labelWithString:@"0" fontName:@"NexaBold" fontSize:24];
+    CCLabelTTF* slabel = [CCLabelTTF labelWithString:@"0" fontName:@"Avenir" fontSize:24];
     
     
     
