@@ -33,6 +33,9 @@ int toNumber;
 id movePlayer;
 int omganothertemportalint;
 
+int bossx = 150;
+int bossy = 400;
+
 bool bwooo = false;
 
 int gameSegment = 0;
@@ -195,19 +198,21 @@ CCLabelTTF* countdownlabel;
             }
         }
         
-        [self initBoss];
+        
         
         
         if ([[CCDirector sharedDirector] winSizeInPixels].height == 1136)
         {
             CCSprite* bar = [CCSprite spriteWithFile:@"black.png"];
             bar.position = ccp(160,586-55);
-            [self addChild:bar z:9300];
+            //[self addChild:bar z:9300];
             
             pausebutton.position = ccp(305,545);
 
-
+            bossy = 488;
         }
+        
+        [self initBoss];
         
         
     }
@@ -2164,6 +2169,8 @@ CCLabelTTF* countdownlabel;
             
         }
         
+        int bossypos = bossy;
+        
         if(level == 1)
         {
             
@@ -2176,8 +2183,8 @@ CCLabelTTF* countdownlabel;
             [tut runAction:newboss];
             [self schedule:@selector(newBoss) interval:3.0];
             
-            int x = 150;
-            int y = 400;
+            int x = bossx;
+            int y = bossy;
             boss = [CCSprite spriteWithFile:@"Glowing_Blue_Orb.png"];
             boss.position = ccp(x,y);
             boss.scale = 0;
@@ -2191,8 +2198,8 @@ CCLabelTTF* countdownlabel;
         else if(level == 2)
         {
             [[SimpleAudioEngine sharedEngine] playEffect:@"down2.mp3"];
-            int x = 150;
-            int y = 400;
+            int x = bossx;
+            int y = bossy;
             boss = [CCSprite spriteWithFile:@"download.png"];
             boss.position = ccp(x,y);
             boss.scale = 0;
@@ -2210,8 +2217,8 @@ CCLabelTTF* countdownlabel;
         }
         else if(level == 3)
         {
-            int x = 150;
-            int y = 400;
+            int x = bossx;
+            int y = bossy;
             boss = [CCSprite spriteWithFile:@"w_obama.png"];
             boss.position = ccp(x,y);
             boss.scale = 0;
@@ -2229,8 +2236,8 @@ CCLabelTTF* countdownlabel;
         }
         else if(level == 4)
         {
-            int x = 150;
-            int y = 400;
+            int x = bossx;
+            int y = bossy;
             boss = [CCSprite spriteWithFile:@"flower.png"];
             boss.position = ccp(x,y);
             boss.scale = 0;
@@ -2248,8 +2255,8 @@ CCLabelTTF* countdownlabel;
         }
         else if(level == 5)
         {
-            int x = 150;
-            int y = 500;
+            int x = bossx;
+            int y = bossy;
             boss = [CCSprite spriteWithFile:@"Glowing_Blue_Orb.png"];
             boss.position = ccp(x,y);
             boss.scale = 0;
@@ -2263,8 +2270,8 @@ CCLabelTTF* countdownlabel;
     }
     else if(bosstime == false)
     {
-        int x = 150;
-        int y = 500;
+        int x = bossx;
+        int y = bossy + 100;
         boss = [CCSprite spriteWithFile:@"Glowing_Blue_Orb.png"];
         boss.position = ccp(x,y);
         boss.scale = 0;

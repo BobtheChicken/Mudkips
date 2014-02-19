@@ -319,6 +319,27 @@
             [self sel];
         }
     }
+    
+    else if([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"])
+    {
+        KKInput* input = [KKInput sharedInput];
+        CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
+        
+        
+        
+        
+        
+        
+        if(pos.y < 568 && pos.y > 518 && pos.x < 40)
+        {
+            [self quitGame];
+        }
+        
+        if(pos.y > 0 && pos.y < 50 && pos.x < 40)
+        {
+            [self sel];
+        }
+    }
 }
 
 -(void) fblogin
