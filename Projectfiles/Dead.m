@@ -53,7 +53,10 @@
             
             intscore = [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
             
-            
+            NSNumber* score = [NSNumber numberWithInt:[[NSUserDefaults standardUserDefaults] integerForKey:@"score"]];
+            NSNumber* levelnumber = [NSNumber numberWithInt:1];
+            NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: score, @"score", levelnumber, @"level_number", nil];
+            [MGWU logEvent:@"blue_gameover" withParams:params];
             
             
             

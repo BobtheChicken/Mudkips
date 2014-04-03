@@ -70,6 +70,15 @@ CCLabelTTF* countdownlabel;
         isStuffMoving = true;
         
         
+        
+        
+       // [MGWU showMessage:@"Hey, how is it going?" withImage:nil];
+
+        
+        
+        [MGWU logEvent:@"blue_start" withParams:nil];
+        
+        
         deathanimation = true;
         
         streak = [CCMotionStreak streakWithFade:0.5 minSeg:1 width:50 color:ccc3(247,148,29) textureFilename:@"orange.png"];
@@ -353,8 +362,11 @@ CCLabelTTF* countdownlabel;
     if([[NSUserDefaults standardUserDefaults]boolForKey:@"startgame"] == false)
     {
     [MGWU showMessage:@"Achievement Get!      A Blue World" withImage:nil];
+        
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"startgame"];
     }
+    
+    [MGWU logEvent:@"blue_boss1" withParams:nil];
     
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"score"];
 
@@ -564,6 +576,7 @@ CCLabelTTF* countdownlabel;
                 
                 if([[NSUserDefaults standardUserDefaults]boolForKey:@"downwall"] == false)
                 {
+                    
                     [MGWU showMessage:@"Achievement Get!      Retreat" withImage:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"downwall"];
                 }
@@ -1076,6 +1089,8 @@ CCLabelTTF* countdownlabel;
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"time"];
             }
             
+            [MGWU logEvent:@"blue_timevortex" withParams:nil];
+            
             if((framespast % 25) == 0)
             {
                 //NSLog([NSString stringWithFormat:@"%d",framespast]);
@@ -1120,7 +1135,9 @@ CCLabelTTF* countdownlabel;
                 {
                     if(isTimeWarped == false)
                     {
-                    tut = [CCLabelTTF labelWithString:@"Drag to move" fontName:@"Avenir" fontSize:60];
+                    tut = [CCLabelTTF labelWithString:@"Drag to move" fontName:@"Avenir" fontSize:40];
+                        
+                        [MGWU logEvent:@"blue_tutorial1" withParams:nil];
                     
                     tut.position = ccp(160,320);
                     
@@ -1151,6 +1168,8 @@ CCLabelTTF* countdownlabel;
                     
                     tut = [CCLabelTTF labelWithString:@"Don't touch blue" fontName:@"Avenir" fontSize:60];
                     
+                    [MGWU logEvent:@"blue_tutorial2" withParams:nil];
+                    
                     tut.position = ccp(160,320);
                     
                     tut.color = ccc3(255, 255, 255);
@@ -1167,6 +1186,8 @@ CCLabelTTF* countdownlabel;
                     [self removeChild:tut];
                     
                     tut = [CCLabelTTF labelWithString:@"Grab powerups for\nan additional shield" fontName:@"Avenir" fontSize:60];
+                    
+                    [MGWU logEvent:@"blue_tutorial3" withParams:nil];
                     
                     tut.position = ccp(160,320);
                     
@@ -2211,9 +2232,11 @@ CCLabelTTF* countdownlabel;
             [self shootBullet:1 angle:90];
             if([[NSUserDefaults standardUserDefaults]boolForKey:@"alienblue"] == false)
             {
-                [MGWU showMessage:@"Achievement Get!      Alien Blue, Karmalord of Reddit" withImage:nil];
+                [MGWU showMessage:@"Achievement Get!      It's just not the same" withImage:nil]; //Alien Blue, Karmalord of Reddit
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"alienblue"];
             }
+            
+            [MGWU logEvent:@"blue_boss2" withParams:nil];
         }
         else if(level == 3)
         {
@@ -2232,7 +2255,10 @@ CCLabelTTF* countdownlabel;
             {
                 [MGWU showMessage:@"Achievement Get!      Blubama, political overlord" withImage:nil];
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"obama"];
+                
+                
             }
+            [MGWU logEvent:@"blue_boss3" withParams:nil];
         }
         else if(level == 4)
         {
@@ -2252,6 +2278,7 @@ CCLabelTTF* countdownlabel;
                 [MGWU showMessage:@"Achievement Get!      Blossom, the blue rose" withImage:nil];
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"blossom"];
             }
+            [MGWU logEvent:@"blue_boss4" withParams:nil];
         }
         else if(level == 5)
         {
@@ -2405,6 +2432,9 @@ CCLabelTTF* countdownlabel;
 -(void) removeShield
 {
     shieldon = false;
+    [self unschedule:@selector(removeShield)];
+
+    
 }
 
 

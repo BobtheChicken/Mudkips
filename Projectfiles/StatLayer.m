@@ -97,17 +97,36 @@ CGSize screenSize;
         
         
         
-        
-        
-        
-        if(pos.y < 568 && pos.y > 518 && pos.x < 40)
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"] == true)
         {
-            [self goHome];
+            if(pos.y < 568 && pos.y > 518 && pos.x < 40)
+            {
+                [self goHome];
+            }
+            
+            if(pos.y < 50 && pos.y > 0 && pos.x < 40)
+            {
+                [MGWU showMessage:@"Whyd u reset the data mun" withImage:nil];
+                NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+
+            }
         }
-        
-        if(pos.y < 50 && pos.y > 0 && pos.x < 40)
+        else
         {
-            [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"tutorialcompleted"];
+        
+        
+            if(pos.y < 480 && pos.y > 440 && pos.x < 40)
+            {
+                [self goHome];
+            }
+            
+            if(pos.y < 50 && pos.y > 0 && pos.x < 40)
+            {
+                [MGWU showMessage:@"Whyd u reset the data mun" withImage:nil];
+                NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+            }
         }
         
     }
