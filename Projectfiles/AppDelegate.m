@@ -18,7 +18,7 @@
 #endif
     
     [MGWU loadMGWU:@"iliketoeatpieandbananasandlotsandlotsofcake"];
-
+    [MGWU dark];
 }
 
 

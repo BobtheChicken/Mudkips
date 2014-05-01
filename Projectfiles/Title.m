@@ -19,6 +19,8 @@
 {
     if ((self = [super init]))
     {
+        [UIApplication sharedApplication].statusBarHidden = YES;
+
         CGSize screensize = [[CCDirector sharedDirector] screenSizeInPixels];
         
         glClearColor(0.91,0.92, 0.91, 1.0);

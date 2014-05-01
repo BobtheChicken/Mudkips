@@ -79,6 +79,7 @@ CCLabelTTF* countdownlabel;
         [MGWU logEvent:@"blue_start" withParams:nil];
         
         
+        
         deathanimation = true;
         
         streak = [CCMotionStreak streakWithFade:0.5 minSeg:1 width:50 color:ccc3(247,148,29) textureFilename:@"orange.png"];
@@ -1135,7 +1136,7 @@ CCLabelTTF* countdownlabel;
                 {
                     if(isTimeWarped == false)
                     {
-                    tut = [CCLabelTTF labelWithString:@"Drag to move" fontName:@"Avenir" fontSize:40];
+                    tut = [CCLabelTTF labelWithString:@"Drag to move" fontName:@"Avenir" fontSize:20];
                         
                         [MGWU logEvent:@"blue_tutorial1" withParams:nil];
                     
@@ -1147,7 +1148,7 @@ CCLabelTTF* countdownlabel;
                     }
                     else if(isTimeWarped == true)
                     {
-                        tut = [CCLabelTTF labelWithString:@"time has been warped" fontName:@"Avenir" fontSize:30];
+                        tut = [CCLabelTTF labelWithString:@"time has been warped" fontName:@"Avenir" fontSize:20];
                         
                         tut.position = ccp(160,320);
                         
@@ -1166,7 +1167,7 @@ CCLabelTTF* countdownlabel;
                     
                     [self removeChild:tut];
                     
-                    tut = [CCLabelTTF labelWithString:@"Don't touch blue" fontName:@"Avenir" fontSize:60];
+                    tut = [CCLabelTTF labelWithString:@"Don't touch blue" fontName:@"Avenir" fontSize:30];
                     
                     [MGWU logEvent:@"blue_tutorial2" withParams:nil];
                     
@@ -1185,7 +1186,7 @@ CCLabelTTF* countdownlabel;
                     
                     [self removeChild:tut];
                     
-                    tut = [CCLabelTTF labelWithString:@"Grab powerups for\nan additional shield" fontName:@"Avenir" fontSize:60];
+                    tut = [CCLabelTTF labelWithString:@"Grab powerups for\nan additional shield" fontName:@"Avenir" fontSize:30];
                     
                     [MGWU logEvent:@"blue_tutorial3" withParams:nil];
                     
@@ -2178,7 +2179,7 @@ CCLabelTTF* countdownlabel;
         
         if([[NSUserDefaults standardUserDefaults] integerForKey:@"boss"] < level)
         {
-            tut = [CCLabelTTF labelWithString:@"New Boss!" fontName:@"Avenir" fontSize:60];
+            tut = [CCLabelTTF labelWithString:@"New Boss!" fontName:@"Avenir" fontSize:30];
             
             tut.position = ccp(160,320);
             
@@ -2297,6 +2298,9 @@ CCLabelTTF* countdownlabel;
     }
     else if(bosstime == false)
     {
+        
+        label.color = ccc3(225, 225, 225);
+        
         int x = bossx;
         int y = bossy + 100;
         boss = [CCSprite spriteWithFile:@"Glowing_Blue_Orb.png"];
