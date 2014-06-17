@@ -235,6 +235,10 @@ CCLabelTTF* countdownlabel;
 
 -(void)update:(ccTime)dt
 {
+    
+    
+    
+    
     if(paused == false)
     {
         [self grabTouchCoord];
