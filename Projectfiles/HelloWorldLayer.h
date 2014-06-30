@@ -14,6 +14,8 @@
 
 @interface HelloWorldLayer : CCLayer
 {
+    CCSpriteBatchNode* batch;
+    
 	NSString* helloWorldString;
 	NSString* helloWorldFontName;
 	int helloWorldFontSize;

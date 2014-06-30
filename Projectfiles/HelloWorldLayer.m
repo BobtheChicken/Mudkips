@@ -69,7 +69,7 @@ CCLabelTTF* countdownlabel;
         
         isStuffMoving = true;
         
-        
+       
         
         
        // [MGWU showMessage:@"Hey, how is it going?" withImage:nil];
@@ -2568,6 +2568,9 @@ CCLabelTTF* countdownlabel;
         CCSprite* tempSprite = [powerups objectAtIndex:j];
         if ([self isCollidingSphere:tempSprite WithSphere:player] == true) {
             //NSLog(@"Collision detected!");
+            
+            id fade = [CCFadeOut actionWithDuration:0.1];
+            [tempSprite runAction:fade];
             
             [self removeChildByTag:42 cleanup:YES];
             [powerups removeObjectAtIndex:i];
