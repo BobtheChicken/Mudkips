@@ -149,10 +149,12 @@
             
             
             
-            // NSLog(@"derp");
+             NSLog(@"I HATE YOU FACEBOOK");
             CCLabelTTF *fb = [CCMenuItemImage itemFromNormalImage:@"facebook.png" selectedImage:@"facebook.png" target:self selector:@selector(fb)];
             fb.position = ccp(size.width - 16, size.height - 16);
-            fb.scale = 1;
+            fb.scale = 1.5;
+            fb.position = ccp(size.width - 24, size.height - 20);
+            fb.size = CGSizeMake(200, 200);
             CCMenu *fbm = [CCMenu menuWithItems:fb, nil];
             fbm.position = CGPointZero;
             [self addChild:fbm];
@@ -276,8 +278,8 @@
         
            // NSLog(@"derp");
         CCLabelTTF *fb = [CCMenuItemImage itemFromNormalImage:@"facebook.png" selectedImage:@"facebook.png" target:self selector:@selector(fb)];
-        fb.position = ccp(size.width - 16, size.height - 16);
-        fb.scale = 1;
+        fb.scale = 1.5;
+        fb.position = ccp(size.width - 24, size.height - 20);
         CCMenu *fbm = [CCMenu menuWithItems:fb, nil];
         fbm.position = CGPointZero;
         [self addChild:fbm];

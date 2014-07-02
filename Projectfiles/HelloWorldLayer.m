@@ -366,7 +366,7 @@ CCLabelTTF* countdownlabel;
 {
     if([[NSUserDefaults standardUserDefaults]boolForKey:@"startgame"] == false)
     {
-    [MGWU showMessage:@"Achievement Get!      A Blue World" withImage:nil];
+    [MGWU showMessage:@"New Achievement!      A Blue World" withImage:nil];
         
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"startgame"];
     }
@@ -582,7 +582,7 @@ CCLabelTTF* countdownlabel;
                 if([[NSUserDefaults standardUserDefaults]boolForKey:@"downwall"] == false)
                 {
                     
-                    [MGWU showMessage:@"Achievement Get!      Retreat" withImage:nil];
+                    [MGWU showMessage:@"New Achievement!      Retreat" withImage:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"downwall"];
                 }
                 
@@ -709,7 +709,7 @@ CCLabelTTF* countdownlabel;
                     
                     if([[NSUserDefaults standardUserDefaults]boolForKey:@"obamablast"] == false)
                     {
-                        [MGWU showMessage:@"Achievement Get!      Obamablast!" withImage:nil];
+                        [MGWU showMessage:@"New Achievement!      Obamablast!" withImage:nil];
                         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"obamablast"];
                     }
                     
@@ -1090,7 +1090,7 @@ CCLabelTTF* countdownlabel;
         {
             if([[NSUserDefaults standardUserDefaults]boolForKey:@"time"] == false)
             {
-                [MGWU showMessage:@"Achievement Get!      Time Vortex" withImage:nil];
+                [MGWU showMessage:@"New Achievement!      Time Vortex" withImage:nil];
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"time"];
             }
             
@@ -1712,7 +1712,7 @@ CCLabelTTF* countdownlabel;
 {
     if([[NSUserDefaults standardUserDefaults]boolForKey:@"yeswecan"] == false)
     {
-        [MGWU showMessage:@"Achievement Get!      Run to the Bottom!" withImage:nil];
+        [MGWU showMessage:@"New Achievement!      Run to the Bottom!" withImage:nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"yeswecan"];
     }
     
@@ -1827,7 +1827,7 @@ CCLabelTTF* countdownlabel;
     if([[NSUserDefaults standardUserDefaults]boolForKey:@"downvote"] == false)
     {
         
-        [MGWU showMessage:@"Achievement Get!      Downvoted" withImage:nil];
+        [MGWU showMessage:@"New Achievement!      Downvoted" withImage:nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"downvote"];
     }
     [self shootBulletwithPos:1 angle:270 xpos:52+xOffset ypos:0];
@@ -2202,7 +2202,7 @@ CCLabelTTF* countdownlabel;
             
             if([[NSUserDefaults standardUserDefaults]boolForKey:@"bigblue"] == false)
             {
-                [MGWU showMessage:@"Achievement Get!      The Big Blue, ruler of Blutopia" withImage:nil];
+                [MGWU showMessage:@"New Achievement!      The Big Blue, ruler of Blutopia" withImage:nil];
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"bigblue"];
             }
             id newboss = [CCScaleTo actionWithDuration:0.5f scale:1.0f];
@@ -2237,7 +2237,7 @@ CCLabelTTF* countdownlabel;
             [self shootBullet:1 angle:90];
             if([[NSUserDefaults standardUserDefaults]boolForKey:@"alienblue"] == false)
             {
-                [MGWU showMessage:@"Achievement Get!      It's just not the same" withImage:nil]; //Alien Blue, Karmalord of Reddit
+                [MGWU showMessage:@"New Achievement!      It's just not the same" withImage:nil]; //Alien Blue, Karmalord of Reddit
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"alienblue"];
             }
             
@@ -2258,7 +2258,7 @@ CCLabelTTF* countdownlabel;
             [self shootBullet:1 angle:90];
             if([[NSUserDefaults standardUserDefaults]boolForKey:@"obama"] == false)
             {
-                [MGWU showMessage:@"Achievement Get!      Blubama, political overlord" withImage:nil];
+                [MGWU showMessage:@"New Achievement!      Blubama, political overlord" withImage:nil];
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"obama"];
                 
                 
@@ -2280,7 +2280,7 @@ CCLabelTTF* countdownlabel;
             [self shootBullet:1 angle:90];
             if([[NSUserDefaults standardUserDefaults]boolForKey:@"blossom"] == false)
             {
-                [MGWU showMessage:@"Achievement Get!      Blossom, the blue rose" withImage:nil];
+                [MGWU showMessage:@"New Achievement!      Blossom, the blue rose" withImage:nil];
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"blossom"];
             }
             [MGWU logEvent:@"blue_boss4" withParams:nil];
@@ -2472,7 +2472,7 @@ CCLabelTTF* countdownlabel;
                 
                 if([[NSUserDefaults standardUserDefaults]boolForKey:@"protection"] == false)
                 {
-                    [MGWU showMessage:@"Achievement Get!      Chicken Blocked" withImage:nil];
+                    [MGWU showMessage:@"New Achievement!      Chicken Blocked" withImage:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"protection"];
                 }
             }
@@ -2483,7 +2483,7 @@ CCLabelTTF* countdownlabel;
                 
                 if([[NSUserDefaults standardUserDefaults]boolForKey:@"protection"] == false)
                 {
-                    [MGWU showMessage:@"Achievement Get!      Temp Inviniciblity" withImage:nil];
+                    [MGWU showMessage:@"New Achievement!      Temp Inviniciblity" withImage:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"protection"];
                 }
             }
@@ -2509,7 +2509,7 @@ CCLabelTTF* countdownlabel;
                 
                 if([[NSUserDefaults standardUserDefaults]boolForKey:@"protection"] == false)
                 {
-                    [MGWU showMessage:@"Achievement Get!      Chicken Blocked" withImage:nil];
+                    [MGWU showMessage:@"New Achievement!      Chicken Blocked" withImage:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"protection"];
                 }
             }
@@ -2520,7 +2520,7 @@ CCLabelTTF* countdownlabel;
                 
                 if([[NSUserDefaults standardUserDefaults]boolForKey:@"protection"] == false)
                 {
-                    [MGWU showMessage:@"Achievement Get!      Chicken Blocked" withImage:nil];
+                    [MGWU showMessage:@"New Achievement!      Chicken Blocked" withImage:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"protection"];
                 }
             }
@@ -2585,7 +2585,7 @@ CCLabelTTF* countdownlabel;
             [self flash:0 green:255 blue:0 alpha:255 actionWithDuration:0];
             if([[NSUserDefaults standardUserDefaults]boolForKey:@"shield"] == false)
             {
-                [MGWU showMessage:@"Achievement Get!      Green is the new Orange" withImage:nil];
+                [MGWU showMessage:@"New Achievement!      Green is the new Orange" withImage:nil];
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"shield"];
             }
 
@@ -2924,7 +2924,7 @@ CCLabelTTF* countdownlabel;
     [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:0.5f scene:[Dead node]]];
     if([[NSUserDefaults standardUserDefaults]boolForKey:@"doom"] == false)
     {
-        [MGWU showMessage:@"Achievement Get!      Fall of the Orange" withImage:nil];
+        [MGWU showMessage:@"New Achievement!      Fall of the Orange" withImage:nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"doom"];
     }
     }
@@ -3003,6 +3003,11 @@ CCLabelTTF* countdownlabel;
                 float angle = 270;
                 float speed = 3;
                 
+                if(isTimeWarped == true)
+                {
+                    speed = speed + 3;
+                }
+                
                 float vx = cos(angle * M_PI / 180) * speed;
                 float vy = sin(angle * M_PI / 180) * speed;
                 
@@ -3065,6 +3070,11 @@ CCLabelTTF* countdownlabel;
         projectile = [donkeys objectAtIndex:j];
         float angle = 270;
         float speed = 3;
+        
+        if(isTimeWarped == true)
+        {
+            speed = speed + 3;
+        }
         
         float vx = cos(angle * M_PI / 180) * speed;
         float vy = sin(angle * M_PI / 180) * speed;
@@ -3200,7 +3210,7 @@ CCLabelTTF* countdownlabel;
     
     if([[NSUserDefaults standardUserDefaults]boolForKey:@"donkey"] == false)
     {
-        [MGWU showMessage:@"Achievement Get!      Democratic Donkey" withImage:nil];
+        [MGWU showMessage:@"New Achievement!      Democratic Donkey" withImage:nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"donkey"];
     }
 }
@@ -3745,13 +3755,13 @@ CCLabelTTF* countdownlabel;
                 
                 if([[NSUserDefaults standardUserDefaults]boolForKey:@"byeblossom"] == false)
                 {
-                    [MGWU showMessage:@"Achievement Get!      You beat the game" withImage:nil];
+                    [MGWU showMessage:@"New Achievement!      You beat the game" withImage:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"byeblossom"];
                 }
                 
                 if([[NSUserDefaults standardUserDefaults]boolForKey:@"endgamecontent"] == false)
                 {
-                    [MGWU showMessage:@"Achievement Get!      EndGame Content++" withImage:nil];
+                    [MGWU showMessage:@"New Achievement!      EndGame Content++" withImage:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"endgamecontent"];
                 }
                 
@@ -3973,7 +3983,7 @@ CCLabelTTF* countdownlabel;
     
     [self rflash:255 green:255 blue:255 alpha:255 actionWithDuration:0];
     
-    [self shootBulletwithPosPowerup:3 angle:260 xpos:0 ypos:0];
+    //[self shootBulletwithPosPowerup:3 angle:260 xpos:0 ypos:0];
     
     label.color = ccc3(0, 0, 0);
     
@@ -3988,7 +3998,7 @@ CCLabelTTF* countdownlabel;
     
     if([[NSUserDefaults standardUserDefaults]boolForKey:@"bossdefeat"] == false)
     {
-        [MGWU showMessage:@"Achievement Get!      Boss Slayer" withImage:nil];
+        [MGWU showMessage:@"New Achievement!      Boss Slayer" withImage:nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"bossdefeat"];
     }
     

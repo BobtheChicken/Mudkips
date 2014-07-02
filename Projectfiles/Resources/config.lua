@@ -20,7 +20,7 @@ local config =
 		FirstSceneClassName = "Title",
 
 		MaxFrameRate = 60,
-		DisplayFPS = NO,
+		DisplayFPS = YES,
 
 		EnableUserInteraction = YES,
 		EnableMultiTouch = NO,

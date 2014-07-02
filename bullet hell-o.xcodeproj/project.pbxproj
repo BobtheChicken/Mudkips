@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3312FD196486DE009A2555 /* facebook-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3312FC196486DE009A2555 /* facebook-hd.png */; };
 		0ACE7EC219108D5100637DE3 /* mgwuSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACE7E7A19108D5100637DE3 /* mgwuSDK.framework */; };
 		0ACE7EC319108D5100637DE3 /* aqua.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACE7E7C19108D5100637DE3 /* aqua.png */; };
 		0ACE7EC419108D5100637DE3 /* bluechatbubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACE7E7D19108D5100637DE3 /* bluechatbubble.png */; };
@@ -322,6 +323,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A3312FC196486DE009A2555 /* facebook-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-hd.png"; sourceTree = "<group>"; };
 		0ACE7E7A19108D5100637DE3 /* mgwuSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = mgwuSDK.framework; sourceTree = "<group>"; };
 		0ACE7E7C19108D5100637DE3 /* aqua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aqua.png; sourceTree = "<group>"; };
 		0ACE7E7D19108D5100637DE3 /* bluechatbubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluechatbubble.png; sourceTree = "<group>"; };
@@ -970,6 +972,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0A3312FC196486DE009A2555 /* facebook-hd.png */,
 				84953E5B1887955D00C0FD24 /* shop-hd.png */,
 				84953E5C1887955D00C0FD24 /* shop.png */,
 				84ECE5001884C51D00E47E6D /* gameoverbg5-hd.png */,
@@ -1469,6 +1472,7 @@
 				843A68DC1862AC6600D440BC /* Default@2x.png in Resources */,
 				0ACE7ED719108D5100637DE3 /* mgwu-gk-notification.png in Resources */,
 				843A68DE1862AC6A00D440BC /* Default-568h@2x.png in Resources */,
+				0A3312FD196486DE009A2555 /* facebook-hd.png in Resources */,
 				84D8C6791879196600A9C7B6 /* darkbluefill-hd.png in Resources */,
 				84D8C67A1879196600A9C7B6 /* darkbluefill.png in Resources */,
 				84D8C67D18791EA700A9C7B6 /* nightfill-hd.png in Resources */,

@@ -217,7 +217,15 @@ CGSize screenSize;
         label.anchorPoint = ccp(0.0f,0.5f);
 
         label.position = ccp(45, screenSize.height - 119 - i * 30);
+        
+        
+        
         label.color = ccc3(0, 0, 0);
+        
+        if((i % 2) == 0)
+        {
+            label.color = ccc3(41, 128, 185);
+        }
         [self addChild:label z: 2];
         
         
@@ -228,6 +236,11 @@ CGSize screenSize;
         
         label2.position = ccp(screenSize.width-50, screenSize.height - 119 - i * 30);
         label2.color = ccc3(0, 0, 0);
+        
+        if((i % 2) == 0)
+        {
+            label2.color = ccc3(41, 128, 185);
+        }
         [self addChild:label2 z: 2];
         
         [allPlayers addObject:p];
