@@ -9,6 +9,7 @@
 #import "SimpleAudioEngine.h"
 #import "Player.h"
 #import "Dead.h"
+#import "Victory.h"
 #import "LevelSelect.h"
 #import "StoreLayer.h"
 
@@ -126,7 +127,7 @@ CCLabelTTF* countdownlabel;
         gameSegment = 0;
         bosstime = false;
         
-        isTimeWarped = false;
+        isTimeWarped = true;
         
         thetemporalint = 180;
         
@@ -1413,7 +1414,7 @@ CCLabelTTF* countdownlabel;
                 {
                     int tempInt = (arc4random() % 300) -245;
                     
-                    [self shootBulletwithPosDonkey:2 angle:270 xpos:tempInt ypos:0];
+                    [self shootBulletwithPosDonkey:3 angle:270 xpos:tempInt ypos:0];
                 }
             }
             else if(attacktype == 2)
@@ -1627,7 +1628,7 @@ CCLabelTTF* countdownlabel;
                 {
                     int tempInt = (arc4random() % 300) -245;
                     
-                    [self shootBulletwithPosDonkey:2 angle:270 xpos:tempInt ypos:0];
+                    [self shootBulletwithPosDonkey:3 angle:270 xpos:tempInt ypos:0];
                 }
             }
             else if(attacktype == 12)
@@ -2635,6 +2636,8 @@ CCLabelTTF* countdownlabel;
     
     border = [CCSprite spriteWithFile:@"continue.png"];
     
+    border.scale = 2;
+    
     border.position = ccp(160,240);
     
     [self addChild:border z:9051];
@@ -2699,6 +2702,11 @@ CCLabelTTF* countdownlabel;
     helloWorld = [hello stringByAppendingString:world];
     burpworld = @" coins.";
     coinc = [helloWorld stringByAppendingString:burpworld];
+    
+    if([coinc isEqualToString:@"Continue for 1 coins."])
+    {
+        coinc = @"Continue for 1 coin.";
+    }
     
     
     
@@ -3049,7 +3057,25 @@ CCLabelTTF* countdownlabel;
         
         if(isTimeWarped == true)
         {
-            speed = speed + 3;
+            if(level != 3)
+            {
+                speed = speed + 3;
+            }
+            else
+            {
+                if(gameSegment == 0)
+                {
+                    
+                }
+                else if(gameSegment == 4)
+                {
+                    
+                }
+                else
+                {
+                    speed = speed + 3;
+                }
+            }
         }
         
         
@@ -3073,7 +3099,25 @@ CCLabelTTF* countdownlabel;
         
         if(isTimeWarped == true)
         {
-            speed = speed + 3;
+            if(level != 3)
+            {
+                speed = speed + 3;
+            }
+            else
+            {
+                if(gameSegment == 0)
+                {
+                    
+                }
+                else if(gameSegment == 4)
+                {
+                    
+                }
+                else
+                {
+                    speed = speed + 3;
+                }
+            }
         }
         
         float vx = cos(angle * M_PI / 180) * speed;
@@ -4025,7 +4069,7 @@ CCLabelTTF* countdownlabel;
         
         [self addChild: label];
         [[CCDirector sharedDirector] pushScene:
-         [CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelSelect node]]];
+         [CCTransitionCrossFade transitionWithDuration:0.5f scene:[Victory node]]];
     }
     
     

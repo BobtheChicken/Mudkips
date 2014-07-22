@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0A3312FD196486DE009A2555 /* facebook-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3312FC196486DE009A2555 /* facebook-hd.png */; };
+		0A41709B197DFA0700D7F85D /* statbg-iphone-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A417099197DFA0700D7F85D /* statbg-iphone-hd.png */; };
+		0A41709C197DFA0700D7F85D /* statbg-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A41709A197DFA0700D7F85D /* statbg-iphone.png */; };
+		0AB30D60196CC8BD00C4D0F4 /* victory-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AB30D5E196CC8BD00C4D0F4 /* victory-hd.png */; };
+		0AB30D61196CC8BD00C4D0F4 /* victory.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AB30D5F196CC8BD00C4D0F4 /* victory.png */; };
+		0AB30D64196CC99500C4D0F4 /* Victory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB30D63196CC99500C4D0F4 /* Victory.m */; };
 		0ACE7EC219108D5100637DE3 /* mgwuSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACE7E7A19108D5100637DE3 /* mgwuSDK.framework */; };
 		0ACE7EC319108D5100637DE3 /* aqua.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACE7E7C19108D5100637DE3 /* aqua.png */; };
 		0ACE7EC419108D5100637DE3 /* bluechatbubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACE7E7D19108D5100637DE3 /* bluechatbubble.png */; };
@@ -324,6 +329,12 @@
 
 /* Begin PBXFileReference section */
 		0A3312FC196486DE009A2555 /* facebook-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-hd.png"; sourceTree = "<group>"; };
+		0A417099197DFA0700D7F85D /* statbg-iphone-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statbg-iphone-hd.png"; sourceTree = "<group>"; };
+		0A41709A197DFA0700D7F85D /* statbg-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statbg-iphone.png"; sourceTree = "<group>"; };
+		0AB30D5E196CC8BD00C4D0F4 /* victory-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "victory-hd.png"; path = "Hd Resources/victory-hd.png"; sourceTree = "<group>"; };
+		0AB30D5F196CC8BD00C4D0F4 /* victory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = victory.png; path = "Hd Resources/victory.png"; sourceTree = "<group>"; };
+		0AB30D62196CC99500C4D0F4 /* Victory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Victory.h; sourceTree = "<group>"; };
+		0AB30D63196CC99500C4D0F4 /* Victory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Victory.m; sourceTree = "<group>"; };
 		0ACE7E7A19108D5100637DE3 /* mgwuSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = mgwuSDK.framework; sourceTree = "<group>"; };
 		0ACE7E7C19108D5100637DE3 /* aqua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aqua.png; sourceTree = "<group>"; };
 		0ACE7E7D19108D5100637DE3 /* bluechatbubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluechatbubble.png; sourceTree = "<group>"; };
@@ -937,6 +948,8 @@
 				84455DD517838048002D130A /* Selector.m */,
 				DCC1A38F13A94F1A005BD75D /* HelloWorldLayer.h */,
 				DCC1A39013A94F1A005BD75D /* HelloWorldLayer.m */,
+				0AB30D62196CC99500C4D0F4 /* Victory.h */,
+				0AB30D63196CC99500C4D0F4 /* Victory.m */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
 				84C8E13E1782083D00FD85D3 /* Player.h */,
@@ -972,6 +985,10 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0A417099197DFA0700D7F85D /* statbg-iphone-hd.png */,
+				0A41709A197DFA0700D7F85D /* statbg-iphone.png */,
+				0AB30D5E196CC8BD00C4D0F4 /* victory-hd.png */,
+				0AB30D5F196CC8BD00C4D0F4 /* victory.png */,
 				0A3312FC196486DE009A2555 /* facebook-hd.png */,
 				84953E5B1887955D00C0FD24 /* shop-hd.png */,
 				84953E5C1887955D00C0FD24 /* shop.png */,
@@ -1336,6 +1353,7 @@
 				847C6AB9178DE1BD00F96917 /* coinbig.png in Resources */,
 				847C6ABB178E09C200F96917 /* techno.mp3 in Resources */,
 				84B44DAE178F213A00B70A4D /* orangestore.png in Resources */,
+				0A41709C197DFA0700D7F85D /* statbg-iphone.png in Resources */,
 				0ACE7F0019108D5100637DE3 /* mgwuPlaceholderIconDark.png in Resources */,
 				84B44DDA178F397900B70A4D /* 2retry-hd.png in Resources */,
 				84B44DDB178F397900B70A4D /* alienblue-hd.png in Resources */,
@@ -1373,6 +1391,7 @@
 				84B44DF5178F397900B70A4D /* locked-hd.png in Resources */,
 				84B44DF6178F397900B70A4D /* mgwu-hd.png in Resources */,
 				0ACE7ECB19108D5100637DE3 /* FBLoginButtonPressed.png in Resources */,
+				0AB30D61196CC8BD00C4D0F4 /* victory.png in Resources */,
 				84B44DF7178F397900B70A4D /* orange-hd.png in Resources */,
 				84B44DF8178F397900B70A4D /* orangehigh-hd.png in Resources */,
 				84B44DF9178F397900B70A4D /* orangeretry-hd.png in Resources */,
@@ -1414,6 +1433,7 @@
 				84825C0017A857AE00D8FA2D /* iTunesArtwork.png in Resources */,
 				84825C0117A857AE00D8FA2D /* iTunesArtwork@2x.png in Resources */,
 				0ACE7F0519108D5100637DE3 /* send-button-active.png in Resources */,
+				0A41709B197DFA0700D7F85D /* statbg-iphone-hd.png in Resources */,
 				84825C0917A85E3200D8FA2D /* title_logo-hd.png in Resources */,
 				0ACE7EE819108D5100637DE3 /* MGWUBackground-Portrait@2x~ipad.png in Resources */,
 				0ACE7EE019108D5100637DE3 /* MGWUAboutFooter-Portrait@2x~ipad.png in Resources */,
@@ -1451,6 +1471,7 @@
 				84A3655717FBBA93005E3D29 /* glogo-hd.png in Resources */,
 				84A3655817FBBA93005E3D29 /* glogo.png in Resources */,
 				0ACE7EFD19108D5100637DE3 /* mgwuLogoDark@2x.png in Resources */,
+				0AB30D60196CC8BD00C4D0F4 /* victory-hd.png in Resources */,
 				84A3655B17FBBBE0005E3D29 /* boss-bash-hd.png in Resources */,
 				84A3655C17FBBBE0005E3D29 /* boss-bash.png in Resources */,
 				0ACE7F0119108D5100637DE3 /* mgwuPlaceholderIconDark@2x.png in Resources */,
@@ -1516,6 +1537,7 @@
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
 				84C8E1401782083D00FD85D3 /* Player.m in Sources */,
 				84C8E14917823F8C00FD85D3 /* Bullet.m in Sources */,
+				0AB30D64196CC99500C4D0F4 /* Victory.m in Sources */,
 				84683DAE1783605D007030C3 /* Pausue.m in Sources */,
 				84455DD317837E51002D130A /* Title.m in Sources */,
 				84455DD617838048002D130A /* Selector.m in Sources */,

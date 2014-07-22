@@ -7,6 +7,7 @@
 //
 
 #import "StatLayer.h"
+#import "Dead.h"
 
 @implementation StatLayer
 
@@ -32,14 +33,24 @@ CGSize screenSize;
         }
         //[self addChild:gameTitle];
         
+        CCSprite* bg;
         
-        CCSprite* bg = [CCSprite spriteWithFile:@"statbg.png"];
-        bg.position = ccp(160,240);
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"] == true)
+        {
+            bg = [CCSprite spriteWithFile:@"statbg-iphone.png"];
+            bg.position =ccp(160,10);
+        }
+        else
+        {
+            bg = [CCSprite spriteWithFile:@"statbg.png"];
+            bg.position = ccp(160,240);
+        }
+        
         [self addChild:bg z:-20];
         
         if([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"] == true)
         {
-            bg.position = ccp(160,328);
+            bg.position = ccp(160,284);
             CCSprite* fill = [CCSprite spriteWithFile:@"darkbluefill.png"];
             fill.position = [CCDirector sharedDirector].screenCenter;
             [self addChild:fill z:-100];
@@ -106,9 +117,9 @@ CGSize screenSize;
             
             if(pos.y < 50 && pos.y > 0 && pos.x < 40)
             {
-                [MGWU showMessage:@"Whyd u reset the data mun" withImage:nil];
-                NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-                [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+                //[MGWU showMessage:@"Whyd u reset the data mun" withImage:nil];
+              //  NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+               // [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 
             }
         }
@@ -123,9 +134,9 @@ CGSize screenSize;
             
             if(pos.y < 50 && pos.y > 0 && pos.x < 40)
             {
-                [MGWU showMessage:@"Whyd u reset the data mun" withImage:nil];
-                NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-                [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+           //     [MGWU showMessage:@"Whyd u reset the data mun" withImage:nil];
+             //   NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+               // [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
             }
         }
         
@@ -135,7 +146,7 @@ CGSize screenSize;
 -(void) goHome
 {
     [[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionSlideInL transitionWithDuration:0.5f scene:[Title node]]];
+	 [CCTransitionSlideInL transitionWithDuration:0.5f scene:[Dead node]]];
     //        [[CCDirector sharedDirector] replaceScene:[HelloWorldLayer node]];
 }
 
@@ -190,7 +201,14 @@ CGSize screenSize;
     //        count = 250;
     //    }
     
-    for (int i = 0; i < 10; i ++)
+    int dep = 10;
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"] == true)
+    {
+        dep = 13;
+    }
+    
+    for (int i = 0; i < dep; i ++)
     {
         NSMutableDictionary *playerDict = [otherPlayers objectAtIndex:i];
         NSNumber * score = [playerDict objectForKey:@"score"];
@@ -224,7 +242,7 @@ CGSize screenSize;
         
         if((i % 2) == 0)
         {
-            label.color = ccc3(41, 128, 185);
+            //label.color = ccc3(41, 128, 185);
         }
         [self addChild:label z: 2];
         
@@ -239,7 +257,7 @@ CGSize screenSize;
         
         if((i % 2) == 0)
         {
-            label2.color = ccc3(41, 128, 185);
+            //label2.color = ccc3(41, 128, 185);
         }
         [self addChild:label2 z: 2];
         
