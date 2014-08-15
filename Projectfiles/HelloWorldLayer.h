@@ -16,6 +16,7 @@
 {
     CCSpriteBatchNode* batch;
     
+    CCSprite* header;
 	NSString* helloWorldString;
 	NSString* helloWorldFontName;
 	int helloWorldFontSize;

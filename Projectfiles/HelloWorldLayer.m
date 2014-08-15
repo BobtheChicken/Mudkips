@@ -2642,6 +2642,13 @@ CCLabelTTF* countdownlabel;
     
     [self addChild:border z:9051];
     
+    header = [CCSprite spriteWithFile:@"header.png"];
+    
+    header.position = ccp(160,[[CCDirector sharedDirector] winSize].height - 23);
+    [self addChild:header z:9100];
+    
+    [self removeChild:label];
+    
     //border.opacity = 100;
     
     
@@ -2673,19 +2680,18 @@ CCLabelTTF* countdownlabel;
     
     [gameOver setColor:ccc3(44, 62, 80)];
     
-    [self addChild:gameOver z:9052];
+    //[self addChild:gameOver z:9052];
     
-    NSString* coinsl = @"Coins: ";
-    NSString* coincount = [coinsl stringByAppendingString:[NSString stringWithFormat:@"%i",coins]];
-    gameOver1 = [CCLabelTTF labelWithString:coincount fontName:@"Avenir" fontSize:45];
+    NSString* coinsl = [NSString stringWithFormat:@"You have %i Coins",coins];
+    gameOver1 = [CCLabelTTF labelWithString:coinsl fontName:@"HelveticaNeue-UltraLight" fontSize:30];
     
-    gameOver1.position = ccp(160, 320);
+    gameOver1.position = ccp(160, 380);
     
     [self addChild:gameOver1 z:9052];
     
     
     
-    coinLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",coins] fontName:@"Avenir" fontSize:45];
+    coinLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",coins] fontName:@"Avenir" fontSize:25];
     
     coinLabel.position = ccp(240, 300);
     
@@ -2710,9 +2716,9 @@ CCLabelTTF* countdownlabel;
     
     
     
-    gameOver2 = [CCLabelTTF labelWithString:coinc fontName:@"Avenir" fontSize:30];
+    gameOver2 = [CCLabelTTF labelWithString:coinc fontName:@"HelveticaNeue-UltraLight" fontSize:20];
     
-    gameOver2.position = ccp(160, 80);
+    gameOver2.position = ccp(160, 340);
     
     [self addChild:gameOver2 z:9052];
     
@@ -2854,6 +2860,8 @@ CCLabelTTF* countdownlabel;
     [self removeChild:gameOver3];
     [self removeChild:gameOverLayer];
     [self removeChild:GameOverMenu];
+    [self removeChild:header];
+    [self addChild:label];
     [self scheduleUpdate];
     [[CCDirector sharedDirector] resume];
     

@@ -53,86 +53,57 @@
             
             intscore = [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
             
+            if([[NSUserDefaults standardUserDefaults] integerForKey:@"highscore"] < [[NSUserDefaults standardUserDefaults] integerForKey:@"score"])
+            {
+                [[NSUserDefaults standardUserDefaults] setInteger:intscore forKey:@"highscore"];
+            }
+            
             NSNumber* scorenum = [NSNumber numberWithInt:[[NSUserDefaults standardUserDefaults] integerForKey:@"score"]];
             NSNumber* levelnumber = [NSNumber numberWithInt:1];
             NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: score, @"score", levelnumber, @"level_number", nil];
             [MGWU logEvent:@"blue_gameover" withParams:params];
             
+            CCLabelTTF* currentscorelabel = [CCLabelTTF labelWithString:@"Score:" fontName:@"Avenir" fontSize:20];
+            currentscorelabel.position = ccp(160,465);
+            currentscorelabel.color = ccc3(255,255,255);
+            [self addChild:currentscorelabel z: 100];
             
             
             
-            CCLabelTTF* gameOver2 = [CCLabelTTF labelWithString:score fontName:@"NexaBold" fontSize:42];
-            if(score.length == 6)
-            {
-                gameOver2.fontSize = 35;
-            }
-            if(score.length == 7)
-            {
-                gameOver2.fontSize = 30;
-            }
-            if(score.length == 8)
-            {
-                gameOver2.fontSize = 25;
-            }
-            if(score.length == 9)
-            {
-                gameOver2.fontSize = 20;
-                score = @"the scores too high";
-            }
+            CCLabelTTF* gameOver2 = [CCLabelTTF labelWithString:score fontName:@"AvenirNext-Heavy" fontSize:52];
+
             gameOver2.position = ccp(160, 418);
-            gameOver2.color = ccc3(0, 0, 0);
+            gameOver2.color = ccc3(255, 255, 255);
             [self addChild:gameOver2 z:100 tag:100];
             
-            //CCTintTo* tint = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
-            //[gameOver runAction:tint];
-            /*// game over label runs 3 different actions at the same time to create the combined effect
-             // 1) color tinting
-             CCTintTo* tint1 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:0];
-             CCTintTo* tint2 = [CCTintTo actionWithDuration:2 red:255 green:255 blue:0];
-             CCTintTo* tint3 = [CCTintTo actionWithDuration:2 red:0 green:255 blue:0];
-             CCTintTo* tint4 = [CCTintTo actionWithDuration:2 red:0 green:255 blue:255];
-             CCTintTo* tint5 = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
-             CCTintTo* tint6 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:255];
-             CCSequence* tintSequence = [CCSequence actions:tint1, tint2, tint3, tint4, tint5, tint6, nil];
-             CCRepeatForever* repeatTint = [CCRepeatForever actionWithAction:tintSequence];
-             [gameOver runAction:repeatTint];
-             
-             // 2) rotation with ease
-             CCRotateTo* rotate1 = [CCRotateTo actionWithDuration:2 angle:3];
-             CCEaseBounceInOut* bounce1 = [CCEaseBounceInOut actionWithAction:rotate1];
-             CCRotateTo* rotate2 = [CCRotateTo actionWithDuration:2 angle:-3];
-             CCEaseBounceInOut* bounce2 = [CCEaseBounceInOut actionWithAction:rotate2];
-             CCSequence* rotateSequence = [CCSequence actions:bounce1, bounce2, nil];
-             CCRepeatForever* repeatBounce = [CCRepeatForever actionWithAction:rotateSequence];
-             [gameOver runAction:repeatBounce];
-             
-             // 3) jumping
-             CCJumpBy* jump = [CCJumpBy actionWithDuration:3 position:CGPointZero height:screenSize.height / 3 jumps:1];
-             CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
-             [gameOver runAction:repeatJump];*/
             
-            /* CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Retry" target:self selector:@selector(retry)];
-             CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Level Select" target:self selector:@selector(sel)];
-             CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Quit" target:self selector:@selector(quitGame)];
-             [playAgain setFontName:@"Arial"];
-             [restart setFontName:@"Arial"];
-             [quit setFontName:@"Arial"];
-             CCMenu *gameOverMenu = [CCMenu menuWithItems:playAgain, restart, quit, nil];
-             [gameOverMenu alignItemsVertically];
-             gameOverMenu.position = ccp(screenSize.width/2, screenSize.height/2 - 80);
-             gameOverMenu.color = ccc3(0, 0, 0);
-             [self addChild:gameOverMenu];
-             
-             */
-            CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"2retry.png" selectedImage:@"2retry.png" target:self selector:@selector(retry)];
-            highscore.position = ccp(160, 174);
+            CCLabelTTF* currentscorelabel2 = [CCLabelTTF labelWithString:@"High Score:" fontName:@"Avenir" fontSize:20];
+            currentscorelabel2.position = ccp(160,380);
+            currentscorelabel2.color = ccc3(255,255,255);
+            [self addChild:currentscorelabel2 z: 100];
+            
+            CCLabelTTF* highscore3 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i",[[NSUserDefaults standardUserDefaults] integerForKey:@"highscore"]] fontName:@"AvenirNext-Heavy" fontSize:52];
+            
+            highscore3.position = ccp(160, 330);
+            highscore3.color = ccc3(255, 255, 255);
+            [self addChild:highscore3 z:100 tag:100];
+            
+            //CCTintTo* tint = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
+
+            CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"button-restart.png" selectedImage:@"button-restart.png" target:self selector:@selector(retry)];
+            highscore.position = ccp(160, 124);
             highscore.scale = 1;
             CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
             starMenu.position = CGPointZero;
             [self addChild:starMenu];
             
             
-            
+            CCLabelTTF *morethings = [CCMenuItemImage itemFromNormalImage:@"button-high-scores.png" selectedImage:@"button-high-scores.png" target:self selector:@selector(sel)];
+            morethings.position = ccp(160, 204);
+            morethings.scale = 1;
+            CCMenu *morethingsm = [CCMenu menuWithItems:morethings, nil];
+            morethingsm.position = CGPointZero;
+            [self addChild:morethingsm];
             
             
             
@@ -149,7 +120,7 @@
             
             
             
-             NSLog(@"I HATE YOU FACEBOOK");
+            // NSLog(@"I HATE YOU FACEBOOK");
             CCLabelTTF *fb = [CCMenuItemImage itemFromNormalImage:@"facebook.png" selectedImage:@"facebook.png" target:self selector:@selector(fb)];
             fb.position = ccp(size.width - 16, size.height - 16);
             fb.scale = 1.5;
@@ -171,100 +142,92 @@
         else
         {
         
-        size = [[CCDirector sharedDirector] winSize];
-        glClearColor(255, 255, 255, 255);
-        [self unscheduleAllSelectors];
-        
-        // have everything stop
-        CCNode* node;
-        CCARRAY_FOREACH([self children], node)
-        {
-            [node pauseSchedulerAndActions];
-        }
-        
-        CGPoint screencenter = [[CCDirector sharedDirector] screenCenter];
-        
-        CCSprite* background = [CCSprite spriteWithFile:@"gameoverbg.png"];
-        background.position = screencenter;
-        [self addChild:background z:-10000];
-        [self setDimensionsInPixelsOnSprite:background width:320 height:480];
-        
-        
-        
-        // add the labels shown during game over
-        CGSize screenSize = [[CCDirector sharedDirector] winSize];
-        
-        CGSize screenSize1 = [[CCDirector sharedDirector] winSizeInPixels];
-        
-        score = [NSString stringWithFormat:@"%i", [[NSUserDefaults standardUserDefaults] integerForKey:@"score"]];
-        
-        intscore = [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
-        
-        
-        
-       
-        
-        
-        CCLabelTTF* gameOver2 = [CCLabelTTF labelWithString:score fontName:@"NexaBold" fontSize:42];
-        gameOver2.position = ccp(160, 330);
-        gameOver2.color = ccc3(0, 0, 0);
-        [self addChild:gameOver2 z:100 tag:100];
-        
-        //CCTintTo* tint = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
-        //[gameOver runAction:tint];
-        /*// game over label runs 3 different actions at the same time to create the combined effect
-         // 1) color tinting
-         CCTintTo* tint1 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:0];
-         CCTintTo* tint2 = [CCTintTo actionWithDuration:2 red:255 green:255 blue:0];
-         CCTintTo* tint3 = [CCTintTo actionWithDuration:2 red:0 green:255 blue:0];
-         CCTintTo* tint4 = [CCTintTo actionWithDuration:2 red:0 green:255 blue:255];
-         CCTintTo* tint5 = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
-         CCTintTo* tint6 = [CCTintTo actionWithDuration:2 red:255 green:0 blue:255];
-         CCSequence* tintSequence = [CCSequence actions:tint1, tint2, tint3, tint4, tint5, tint6, nil];
-         CCRepeatForever* repeatTint = [CCRepeatForever actionWithAction:tintSequence];
-         [gameOver runAction:repeatTint];
-         
-         // 2) rotation with ease
-         CCRotateTo* rotate1 = [CCRotateTo actionWithDuration:2 angle:3];
-         CCEaseBounceInOut* bounce1 = [CCEaseBounceInOut actionWithAction:rotate1];
-         CCRotateTo* rotate2 = [CCRotateTo actionWithDuration:2 angle:-3];
-         CCEaseBounceInOut* bounce2 = [CCEaseBounceInOut actionWithAction:rotate2];
-         CCSequence* rotateSequence = [CCSequence actions:bounce1, bounce2, nil];
-         CCRepeatForever* repeatBounce = [CCRepeatForever actionWithAction:rotateSequence];
-         [gameOver runAction:repeatBounce];
-         
-         // 3) jumping
-         CCJumpBy* jump = [CCJumpBy actionWithDuration:3 position:CGPointZero height:screenSize.height / 3 jumps:1];
-         CCRepeatForever* repeatJump = [CCRepeatForever actionWithAction:jump];
-         [gameOver runAction:repeatJump];*/
-        
-       /* CCMenuItemFont *playAgain = [CCMenuItemFont itemFromString: @"Retry" target:self selector:@selector(retry)];
-        CCMenuItemFont *restart = [CCMenuItemFont itemFromString: @"Level Select" target:self selector:@selector(sel)];
-        CCMenuItemFont *quit = [CCMenuItemFont itemFromString: @"Quit" target:self selector:@selector(quitGame)];
-        [playAgain setFontName:@"Arial"];
-        [restart setFontName:@"Arial"];
-        [quit setFontName:@"Arial"];
-        CCMenu *gameOverMenu = [CCMenu menuWithItems:playAgain, restart, quit, nil];
-        [gameOverMenu alignItemsVertically];
-        gameOverMenu.position = ccp(screenSize.width/2, screenSize.height/2 - 80);
-        gameOverMenu.color = ccc3(0, 0, 0);
-        [self addChild:gameOverMenu];
-        
-        */
-        CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"2retry.png" selectedImage:@"2retry.png" target:self selector:@selector(retry)];
-        highscore.position = ccp(160, 130);
-        highscore.scale = 1;
-        CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
-        starMenu.position = CGPointZero;
-        [self addChild:starMenu];
+            size = [[CCDirector sharedDirector] winSize];
+            glClearColor(255, 255, 255, 255);
+            [self unscheduleAllSelectors];
+            
+            // have everything stop
+            CCNode* node;
+            CCARRAY_FOREACH([self children], node)
+            {
+                [node pauseSchedulerAndActions];
+            }
+            
+            CGPoint screencenter = [[CCDirector sharedDirector] screenCenter];
+            
+            CCSprite* background = [CCSprite spriteWithFile:@"gameoverbg5.png"];
+            background.position = ccp(screencenter.x,screencenter.y - 44);
+            [self addChild:background z:-10000];
+            
+            CCSprite* bg = [CCSprite spriteWithFile:@"darkbluefill.png"];
+            bg.position = [CCDirector sharedDirector].screenCenter;
+            [self addChild:bg z:-1000000];
+            bg.scale = 2;
+            
+            // add the labels shown during game over
+            CGSize screenSize = [[CCDirector sharedDirector] winSize];
+            
+            CGSize screenSize1 = [[CCDirector sharedDirector] winSizeInPixels];
+            
+            score = [NSString stringWithFormat:@"%i", [[NSUserDefaults standardUserDefaults] integerForKey:@"score"]];
+            
+            
+            intscore = [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
+            
+            if([[NSUserDefaults standardUserDefaults] integerForKey:@"highscore"] < [[NSUserDefaults standardUserDefaults] integerForKey:@"score"])
+            {
+                [[NSUserDefaults standardUserDefaults] setInteger:intscore forKey:@"highscore"];
+            }
+            
+            NSNumber* scorenum = [NSNumber numberWithInt:[[NSUserDefaults standardUserDefaults] integerForKey:@"score"]];
+            NSNumber* levelnumber = [NSNumber numberWithInt:1];
+            NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys: score, @"score", levelnumber, @"level_number", nil];
+            [MGWU logEvent:@"blue_gameover" withParams:params];
+            
+            CCLabelTTF* currentscorelabel = [CCLabelTTF labelWithString:@"Score:" fontName:@"Avenir" fontSize:20];
+            currentscorelabel.position = ccp(160,415);
+            currentscorelabel.color = ccc3(255,255,255);
+            [self addChild:currentscorelabel z: 100];
+            
+            CCLabelTTF* gameOver2 = [CCLabelTTF labelWithString:score fontName:@"AvenirNext-Heavy" fontSize:52];
+            
+            gameOver2.position = ccp(160, 378);
+            gameOver2.color = ccc3(255, 255, 255);
+            [self addChild:gameOver2 z:100 tag:100];
+            
+            
+            CCLabelTTF* currentscorelabel2 = [CCLabelTTF labelWithString:@"High Score:" fontName:@"Avenir" fontSize:20];
+            currentscorelabel2.position = ccp(160,340);
+            currentscorelabel2.color = ccc3(255,255,255);
+            [self addChild:currentscorelabel2 z: 100];
+            
+            CCLabelTTF* highscore3 = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i",[[NSUserDefaults standardUserDefaults] integerForKey:@"highscore"]] fontName:@"AvenirNext-Heavy" fontSize:52];
+            
+            highscore3.position = ccp(160, 295);
+            highscore3.color = ccc3(255, 255, 255);
+            [self addChild:highscore3 z:100 tag:100];
+            
+            //CCTintTo* tint = [CCTintTo actionWithDuration:2 red:0 green:0 blue:255];
+            
+            CCLabelTTF *highscore = [CCMenuItemImage itemFromNormalImage:@"button-restart.png" selectedImage:@"button-restart.png" target:self selector:@selector(retry)];
+            highscore.position = ccp(160, 84);
+            highscore.scale = 1;
+            CCMenu *starMenu = [CCMenu menuWithItems:highscore, nil];
+            starMenu.position = CGPointZero;
+            [self addChild:starMenu];
+            
+            
+            CCLabelTTF *morethings = [CCMenuItemImage itemFromNormalImage:@"button-high-scores.png" selectedImage:@"button-high-scores.png" target:self selector:@selector(sel)];
+            morethings.position = ccp(160, 169);
+            morethings.scale = 1;
+            CCMenu *morethingsm = [CCMenu menuWithItems:morethings, nil];
+            morethingsm.position = CGPointZero;
+            [self addChild:morethingsm];
         
         
-        
-        
-        
-        
-        //xyhw
-        nameField = [[UITextField alloc] initWithFrame:CGRectMake(50, 260, 230, 35)];
+        //xywh
+            
+        nameField = [[UITextField alloc] initWithFrame:CGRectMake(50, 220, 230, 35)];
         [[[CCDirector sharedDirector] view] addSubview:nameField];
         nameField.delegate = self;
         nameField.placeholder = @"Tap to Enter Username";
@@ -340,10 +303,10 @@
             [self quitGame];
         }
         
-        if(pos.y > 0 && pos.y < 50 && pos.x < 40)
-        {
-            [self sel];
-        }
+//        if(pos.y > 0 && pos.y < 50 && pos.x < 40)
+//        {
+//            [self sel];
+//        }
     }
 }
 
@@ -429,6 +392,11 @@ else{
 		[nameField removeFromSuperview];
 		return YES;
 	}
+    else
+    {
+        [textField resignFirstResponder];
+        return YES;
+    }
 }
 
 @end
