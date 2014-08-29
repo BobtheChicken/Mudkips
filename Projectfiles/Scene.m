@@ -18,6 +18,10 @@
 {
     if ((self = [super init]))
     {
+        [[NSUserDefaults standardUserDefaults]setInteger:4 forKey:@"boss"];
+        
+        
+        //[[NSUserDefaults standardUserDefaults] setInteger:4 forKey:@"boss"];
         
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"iphone5"]) //iphone 5
         {

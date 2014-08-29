@@ -1214,6 +1214,8 @@ CCLabelTTF* countdownlabel;
                     [self shootBulletwithPos:1 angle:360 xpos:-200 ypos:-200];
                     [self shootBulletwithPos:1 angle:360 xpos:-200 ypos:-320];
                     [self shootBulletwithPos:1 angle:360 xpos:-200 ypos:-440];
+                    
+                    [self shootBulletwithPosPowerup:1 angle:260 xpos:0 ypos:0];
                 }
             }
             else if(attacktype == 5)
