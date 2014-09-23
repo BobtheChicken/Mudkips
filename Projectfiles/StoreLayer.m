@@ -118,17 +118,17 @@ CCLabelBMFont *coinsLabel;
 
 -(void) buyCash1
 {
-    [MGWU testBuyProduct:@"com.kev.blu.10" withCallback:@selector(boughtProduct:) onTarget:self];
+    [MGWU buyProduct:@"com.mgwu.blue.15" withCallback:@selector(boughtProduct:) onTarget:self];
 }
 
 -(void) buyCash2
 {
-    [MGWU testBuyProduct:@"com.kev.blu.50" withCallback:@selector(boughtProduct:) onTarget:self];
+    [MGWU buyProduct:@"com.mgwu.blue.50" withCallback:@selector(boughtProduct:) onTarget:self];
 }
 
 -(void) buyCash3
 {
-    [MGWU testBuyProduct:@"com.kev.blu.300" withCallback:@selector(boughtProduct:) onTarget:self];
+    [MGWU buyProduct:@"com.mgwu.blue.300" withCallback:@selector(boughtProduct:) onTarget:self];
 }
 
 
@@ -136,15 +136,15 @@ CCLabelBMFont *coinsLabel;
 {
     NSLog(@"Something was Bought!");
     [MGWU showMessage:@"Purchase Successful" withImage:nil];
-    if ([powerupToBuy isEqualToString:@"com.kev.blu.10"] == true)
+    if ([powerupToBuy isEqualToString:@"com.mgwu.blue.15"] == true)
     {
         NSLog(@"1000 Coins added!");
-        coins += 10;
+        coins += 15;
         //NSNumber *boughtCoinVal = [NSNumber numberWithInt:coins];
         [[NSUserDefaults standardUserDefaults] setInteger:coins forKey:@"coins"];
     }
     
-    if ([powerupToBuy isEqualToString:@"com.kev.blu.50"] == true)
+    if ([powerupToBuy isEqualToString:@"com.mgwu.blue.50"] == true)
     {
         NSLog(@"3000 Coins added!");
         coins += 50;
@@ -153,7 +153,7 @@ CCLabelBMFont *coinsLabel;
         
     }
     
-    if ([powerupToBuy isEqualToString:@"com.kev.blu.300"] == true)
+    if ([powerupToBuy isEqualToString:@"com.mgwu.blue.300"] == true)
     {
         NSLog(@"10000 Coins added!");
         coins += 300;
@@ -161,6 +161,15 @@ CCLabelBMFont *coinsLabel;
         [[NSUserDefaults standardUserDefaults] setInteger:coins forKey:@"coins"];
     }
     
+    [self updateCoinsLabel];
+}
+
+- (void)updateCoinsLabel {
+    int CoinNumber = [[NSUserDefaults standardUserDefaults] integerForKey:@"coins"];
+    //        NSNumber *endingHighScoreNumber = [MGWU objectForKey:@"sharedHighScore"];
+    coins = CoinNumber;
+    CoinString = [[NSString alloc] initWithFormat:@"Coins: %i", coins];
+    coinsLabel.string = CoinString;
 }
 
 

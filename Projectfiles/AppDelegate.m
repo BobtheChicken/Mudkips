@@ -6,6 +6,7 @@
  */
 
 #import "AppDelegate.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
@@ -19,6 +20,13 @@
     
     [MGWU loadMGWU:@"iliketoeatpieandbananasandlotsandlotsofcake"];
     [MGWU dark];
+    [Crashlytics startWithAPIKey:@"b4c0cec36ffb1513a78aaa7c1c4cf0c18ccefca0"];
+    
+    [MGWU setReminderMessage:@"Come back and play Blue!"];
+	
+    [MGWU useIAPs];
+    
+    [MGWU setAppiraterAppId:@"920179729" andAppName:@"Blue"];
 }
 
 
@@ -45,6 +53,22 @@
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
     [director resume];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)tokenId {
+    [MGWU registerForPush:tokenId];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [MGWU gotPush:userInfo];
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error{
+    [MGWU failedPush:error];
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [MGWU gotLocalPush:notification];
 }
 
 -(id) alternateView
