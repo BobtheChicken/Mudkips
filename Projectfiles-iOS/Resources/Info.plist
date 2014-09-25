@@ -4,37 +4,35 @@
 <dict>
 	<key></key>
 	<string></string>
-	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
-	<key>CFBundleIcons~ipad</key>
-	<dict/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
-	<key>UIStatusBarHidden</key>
-	<true/>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>FacebookAppID</key>
-	<string>317776771691564</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>Blue</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<dict>
-		<key>armv7</key>
-		<true/>
-		<key>opengles-2</key>
-		<true/>
-		<key>accelerometer</key>
-		<true/>
-	</dict>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon.png</string>
+		<string>Icon@2x.png</string>
+	</array>
+	<key>CFBundleIcons</key>
+	<dict/>
+	<key>CFBundleIcons~ipad</key>
+	<dict/>
+	<key>CFBundleIdentifier</key>
+	<string>com.mgwu.blue</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -44,8 +42,12 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string>com.mgwu.blue</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.0</string>
+	<key>FacebookAppID</key>
+	<string>317776771691564</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Avenir-Next.ttc</string>
@@ -56,20 +58,18 @@
 		<string>Ubuntu-C.ttf</string>
 		<string>Ubuntu-B.ttf</string>
 	</array>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>Icon.png</string>
-		<string>Icon@2x.png</string>
-	</array>
-	<key>CFBundleIcons</key>
-	<dict/>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>CFBundleDisplayName</key>
-	<string>Blue</string>
 	<key>UIPrerenderedIcon</key>
+	<true/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<dict>
+		<key>accelerometer</key>
+		<true/>
+		<key>armv7</key>
+		<true/>
+		<key>opengles-2</key>
+		<true/>
+	</dict>
+	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
