@@ -1652,6 +1652,7 @@
 				);
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1675,8 +1676,9 @@
 					"$(KKFRAMEWORKS_IOS)",
 					"-lsqlite3.0",
 				);
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "680f01d1-fb1c-4584-a21e-01e90e3ce9c6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "680f01d1-fb1c-4584-a21e-01e90e3ce9c6";
+				SDKROOT = iphoneos7.1;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
