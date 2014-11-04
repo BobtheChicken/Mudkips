@@ -127,7 +127,7 @@ CCLabelTTF* countdownlabel;
         gameSegment = 0;
         bosstime = false;
         
-        isTimeWarped = true;
+        isTimeWarped = false;
         
         thetemporalint = 180;
         
